@@ -1,0 +1,76 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robotic Perception: Lecture 7 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Understanding neural networks}
+The features are getting more holistic the further down the network we go. High level features combine shapes of the previous features. \\
+Datasets:
+\begin{itemize}
+	\item PASCAL VOC
+	\item MS COCO 
+	\item LVIS
+\end{itemize}
+
+\subsection{Sliding window}
+Instead of taking every window in the image, you start by identifying different regions, or blobs in the image that you can do CNN on.
+This is called R-CNN.
+
+Originally, run the entire Conv-Net and whenever we have classified the image, then we can run the last part of the network for each class/bounding box. 
+
+RPN - Learnable region proposals
+
+
+Single stage detectors are now better than multi stage.  This was up to 2017.
+
+\section{Object detectors evaluation}
+Comparing prediction bounding box to a ground truth bounding box, we can use the union of the two bounding boxes. 
+
+
+mAP = Mean average precision
+
+
+
+
+you can do learnable convolution to upsample the image. 
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

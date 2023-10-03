@@ -1,0 +1,219 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Navigation: Lecture 4 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Recap}
+Wheel odometry $ \rightarrow  $ diff. drive
+Visual odomemtry
+
+\begin{figure}[ht]
+    \centering
+    \incfig[1]{visualodometry}
+    \caption{visualOdometry}
+    \label{fig:visualodometry}
+\end{figure}
+
+We have the transform $ T $:
+
+\[
+T \begin{bmatrix}
+x \\
+1
+\end{bmatrix} = y \begin{bmatrix}
+y \\
+1
+\end{bmatrix} 
+\] 
+
+When we compute a lot of tranformations $ T_i $ between $ C_1 $ and $ C_n $, we need the intermediate transforms, to make sure that we keep track of the features.  
+
+\subsection{Diff Drive}
+\begin{equation}
+z = \begin{bmatrix}
+x \\
+h
+\end{bmatrix}, \hspace{10pt} \frac{d}{dt}f = \begin{bmatrix}
+h \cdot \omega s  \\
+R_{\frac{\pi}{2}} \cdot h \omega d 
+\end{bmatrix} 
+\end{equation}
+
+where  
+\[
+\omega s = \frac{\omega_r + \omega_l}{2} r  
+\] 
+
+
+
+The hat is the command, while the actual input can be slightly different:
+\begin{equation}
+	z_{n+1} = f(z_n, u_n) = f( \hat{z_n} + \Delta z_n,  \hat{u_n} + \Delta u_n ) 
+\end{equation}
+\begin{equation}
+	\hat{z_{n+1}} = f(\hat{z_n},\hat{u_n})
+\end{equation}
+Then we take the first order taylor approximation to compute the actual input from the commanded input. 
+
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+\section{Probability}
+
+We have some probability distribution of our state:\\
+\underline{ \textbf{Prior:}}
+\[
+P(z)
+\] 
+
+The information on the probability distribution helps us:
+\[
+0 \rightarrow P(z | o) =  \frac{P(o|z) P(z)}{\sum_{i}^{}{P(o)} } 
+\] 
+
+Where $ P(o|z) $ is the model of the sensor. $ o $ is the observation, and  $ z $ is the state.
+
+TODO: Add centering snippet with a raggedrigt term.
+\centering
+\fbox{$\eta \cdot P(o|z) P(z) = P(z|o) = \frac{P(o|z) \cdot P(z)}{\sum_{i}^{}{}P(o|z_i) \cdot P(z_i) } $}
+
+\raggedright
+
+Note that we use the Total Probability theorem:
+\[
+	P(x) = \int_{y}...
+\] 
+
+\section{Localization}
+We can discretize our map by defining a grid in to cells or bins. Thus when assigning a system state, we assign a probability distribution to all of the different cells. 
+\[
+\sum_{i}^{}{P(z \in b_i) = 1} 
+\] 
+where $ b_i $ is bin (cell)  $ i $
+
+\begin{equation}
+	P(z_{n+1} \in b_i) = \sum_{j}^{}{P(z_{n+1} \in b_i \wedge z_n \in b_j)}
+\end{equation}
+
+\hfill \fbox{$ \wedge $ is called "wedge" and means "AND".}
+
+
+
+\section{Probabilistic Map-Based Localisation}
+It works in both known and unknown environments.
+
+Instead of giving a single estimate of the pose of the robot, we give the distribution of all the robot poses.
+
+Kalman always uses a gaussian distribution. 
+If we are entirely certain of the position, we can imagine the distribution of the certainty is the \textit{Dirac Delta} function, which is 100\% probability, of a certain pose. i.e. the variance $ \rightarrow  $ 0.
+
+\[
+P(x) = \delta(x-a)
+\] 
+
+where $ P(x) = 1 $.
+
+We improve belief by moving. 
+
+there are 3 different kinds of localisation problems:
+\begin{itemize}
+	\item Position Tracking
+	\item Global localisation
+	\item Kidnapped robot problem
+\end{itemize}
+
+\section{Filters}
+\subsection{Bayes filters}
+
+for all $ x_t $ do:
+
+\begin{equation}
+\overline{x_t} = \int P(x_t | u_t, x_t-1)...
+\end{equation}
+ 
+\subsection{Kidnapped robot problem}
+In this case there might go some time before the markov localisation problem can estimate the position.
+
+
+\subsection{Particle filters}
+We can use samples (particles) to represent the distribution.\\
+This is done to increse computational effeciency, and we use them to simplify the number of states that the system can be in. In order to compute the validity of a particle, we use the $ P(o|z) $ and plot in the state  $ z $ and then it gives a distribution of the possible observations of the sensors. We can use the particles and just do a weighted average, and this would be the robot pose estimate. 
+
+\vspace{5pt}
+\rule{1cm}{0.4pt}
+\vspace{5pt}
+
+\begin{figure}[ht] \centering
+    \incfig[1]{particlefilter}
+    \caption{ParticleFilter}
+    \label{fig:particlefilter}
+\end{figure}
+
+
+\begin{equation}
+	P(x) = \int_{0}^{y}P(x) dx ~ \int_{0}^{y}f(x) dx = F(x)
+\end{equation}
+
+TODO: Add newlines to small hlines
+
+\vspace{5pt}
+\rule{1cm}{0.4pt}
+\vspace{5pt} \\
+\textbf{Example:} \\
+we have a particle
+\[
+	z_{t+1} = f(z_t, u_t) = f(z_t, \hat{u_t} + \Delta u_t)
+\] 
+\[
+	z_t^{i} 
+\] 
+\[
+	z_{t+1}^{i,j} = f(z_t^{i}, \hat{u_t} + \Delta^{i}u_t )
+\] 
+
+for $ j \in 1 .. 10 $
+
+I have to add noise for the $ j $ variable. This means that for every particle, it forms new particles which have some noise in them, which is based on $ j $.
+
+Instead of just letting the number of particles grow, we only select the 10\% of the particles, which are the best, this way we keep the number of particles the same across the itterations.
+
+
+Two funcitions gives the new particle distribution $ \rightarrow  $ the particles, and the belief funciton.
+
+\vspace{5pt}
+
+
+\textbf{Note:} \\
+Particle filters are best applied when we apply some new measurement. 
+
+\end{document}

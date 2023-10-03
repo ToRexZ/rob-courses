@@ -1,0 +1,57 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robot Perception: Lecture 3 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Background subtracion and Image differencing}
+You can choose the first frame of the video as the reference and subtract any other frames from that, so it gets the difference i.e. the things that have moved. (Only works for static camera) \\
+You can use a median filter for noise removal. \\
+Average the multiple reference frames. 
+
+\vspace{5pt}
+
+\textbf{Ghosting:} Is where you subtract an image from the background, and two occourances apear of the segmented moving object. (depending on the framerate)
+
+
+
+\section{Optical flow - Motion analysis}
+Objects that are closer move more pixels. 
+
+optical flow is about finidng the same location in the image from image $ i $ to $ i+1 $ image. 
+
+\textbf{Lukas-Kanade} finds optical flow. It uses a differential method which assumes constant light level, and that the flow is essentially constant.
+
+We setup equations for each pixel around the pixel, (2 variables, and 9 equations).
+
+It has problems with appature, which makes it look like a line have just moved to theright e.g. This entails that it works better with corners. 
+
+
+\end{document}

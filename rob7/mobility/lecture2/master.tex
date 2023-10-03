@@ -1,0 +1,336 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Mobility: Lecture 2 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Recap}
+
+A system of first order ODE's
+
+\begin{equation}\label{eq1}
+\dot{z} = f(z,v)
+\end{equation}
+\[
+\overline{y} = h(x)
+\]
+
+\subsection{Linearization}
+
+where $ \dot{z} $ is a hidden state. Today we will only look at (\ref{eq1})\\
+First we look at the equilibrium points $ f(\overline{z}, \overline{v}) $ and we end up with a system $ \dot{x} = Ax + Bu $. 
+
+\hfill \fbox{$ A $ is the jacobian of $ f $ with respect to  $ z $ of ( $ \overline{z}, \overline{v}) $ }
+
+
+\hfill \fbox{\textbf{Note:}  There always $ n $ states,  $ m $ inputs and  $ p $ outputs.} 
+
+
+Remember the left side by: MOI * acceleration (Newtons law for rotating bodies)
+\begin{equation}
+ml^{2} \ddot{\theta} =  mgl sin \theta - \beta \dot{\theta} + m l cos \theta \ddot{x} 
+\end{equation}
+
+
+First we isolate $ \ddot{\theta}  $ (divide through with $ ml^{2}  $ (note that the constants are simplified to $ a,b,c $
+\begin{equation} \label{eq2}
+\ddot{\theta} =  a sin \theta - b \dot{\theta} + c cos \theta u
+\end{equation}
+
+
+$ \Downarrow $
+
+We write up differentials up untill the one below the highest order of derivatives. in this case it is up to velocity, since (\ref{eq2}) uses acceleration.
+\[
+z_1 = \theta, z_2 = \dot{z}
+\] 
+\[
+	\dot{z_1} = z_2, z_2 = a sin z_1 - b z_2 + c cos z_1 
+\] 
+The above two equations is the definition of $ \dot{z} f(z,v) $
+
+\subsection{Equlibrium point}
+Now we want to find the equilibrium point. $ 0 = f(\overline{z}, \overline{v}) $
+Emmidiately we can see that the velocities are 0, this means that $ z_2 = \dot{z_1} = 0 $.  Thus 
+ \[
+0 = a sin \overline{z_1} + c cos \overline{z_1} \overline{v}
+\] 
+
+since we want the pendulumm to be upright, where $ \theta = 0 $. 
+\[
+z_1 = 0 \rightarrow \overline{v} = 0
+\] 
+
+This entails that we want to find the Jacobian at 0
+
+\hfill \fbox{The first row of the jacobian is the gradient of $ \dot{z_1} = z_2 $}
+
+\begin{equation} \label{eq3}
+\dot{x} = \begin{bmatrix}
+0 & 1 \\
+a & -b
+\end{bmatrix}x + \begin{bmatrix}
+0 \\
+0
+\end{bmatrix} u
+\end{equation}
+
+\[
+x = z - \overline{z} = z
+\] 
+\[
+u = v - \overline{v} = v
+\] 
+
+\section{Controlability}
+\begin{equation}
+\Sigma: \dot{x} = Ax + Bu, x(0) = x_0, y = Cx
+\end{equation}
+where $ x(0) = x_0 $ is the initial condition
+
+We can use \\
+TODO intdef expands at in.
+ \begin{equation}
+	 x = e^{At}x_0 + \int_{0}^{t}e^{A(t-\tau)} Bu(\tau) d\tau
+\end{equation}
+
+
+We have the following definition:
+
+\vspace{5pt}
+
+\textbf{def:} 
+
+The system $\Sigma$, or the pair $ (A,B)$, is controllable (at time $ T $) if for every  $ (x_0,x_1) $ there exist a $ u \in U $
+
+the notation is:
+\fbox{$ x = x(t) = x(t, \overline{x}, u) $}
+where $ \overline{x} $ is the state which i have to be in!
+
+
+
+\begin{equation}
+x_0 = x(0; x_0, u)
+\end{equation}
+\begin{equation}
+x_1 = x(T; x_0, u)
+\end{equation}
+
+\begin{figure}[ht]
+    \centering
+    \incfig[1]{reachability}
+    \caption{reachability}
+    \label{fig:reachability}
+\end{figure}
+
+\newpage
+
+
+\section{Reachability}
+% \fbox{ \textbf{Note:} Reachability and controlability are the same in Continuous time, not in dicsrete time  }
+
+Reachable subspace:
+\begin{equation}
+W_T = { \int_{0}^{T} e^{A(T-\tau)} Bu(\tau) d\tau | u \in U} \subseteq \mathbb{R}^{n} 
+\end{equation}
+
+
+\textbf{def:} 
+$ \Sigma $ is reachable if $  W_T = \mathbb{R}^{n} $ \\
+This entails that $ W_T = Range[A|B]$ \\
+Where the reachability matrix: $ [A|B] = [B AB Ab^{2} \cdots A^{n-1}B] \in \mathbb{R}^{n \times nm}  $
+
+\hfill \fbox{$ \Sigma $ is reachable $\leftrightarrow $ $ \Sigma $ is controlable}
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\textbf{Pendulum} 
+
+
+\begin{equation}
+	[A|B] = \begin{bmatrix}
+	0 & c \\
+	c & -bc
+	\end{bmatrix}
+\end{equation}
+hence is controlable since it has full rank. It looses rank if $ c = 0$ so the condition is:   (if $ c \neq 0) $
+
+\textbf{Example:}  
+$ a = 2, b = c = 1 $.
+Now based on (\ref{eq3})
+\[
+\dot{x} = \begin{bmatrix}
+0 & 1 \\
+2 & -1
+\end{bmatrix}x + \begin{bmatrix}
+0 \\
+1
+\end{bmatrix} u
+\] 
+
+
+We compute the eigenvalues:
+\[
+v_1 = \begin{bmatrix}
+1 \\
+1
+\end{bmatrix}, \lambda_1 = 1 \rightarrow  Av_1 = \lambda_1 v_1
+\] 
+\[
+v_2 = \begin{bmatrix}
+-1 \\
+2
+\end{bmatrix}, \lambda_2 = -2 \rightarrow  Av_2 = \lambda_2 v_2
+\] 
+
+This system is unstable by nature. 
+
+\vspace{5pt}
+
+If you shut of the control $ \dot{x} = Ax $, and give it some initial condition. Then Figure \ref{fig:eigenspace} tells me how the system will behave. Only a few initial conditions, will bring the system to 2, and these are along the eigenvectors.
+
+\begin{figure}[ht]
+    \centering
+    \incfig[1]{eigenspace}
+    \caption{Eigenspace}
+    \label{fig:eigenspace}
+\end{figure}
+
+
+Note that the straight arrows are the subspace spanned by the eigenvectors $ v_1 $ and $ v_2 $
+
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+\section{Kalman decomposition}
+What happens if we loose controlability: \\
+i.e. if $ Rank[A|B] = l < n $ then there exists a matrix $ P \in \mathbb{R}^{n \times n } (z = Px)  $ s.t. 
+ \[
+	 \begin{gathered}
+\dot{z} = P \dot{x} = P A x + P B u = P A P^{-1} z + P B u \\ = \begin{bmatrix}
+A_{11} & A_{12} \\
+0 & A_{22}
+\end{bmatrix} z + \begin{bmatrix}
+B_1 \\
+0
+\end{bmatrix} u
+	 \end{gathered}
+\] 
+with $ (A_{11}, B_1) $ controlable. Moreover $ P = [e_1 \cdots e_l  e_{l+1} \cdots e_n]^{-1} $ \\ with $ Span\{e_1, \cdots, e_l \} = Range[A|B]$ and $ Span\{e_1, \cdots e_l\} = \mathbb{R}^{n} $
+
+If we constrain the environment of reachability, then we can still control it. It is still reachable in the $ l$-dimensional subspace.
+
+
+TODO: Add split and gathered to equation environments
+\begin{equation}
+	\begin{split}
+	\begin{gathered}
+		\dot{z_1} = A_{11} z_1 + A_{12} z_2 + B_1 u \hspace{10pt} A_{11} \in \mathbb{R}^{l \times l}  \\
+	\dot{z_2} = A_{22} z_2
+	\end{gathered}
+	\end{split}
+\end{equation}
+
+
+Note that $ \dot{z_2} $ will either approach 0 or $ \infty $
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+$ B = \begin{bmatrix}
+0 \\
+1
+\end{bmatrix}  \rightarrow B = \begin{bmatrix}
+-1 \\
+2
+\end{bmatrix} v_2 $ 
+\[
+	[A|B] = [B AB] = [v_2 \lambda_2v_2] = \begin{bmatrix}
+	-1 & 2 \\
+	2 & -4
+\end{bmatrix} \hspace{10 pt} Rank[A|B] = 1 < 2
+\] 
+
+Lets do an orthogonal basis to $ v_2 $:
+\begin{equation}\label{eq4}
+P = \begin{bmatrix}
+-1 & -2 \\
+2 & -1
+\end{bmatrix}^{-1} 
+\end{equation} 
+\vspace{5pt}
+
+Now we compute $ P A P^{-1} $
+
+(\ref{eq4}) implies that:
+\begin{equation} \label{eq5}
+\begin{split}
+\begin{gathered}
+\dot{z} = \begin{bmatrix}
+-2 & -1 \\
+0 & 1
+\end{bmatrix}z + \begin{bmatrix}
+1 \\
+0
+\end{bmatrix} u \\
+\dot{z_1} =-2 z_1-z_2 + u \\
+\dot{z_2} = z_2 \rightarrow z_2 = e^{t}z_{20}
+\end{gathered}
+\end{split}
+\end{equation}
+where $ z_{20} $ is an initial condition of $ z_2 $. The value of $ \dot{z_2} \rightarrow \infty $ 
+
+In order to reach controllability, we need the points to be on the subspaces spanned by the eigenvectors. These are the controlable subspaces. 
+
+
+next we do $ v_1 $
+\[
+B = \begin{bmatrix}
+0 \\
+1
+\end{bmatrix} \rightarrow B = \begin{bmatrix}
+1 \\
+1
+\end{bmatrix} = v_1 \rightarrow \dot{z} = \begin{bmatrix}
+1 & -1 \\
+0 & -2
+\end{bmatrix}z + \begin{bmatrix}
+1 \\
+0
+\end{bmatrix}
+\] 
+note that, the $ -2 $, results in the $ t $ in (\ref{eq5}) is negative, thus it is controlable.
+
+
+
+\end{document}

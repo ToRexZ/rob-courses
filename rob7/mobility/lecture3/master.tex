@@ -1,0 +1,429 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Mobility: Lecture 3 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Stability}
+
+The linear system $ \Sigma $:
+\begin{equation}
+\dot{x} = Ax + Bu
+\end{equation}
+\begin{equation}
+y = Cx 
+\end{equation}
+
+With the solution:
+\begin{equation}
+	x = e^{At} x_0 + \int_{0}^{t} e^{A(t-s)} B u(s) ds  
+\end{equation}
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+First we consider if a system is stable. 
+\begin{equation}\label{eq1}
+\Sigma_1 = \dot{x} = Ax, x(0) = x_0 \rightarrow x=e^{At} x_0
+\end{equation}
+
+Where we use the taylor expansion to find $ e^{At}  $
+\begin{equation}
+	e^{At} = \sum_{k=0}^{\infty}{\frac{(At)^{k}}{k!} }
+\end{equation}
+
+\subsection{Example}
+\begin{equation}
+A = \begin{bmatrix}
+\lambda_1 & 0 \\
+0 & \lambda_2
+\end{bmatrix}
+\end{equation}
+\begin{equation}
+	e^{At} = \sum_{k=0}^{\infty}{\frac{1}{k!} \begin{bmatrix}
+	\lambda_1 t & 0 \\
+	0 & \lambda_2 t
+	\end{bmatrix}} = \sum_{k=0}^{\infty}{\frac{1}{k!} \begin{bmatrix}
+	(\lambda_1t)^{k}  & 0 \\
+	0 & (\lambda_2t)^{k}
+	\end{bmatrix}}
+\end{equation}
+Note that It is only possible to do elementwise esponentials because $ A $ is Diagonal.
+
+\begin{equation}
+ = \sum_{k=0}^{\infty}{\begin{bmatrix}
+		\sum_{k=0}^{\infty}{\frac{(\lambda_1t)^{k}}{k!}} & 0 \\
+	0 & \sum_{k=0}^{\infty}{\frac{(\lambda_2t)^{k}}{k!}}
+\end{bmatrix} } = \begin{bmatrix}
+e^{\lambda_1t} & 0 \\
+0 & e^{\lambda_1t} 
+\end{bmatrix}
+\end{equation}
+
+And using (\ref{eq1})
+\begin{equation}
+x = e^{At} x_0 = \begin{bmatrix}
+e^{\lambda_1t} x_{01} \\
+e^{\lambda_2t} x_{02}
+\end{bmatrix} 
+\end{equation}
+
+And if $ \lambda_1  < 0$ and $ \lambda_2 > 0$, the phase plot entails that it is not stable. 
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+Since it is not always possible to do exponetials in (7), we set up a general ca, we set up a general case.
+
+\begin{equation}
+	M =  e^{At} \rightarrow m_{ij} = \sum_{i}^{}{\alpha_i t^{i} e^{\lambda_i t}} 
+\end{equation}
+Where $ \lambda_i \in \sigma(A) $ is the spectrum of $ A $, namely the set of eigenvaules of  $ A $.
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\begin{center}
+\fbox{ \textbf{def:} The system $ \Sigma_1 $ is stable if for every $ x_0 $ $ x(t;x_0) \rightarrow 0 $ for $ t \rightarrow 0 $. }
+\end{center}
+
+Note: If  $ A $ is non-singular, then the only steady state vector is the null vector.
+
+This is the same as positive definitness:
+\begin{center}
+	\fbox{ $ x^{T} B x > 0 \hspace{10pt} \forall x \neq 0 $ }
+\end{center}
+Where $ B $ has to be symmetric.\\ \textbf{Note} that this is easy to check, becuase that $ B $ has to have positive eigenvalues. Therefore  $ 0 < \lambda_i  \in \sigma(B) $ 
+
+This entails the theorem:
+\begin{center}
+	\fbox{ \textbf{Theorem:} The system $\Sigma_1$ is stable iff  $ Re(\lambda) < 0 \hspace{10pt} \forall \lambda \in  \sigma(A) $
+	}
+\end{center}
+
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+Sidenote on complex numbers and imaginary axis:
+
+\begin{equation}
+ e^{\lambda t} = e^{\alpha + i \beta)t} = e^{\alpha t} e^{i \beta t} 
+\end{equation}
+
+Where if $ \alpha < 0 $ the spiral is $ \rightarrow 0 $, and it has a small magnitude.
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\textbf{Relation to Kalman Decomposition} 
+
+\begin{equation}
+	\dot{\begin{bmatrix}
+z_1 \\
+z_2
+\end{bmatrix}}  = \begin{bmatrix}
+A_{11} & A_{12} \\
+0 & A_{22}
+\end{bmatrix} = \begin{bmatrix}
+z_1 \\
+z_2
+\end{bmatrix} + \begin{bmatrix}
+B_1 \\
+0
+\end{bmatrix} u
+\end{equation}
+Where
+
+\begin{equation}
+	\dot{z_1} = A_{11} z_1	 + A_{12} z_2 + B_1 u
+\end{equation}
+\begin{equation}\label{eq2}
+	\dot{z_2} = A_{22} z_2
+\end{equation}
+
+Note that $ A_{12} $ does not really have an effect on the system, as the $ z_2 $ is dependent on (\ref{eq2}).
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\textbf{Introducing the Gain} 
+\begin{equation}
+\dot{x} = Ax + Bu
+\end{equation}
+\begin{equation}
+u = Kx
+\end{equation}
+Where $ K \in \mathbb{R}^{m \times n} $  and this entails with substitution:
+\begin{equation}
+\dot{x} = Ax + Bu = (A+BK)x 
+\end{equation}
+
+Then we can choose $ K $ s.t.  $ \sigma(A + BK ) \subset \mathbb{C}_{-} $\\
+\fbox{$\mathbb{C}_{-} = {\{ \lambda \in \mathbb{C}| Re(\lambda) < 0 \}}$}
+Thus it is the set of all complex numbers with negative real parts. 
+
+\section{Stabilizability}
+
+Control system: whenever nothing is written on summation circles, it is always $ + $.
+
+% \begin{center}
+\begin{framed}
+	\textbf{def:} The system $ \Sigma $ or the pair  $ (A,B) $ is stabilizable if there is a $ K $ s.t. $ \sigma(A + BK) \subset \mathbb{C}_{-} $ \vspace{10pt}\\ 
+	\textbf{Then:} Let $ \Lambda = \{\lambda_1, ... , \lambda_n\} \subset \mathbb{C}$ with $\Lambda$ then $ \lambda_i^{*} \in \Lambda $. Then $ (A,B) $ is controllable then there is a $ K $ s.t.  $ \sigma(A+BK) = \Lambda $
+\end{framed}
+% \end{center}
+
+\section{Reference Tracking}
+% If we want the output $ y $ of the system to go to a value. 
+
+Given a (constant) $ r $ find  $ u $ s.t. $y(t)  \rightarrow r $ as $ r \rightarrow \infty $
+
+Note that $ \dot{x} \rightarrow 0 $ when steady state has reached. This entails that there is not dynamics at that point.
+
+So:\
+Given the state input pair $ (x',u') $ 
+\begin{equation}
+0 = Ax' + Bu'
+\end{equation}
+\begin{equation}
+r = Cx'
+\end{equation}
+
+
+Let 
+\begin{equation}
+\begin{bmatrix}
+0 \\
+I
+\end{bmatrix} r = \begin{bmatrix}
+A & B \\
+C & 0
+\end{bmatrix} \begin{bmatrix}
+x' \\
+u'
+\end{bmatrix} 
+\end{equation}
+\begin{equation}
+\begin{bmatrix}
+x' \\
+u'
+\end{bmatrix} r = \begin{bmatrix}
+A & B \\
+C & 0
+\end{bmatrix}^{-1}  \begin{bmatrix}
+0 \\
+I'
+\end{bmatrix} 
+\end{equation}
+
+You can only do reference tracking for inputs with the same number of inputs as outputs.  $ (n+p) \times (n+m), p = m $
+
+\begin{equation}
+= \begin{bmatrix}
+N_x \\
+N_u
+\end{bmatrix} r 
+\end{equation}
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+So we want to design a control input $ u $ such that  $ y $ follows  $ r $.
+We introduce a new variable $ z = x - x'$ and $ v = u - u' $ and whenever  $ z \rightarrow 0 $, $ x \rightarrow x' $ 
+
+Lets start by finding $ \dot{z} $
+\begin{equation}
+\dot{z} = \dot{x} = Ax + Bu = Az + Ax' + Bv + Bu' = Az + Bv
+\end{equation}
+Hence we chose a $ v = kz $ s.t. $\sigma(A + Bk) \subset \mathbb{C}_{-}$ then:
+\begin{equation}
+	z(t) = x(t) - x' \rightarrow 0 \text{that is} x(t) \rightarrow x' \text{so} y(t) = C x(t) \rightarrow  C x' = r
+\end{equation}
+
+Do using:\\
+$  v = kz \leftrightarrow u-u' = k(x-x') \leftrightarrow $
+\begin{framed}
+$  u = k(x-x') + u'\\ = k(x- N_x r) + N_u r \\ = kx + Nr \hspace{10pt} N = Nu - K N_x $
+\end{framed}
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+When the model is not precise enough, there will be some \textbf{error}, namely the steady state error.
+
+\vspace{5pt}
+
+\textbf{Side Note} we can use the place function in matlab to place poles. Note that it assumes positivity, so add a minus before it. 
+
+For this we should use the integral action on the system. We introduce a new state:
+\begin{equation}
+	X_I = \int e \hspace{2pt} ds \hspace{10pt} e = y - r
+\end{equation}
+
+\begin{equation} \label{eq3}
+\dot{x} = Ax + Bu
+\end{equation}
+\begin{equation}
+	\dot{x_I} = e = y-r
+\end{equation}
+\begin{equation} \label{eq4}
+y = Cx
+\end{equation}
+
+Combining (\ref{eq3}) - (\ref{eq4}) entails 
+\begin{equation}
+	\dot{\begin{bmatrix}
+x \\
+x_I
+\end{bmatrix}} = \begin{bmatrix}
+A & 0 \\
+C & 0
+\end{bmatrix} \begin{bmatrix}
+x \\
+x_I
+\end{bmatrix} + \begin{bmatrix}
+B \\
+0
+\end{bmatrix} u + \begin{bmatrix}
+0 \\
+-I
+\end{bmatrix} r
+\end{equation}
+
+And by renaming the different terms:
+\begin{equation}
+	\dot{\overline{x}} = \overline{A}\overline{x} + \overline{B}u + G r
+\end{equation}
+
+and we do exactly the same as before:
+\begin{equation}
+z = \overline{x} - \begin{bmatrix}
+x' \\
+0
+\end{bmatrix} \hspace{10pt} v = u - u'
+\end{equation}
+\begin{equation}
+\dot{z} = \overline{A}\left(z + \begin{bmatrix}
+x' \\
+0
+\end{bmatrix} \right) + \overline{B} (v + u') + Gr = \overline{A}z + \overline{B}v
+\end{equation}
+
+Hence
+\begin{equation}
+	v = \overline{K}z \hspace{5pt} u = \overline{k} \begin{bmatrix}
+	x - x' \\
+	x_I
+	\end{bmatrix} + u' 
+\end{equation}
+\begin{equation}
+	= \begin{bmatrix}
+	k & k_I 
+	\end{bmatrix} \begin{bmatrix}
+	x - x' \\  
+	x_I
+	\end{bmatrix} 
+\end{equation}
+\begin{equation}
+= k(x-x') + u' + k_I x_I
+\end{equation}
+\begin{equation}
+= k (x - N_x r) + N_u r + k_I x_I
+\end{equation}
+
+
+Note that $ K $ has to be designed at once, you cannot design  $ K $ and  $ K_I $ seperately.
+
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+\section{Linear Quadratic Regulator}
+
+The way we choose a controller is by minimizing the control.
+
+\begin{equation}
+	min_{u} \int{0}^{T}{x^{*} Q x + u^{*} R u \hspace{2pt} dt}
+\end{equation}
+s.t. 
+\begin{equation}
+\dot{x} = Ax + Bu
+\end{equation}
+
+And the solution is:
+\begin{equation}
+ u = R^{-1}B^{*}Px   
+\end{equation}
+where the part before $ x $ is the gain K
+where 
+\begin{equation}
+	T < \infty : \dot{P} = - Q - P A^{*} - AP + PBR^{-1}B^{*}P, \hspace{10pt} P(T) = 0   
+\end{equation}
+
+\begin{equation}
+	T = \infty : 0 = - Q - P A^{*} - AP + PBR^{-1}B^{*}P
+\end{equation}
+
+and $ Q \geq 0 $ and  $ R >0 $ must be positive semidefinte and positive definite, respectively.
+
+Here is the R identity and $ Q = \begin{bmatrix}
+1 & 0 \\
+0 & 10
+\end{bmatrix} $
+\begin{equation}
+\int_{0}^{T}{x^{*} \begin{bmatrix}
+1 & 0 \\
+0 & 10
+\end{bmatrix} x \hspace{5pt} dt } = \int_{0}^{T}{x_1^{2} +10 x_2^{2} dt}
+\end{equation}
+
+
+The control law will try to control the second part a lot quicker than the first part.
+
+$ P $ is called the lapynov matrix, and it is widely used in control. 
+
+When we do reference tracking:
+\begin{equation}
+	(y-r)^{*}Q(y-r) 
+\end{equation}
+
+\begin{framed}
+\textbf{Then:} The system $ \dot{x} = Ax $ is stable iff $ \exists P > 0 $ s.t.  $ P A ^{*} + A P < 0 $ 	
+\end{framed}
+
+Think of it as the energy of the system.
+$ x^{T} P x $
+And it is used in the section on constraints.
+
+\end{document}

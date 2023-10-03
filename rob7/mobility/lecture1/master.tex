@@ -1,0 +1,244 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+
+% figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Mobility: Lecture 1 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+4 hours on next 6 mondays. 
+Shahab will tell us on ordinary system theory after John.
+
+We are going to try to make a turtlebot move in the end of the course. We need to use the theory. 
+The exercises and the turtlebot will be taken care off by Mirhan.
+
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\section{Input-Output systems}
+The standard differential equation. 
+ \[
+\Sigma: 
+\dot{x} = f(x,u) \newline
+y = h(x)
+\] 
+
+
+where $f: D_x \times D_u \rightarrow \mathbb{R}^n, D_x,  \subset \mathbb{R}^n, D_u \subset \mathbb{R}^m$
+
+
+%\begin{figure}[ht]
+%    \centering
+%    \incfig[1]{iosystem}
+%    \caption{ioSystem}
+%    \label{fig:iosystem}
+%\end{figure}
+
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\section{First Exercise: Cart Pendulumn}
+%\begin{figure}[ht]
+%    \centering
+%    \incfig[1]{cartpendulum}
+%    \caption{cartPendulum}
+%    \label{fig:cartpendulum}
+%\end{figure}
+
+
+
+
+\subsection{Lagrange (d'Alembert)}
+$L = T - U$
+
+Where T is the kinetic energy, and U is the potential energy.
+
+The coordinates:
+You would need 2 coordinates to describe this cart system.
+
+ 
+\begin{equation}
+q = \begin{bmatrix}
+x \\
+\theta 
+\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+r_c = \begin{bmatrix}
+x \\
+0 
+\end{bmatrix}
+\end{equation}
+
+
+\begin{equation}
+v_c = \dot{r_c} = \begin{bmatrix}
+\dot{x} \\
+0
+\end{bmatrix}
+\end{equation}
+
+
+
+Where $v_c^2 = v_c \cdot v_c$ is the inner product. It gives a scalar. 
+$= v_c^T v_c = \dot{x}^2$
+
+
+\[
+r_p = \begin{bmatrix}
+x_p  \\
+y_p 
+\end{bmatrix} = \begin{bmatrix}
+x - l\cdot sin(\theta) \\
+l\cdot cos(\theta)
+\end{bmatrix}
+\] 
+
+\begin{equation}
+\begin{split}
+	v_p = \begin{bmatrix}
+	\dot{x}-l\cdot cos(\theta) \dot{\theta} \\
+	- l \cdot sin(\theta) \dot{\theta}
+	\end{bmatrix} 
+	v_p^2 = v_p\cdot v_p = v_p^T v_p = (\dot{x} - l\cdot cos(\theta\dot{\theta})^2 + (l\cdot sin(\theta \dot{\theta})) \\
+	= \dot{x}^2 + l^2 cos^2(\theta \cdot \dot{\theta}^2) - 2 \dot{x} l cos(\theta) \dot{\theta} + l^2 sin^2(\theta \dot{\theta}^2 \\
+	= \dot{x}^2 + l^2 \dot{\theta}^2 - 2\dot{x} l cos(\theta \dot{\theta})
+\end{split}
+\end{equation}
+
+
+
+$ \theta + 2 $
+
+
+$ \mathcal{L}\{sin(t)\} = \frac{1}{s + 1} $
+
+
+\subsubsection{Kinetic energy: $T$}
+The kinetic energy of the cart, $T_c$, and the pendulum, $ T_p $
+
+\vspace{5pt}
+\textbf{Cart} 
+\begin{equation}
+T_c = \frac{1}{2}m_c v_c^2 = \frac{1}{2}m_c \dot{x}^2
+\end{equation}
+
+
+\textbf{Pendulum} 
+ \begin{equation}
+ T_p = \frac{1}{2} m_p v_p^2 = \frac{1}{2} m_p (\dot{x}^2 + l^2 \dot{\theta}^2 - 2\dot{x}l cos(\theta \dot{\theta})
+\end{equation}
+\begin{equation}
+ T_c = \frac{1}{2} m_c v_c^{2} 
+\end{equation}
+
+
+\vspace{5pt}
+
+The Total kinetic energy $ T = T_c + T_p $:
+\begin{equation}
+	T = \frac{1}{2} m_c \dot{x}^{2} +\frac{1}{2} m_p \dot{\theta}^{2} - m_pl^{2} \dot{\theta }^{2} - m_p \dot{x} l cos \theta \dot{\theta }
+\end{equation}
+
+and $ m = m_c + m_p $
+
+\subsubsection{The Potential Energy}
+
+\textbf{Cart} \\
+The potential energy of the cart is 0, since it is constrained in the y direction. The potential energy is given relative to some point, and since we just assume the origin in at the same height as the cart, the potential energy $ u_c = 0 $  
+
+\[
+ u_c = m_c g h_c = m_c g 0 = 0 \hfill
+\] 
+
+\textbf{Pendulum} 
+\[
+	u_p = m_p g  h_p = m_p g l cos \theta 
+\] 
+
+Total potential energy
+\begin{equation}
+u = u_c + u_p = u_p = m_p g l cos \theta
+\end{equation}
+
+From this we now have the equations of motion (EOM), which we can use to derive the lagrange equation:
+
+\begin{equation}
+\frac{d}{dt} \frac{\partial \mathcal{L}}{\dot{q}} - \frac{\partial \mathcal{L}}{q}
+\end{equation}
+Where $  \frac{\partial \mathcal{L}}{q} $ is the conservative forces. \vspace{5pt} \\
+\textbf{Conservative forces} are forces that do not change the energy that is going in or out of the system. \vspace{5pt} \\
+\textbf{Non-conservative forces} change the energy of the system, e.g. friction.  \fbox{$ f_r = -\nabla u(r) $}
+
+
+\textbf{Note:} That the lagrange equation has 4 independent variables, since $ q = \begin{bmatrix}
+x \\
+\theta
+\end{bmatrix} $, thus $ \mathcal{L}(x, \dot{x}, \theta, \dot{\theta }) $. 
+
+ 
+If we start to derive the lagrange equation w.r.t. $ q $, then we get:
+
+\[
+x: \frac{\partial \mathcal{L} }{\partial x} = 0
+\] 
+\[
+\dot{x}: \frac{\partial \mathcal{L} }{\partial \dot{x}} = m \dot{x} - m_p l cos \theta \dot{\theta}
+\] 
+\[
+\frac{d}{dt} \frac{\partial \mathcal{L} }{\partial \dot{x}} = m \ddot{x} - m_p l sin \theta \dot{\theta}^{2} - m_p l cos \theta \ddot{\theta} 
+\] 
+
+In general we have \hfill \fbox{$ \mathcal{L} = T - U $}
+
+\begin{equation}
+	\mathcal{L} = \frac{1}{2} m_c \dot{x}^{2} + \frac{1}{2} m_p \dot{\theta}^{2} -m_p l^{2} \dot{\theta}^{2} - m_p \dot{x} l cos \theta \dot{\theta} - m_p g l cos \theta
+\end{equation}
+
+Where the last term is $ U $
+
+This results in the following equations of motion:
+\begin{equation}
+	m \ddot{x} + m_p l sin \theta \dot{\theta}^{2} - m_p l cos \theta \ddot{\theta} = - \alpha_x \dot{x} + u
+\end{equation}
+
+Where the right term is any non conservative force; in this case it is viscous friction, with the friction coefficient $ \alpha_x $
+
+
+
+
+
+
+
+
+
+
+\end{document}

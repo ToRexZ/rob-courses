@@ -1,0 +1,49 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Exercises: Lecture 6 \\
+	\large CNN Exercises}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Exercise 1. Study the model that was created in the warm-up exercise. Try to answer the following:}
+% \subsection{Look at the first Conv2D layer. Look at the documentation to find the meaning of the parameters: 32, kernel_size=(3,3), activation"relu"}
+
+The first parameter is the \textbf{number of filters} \\
+The second paremeter is the \textbf{size of the kernel} \\
+The third parameter is the \textbf{type of activation function} 
+
+
+
+
+
+
+
+
+
+\end{document}

@@ -1,0 +1,144 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Navigation: Lecture 5 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Recap}
+We looked at odometry: visual, wheel\\
+Map based localistaion.
+\begin{itemize}
+	\item Markov/bayssian filter
+	\item Particle filter
+\end{itemize}
+
+
+There is two update rules:
+
+\begin{itemize}
+	\item Action update: \\
+		$ P(x_{n+1} = \sum_{x_k}^{}{P(x_{n+1} | x_n, \hat{u_n}) \cdot P(x_n)} $
+	\item Perception update:
+		$ P(x_{n+1}) = \zeta \cdot P(o_{n+1} | x_{n+1} ) P(x_{n+1}) $
+\end{itemize}
+
+When there is a bar over like this : $ \overline{P(x_{n+1})} $ illustrates that this is the result of the action update. 
+
+
+Focussing on the robot model:
+
+It is usually a difference eq, or a differential equation.
+\[
+\dot{x} = g(x,u)
+\] 
+
+\[
+	x_{n+1} = x_n + dT \cdot g(x_n,u_n) + x_n + dT \cdot g(x_n, \hat{u_n} + \Delta u_n) 
+\] 
+
+
+When doing particle filters and assigning weights to the particles, a suitable function is the perception function. 
+
+
+\section{Kalman filter Localisation}
+
+let $ x $ be a random variable with a gaussian distribution with mean  $ \mu $
+The estimate $ \hat{x} $ is an estimate of $ x $
+
+This is a quality measure of an estimate.  
+$ E((x-\hat{x})^{2}) = E((x-\mu_x + (\mu_x - \hat{x})^{2}) $
+
+Expanding the estimated values, since the $ E $ is a linear operator:
+\centering
+\[
+\begin{split}
+E((x-\mu_x)^{2} )+ E((\mu_x -\hat{x})^{2}) +2 E((x-\mu_x)(\mu_x -\hat{x})) \\ = E((x-\mu_x)^{2}) + t((\mu_x - \hat{x})^{2} )
+\end{split}
+\]
+
+\raggedright
+
+\subsection{Assumptions}
+The kalman filter is not optimal.
+
+TODO: Add paranthesis closing
+
+The kalman gain is the middle part.
+\begin{equation}
+\hat{q} = \hat{q_1} + \frac{\sigma_2^{2}}{\sigma_1^{2} + \sigma_2^{2} }(\hat{q_2} - \hat{q_1} )
+\end{equation}
+
+Note that in this equation, where $ \sigma_1 $ is much larger, this means that we trust the second distribution ($ \sigma_2 $) which has a lower variance. 
+We have one belief, and one piece of information. 
+
+This is only for the onedimensional case.
+
+The $ n $-dimensional case is:
+ \begin{equation}
+\hat{q} = q_1 + P(P + R)^{-1} (q_2-q_1)
+\end{equation}
+where $ P $ and $ R $ are covariance matrices for $ q_1 $ and $ q_2 $ respectively.
+
+
+\section{Non linear Kalman filtering}
+The equations:
+a linear model
+\begin{equation}
+	x_{n+1} = Ax_n + B(\hat{u_n} + \Delta u_n) = Ax_bn + Bu_n + B\cdot \Delta u_n = Ax_n + B u_n + \epsilon_n 
+\end{equation}
+where $ \epsilon $ is the gross noise.
+
+Then the prediction:
+\begin{equation}
+\overline{x} = A \overline{x}_n + B u_n
+\end{equation}
+
+and the measurement noise is given as:
+\begin{equation}
+y_n = C \cdot x_n + \nu
+\end{equation}
+
+and the kalman
+\begin{equation}
+	\overline{x}_{n+1} + k(y_{n+1} - C \overline{x}_{n+1})
+\end{equation}
+
+If we compute the error
+\begin{equation}
+	\begin{split}
+		\hat{x}_{n+1} - x_{n+1} = A \overline{x}_n - B u_n - A x_n + B u_n - \epsilon_n \\ + K C x_{n+1} + K \nu_{n+1} - K C (A \overline{x}_n + B u_n) \\ A \overline{x}_n + B u_n - A x_n - B u_n \cdot \epsilon_n + K C (A x_n + B u_n + \epsilon_n) + K \nu_{n+1} - K C A \hat{x}_n - K C B u_n
+	\end{split}
+\end{equation}
+
+
+
+
+
+\end{document}

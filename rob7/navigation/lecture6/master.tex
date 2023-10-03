@@ -1,0 +1,155 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Navigation: Lecture 6 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Recap}
+Behavior based navigation. Simple, similar to the Bug algorithms. \\
+Map-based navigation (or model-based) it is more which goes through the steps betweenperception and actuation. 
+
+\vspace{5pt}
+
+\textbf{Markov assumption:} Determine the state, based on only the previous state, and nothing else. 
+
+\vspace{5pt}
+
+\textbf{Bayes filter:} Recursive, which updates the current state based on the previous state, and improves the estimation of the robot localization. 
+
+\vspace{5pt}
+
+\textbf{Assumptions:} 
+\begin{itemize}
+	\item The system is linear.
+	\item The robot motion model and measurement model is affected by white gaussian noise.
+\end{itemize}
+
+\subsubsection{Kalman filter}
+\textbf{Proporties of KF's:} 
+We know the Kalman filter is linear, and the EKF is used for nonlinear systems.\\
+Optimality of EKF is not guraranteed.
+
+
+Steps of kalman filtering:
+\begin{enumerate}
+	\item Prediction based on previous estimate and odometry
+	\item Observation with on-board sensors
+	\item Predicted observation based on prediction and map
+	\item Matching of observation and map
+	\item Estimation $\rightarrow$ position update (Posteriori position)
+\end{enumerate}
+
+
+Data association is done with the innovation filter. The innovation is covariance is the difference between the measured state, and the estimated state.
+
+Kalman filter can solve global localisation and kidnapped robot problem given using Multi-Hyposthesis:
+\begin{itemize}
+	\item Belief is represented by multiple hypothesis
+	\item Each hypothesis is tracked by a Kalman filter.
+\end{itemize}
+
+
+
+\section{SLAM}
+Based on 3 different algorithms:
+\begin{itemize}
+	\item EKF
+	\item Particle filter SLAM
+\end{itemize}
+
+
+Both the map and the path is affected by noise.
+
+
+\subsection{Map building}
+
+\begin{enumerate}
+	\item It is important to maintain the map, if changes occur. 
+	\item Representing and propagating Uncertainty.
+	\item 
+	\item 
+	\item 
+	\item 
+\end{enumerate}
+
+At $ t=0 $ we are certain where the robot is relative to the landmarks. The further it moves, the more uncertain it becomes. Both in the localization and also the position of the landmarks in the map. The uncertainty increases until it sees a known landmark. 
+
+\vspace{5pt}
+
+\textbf{Loop closure detection:} Percieving a previously known landmark, with high certainty. This can recalibrate the localisation, and thus make it more certain of where it is.  
+
+
+In order to obtain loop closure detection, we need data association. The loop closure detection is bounded by the certainty of the previously known landmark. 
+
+
+\vspace{5pt}
+
+\textbf{Mathematical definition} 
+\begin{itemize}
+	\item Robot pose at time $ t $ is defined as $ x_t $
+	\item The path $ X_T = \{x_0,x_1,...,x_T\} $
+	\item 
+		\item
+		\item
+		\item
+		\item
+\end{itemize}
+
+\subsection{SLAM}
+
+\textbf{Full SLAM}  is recovering the model of the map $ M $ and the path  $ X_T $ given the Observations  $ Z_T $ and the input  $ U_T $
+
+\begin{equation}
+P(X_T, M | Z_T, U_T)
+\end{equation}
+
+
+\textbf{Online SLAM} is only focussing on the next robot position. 
+
+we need
+\begin{itemize}
+	\item The probabilistic motion model: $ P(x_t, ...) $
+\end{itemize}
+
+
+\subsection{EKF SLAM}
+The EKF SLAM is slow, because of the computation of the covariance matrix, and since the state vector is extended. 
+
+The output is a sparse vector which only contains the robot state, because we assume that the landmarks does not move. \\
+We also start by assuming that the correlation matrix is diagonal, this entails the landmarks are independent. \\
+But as the robot moves along, and aquires more information, the correlation matrix gets nonsparse. \\
+It is \textbf{Regularily covisible} and it is highly correlated to convergence.\\
+It should be robust to new landmarks. This is done by increasing the dimension of the correlation matrix by 1. \\
+When the loop closure concept occurs, it reduced the uncertainty across all the landmarks. This is because of the update of the correlation matrix. The closer landmarks are to the known landmarks, the more certain they become when the loop closes. 
+
+You tune the validation gate to reduce the change of wrong landmark association
+
+
+\end{document}

@@ -1,0 +1,165 @@
+\documentclass{article}
+
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+
+\newcommand{\incfig}[2][1]{%
+	\def\svgwidth{#1\columnwidth}
+	\import{./figures/}{#2.pdf_tex}
+}
+
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Navigation: Lecture 2 \\
+	\large Litterature notes}
+\author{Victor Risager}
+\date{\today}
+
+
+
+\begin{document}
+\maketitle
+
+\section{Sensor classification}
+Two important functional axes:
+\begin{itemize}
+	\item Proprioceptive or Exteroceptive
+	\item Passive or active
+\end{itemize}
+
+\textit{Proprioceptive} sensors measures internal values of the robot, e.g. motor speeds, wheel loads joint angles, internal forces, battery voltage etc. 
+
+\textit{Exteroceptive} sensors measures external information, i.e. from the environment. E.g. a Lidar 
+
+
+\textit{Passive} sensors measures ambient environmental energy entering the sensor. E.g. temperature, humididty, microphones, etc. 
+
+\textit{Active} Sensors can mange controlled interactions with the environment. These include wheel quadrature encoders, ultra sonic sensors and Lidar. 
+
+\subsection{Performance}
+\begin{itemize}
+	\item Dynamic Range: Spread between lower and upper limits of the input values, during normal sensor operation. Measured in decibels $dB$ and computed as  $10 \cdot log[\frac{max}{min}]$. 
+	\item Resolution
+	\item Lineariry
+	\item Bandwidth
+\end{itemize}
+
+\newpage
+
+
+\section{Sensors for Mobile Robots}
+There are 4 layers of information compression:
+
+
+TODO: make slash snippet context based
+\begin{enumerate}
+	\item Raw data
+	\item Features (corners, size, etc.)
+	\item Objects
+	\item Places or situations
+\end{enumerate}
+
+Cognitive systems have to interpret situation based on limited information andonly partially available informations. This is a probability problem ~ probabilistic reasoning
+
+Wheel encoders are used for odometry, (Odometry is position estimation based on sensor information) 
+
+
+\subsection{Accelerometer}
+We calculate the acceleration in accelerometers with:
+$F = \ddot{x} + c \overline{x} + kx $
+
+where: $F = m \alpha$
+
+and  $\alpha = \frac{Kx}{m}$
+
+
+\subsection{IMU}
+The IMU is sensitive to noise in the accelorometer and the gyroscope. 
+It has drift. 
+Residual gravity vector results in a quadratic error in position
+
+
+\subsection{GPS} 
+It uses trilatteration.  
+The sattelite gives you only the position. The distance is not given. The distance is $c \cdot t$. We know the speed of the electromagnetic waves, i.e. the speed of light c. The position gives more like a gaussian distribution, which is used to estimate the position. 
+
+\subsubsection{dGPS}
+We set up a base station with a known position, which is used to correct for position errors in moving objects. 
+
+\subsection{TOF sensors}
+Time Of Flight sensors. Two different types:
+\begin{enumerate}
+	\item Continous wave
+	\item Pulse wave
+\end{enumerate}
+
+the distance is given as 
+\[
+d = c \cdot t
+\] 
+
+where, $d$ is the distance,  $c$ is the speed of light, and $t$ is time it took for the travel.
+
+
+\subsubsection{Laser Range Sensors}
+We can use phase shift measurement. 
+Measured in pico seconds ($1 \times 10^{-12}$ )
+
+
+
+\subsection{In Situ Sensor performance}
+\begin{itemize}
+	\item Systematic errors
+	\item Random errors
+	\item Precission
+	\item Accuracy
+	\item Resolution
+\end{itemize}
+
+
+We use a PDF to represent the possible sensor values. 
+We use the mean value $\mu$ to represent the mean, where  $\mu = E[X]$
+Sensors can be independent. E.g. a temperature sensor and an IMU.
+
+Whenever we can, we use the gaussian to represent the values. However this is often a simplification, which does not represent the realworld that well.
+
+We use Variance and Covariance to represent the level of dependence. (Off. diagonal values in the covariance matrix)
+
+\section{Paper Reading}
+Papers will be presented and discussed in week 40
+2 - 4 people in the group.
+
+15 minute presentation, 5 minutes of questions. (RG)
+
+
+Excel file for choosing papers. 
+
+Deadline for selecting: 17 september
+
+\section{Exercises}
+Compass calibration. Turn the tiago robot around, and plot the values.
+
+Take the values and point move them to 0.
+Use the maximum and minimum values of the values to write the equation to move it into the origin. Then we need to reshape it from an oval to a sphere. Multiply it by the scaling factor. 
+
+
+
+We will get the projects on monday.
+We will get the projects on monday
+
+
+
+\end{document}
+
+
+
+
+

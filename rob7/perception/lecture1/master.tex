@@ -1,0 +1,124 @@
+\documentclass{article}
+
+
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+\newcommand{\incfig}[2][1]{%
+	\def\svgwidth{#1\columnwidth}
+	\import{./figures/}{#2.pdf_tex}
+}
+
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Perception: Lecture 1 \\
+	\large Intro, Convoluiotn and Edges
+}
+\author{Victor Risager}
+\date{\today}
+
+
+
+\begin{document}
+\maketitle
+
+\section{Intro}
+The first 2 lectures are only us, then we are grouped with some other students who has to have the general introduction.  
+
+There will be a miniproject after we are done in the lectures. Group based, and a presentation in front of the class. 
+
+
+We need to program in OpenCV in either 
+\begin{itemize}
+	\item C++ 
+	\item Python
+\end{itemize}
+
+\subsection{Exam}
+20 minutes, oral exam.
+
+
+\subsection{Projects of the institute}
+\begin{itemize}
+	\item Inspection of windmills
+	\item Vision based slaughtering
+	\item etc.
+\end{itemize}
+
+\section{Learning objectives}
+\begin{itemize}
+	\item Feature point algorithms
+	\item Feature selection and reduction
+	\item Motion analysis
+	\item Tracking frameworks
+	\item Advanced perception integrated into robotics
+\end{itemize}
+
+\subsection{Features}
+We will look at more advanced features, detection and recocnition, tracking etc. 
+used for tracking cars etc. 
+Features can be used to create panorama images.
+
+\section{Image correlation}
+Find correlation in the input image
+
+\[
+	g(x,y) = h * f(x,y) = \sum_{-n}^{n}{x} \hfill
+\] 
+
+\section{Mean filter}
+arrange the pixelvalues of the input image in the kernel, and do the average of it. Set the input of the center of the kernel in the output image.
+
+\section{Convolution}
+Convolutional neural networks do classical cross correlation.
+
+
+
+The difference between convolution and correlation is in convolution the array is flipped and thenrun opposite. 
+
+\section{Egdge detection}
+\section{Canny and Sobel}
+Canny is just sobel with more defined stuff. Canny is better.
+
+
+\section{Laplacian}
+Uses second order partial derivatives of the kernel.
+
+Laplacian is sensitive to noise, so it is a good idea to use a smoothing kernel.
+
+
+Can use fourier transform to filter out low frequency information or high frequency. Keep edges = high frequency.
+
+
+\section{Difference of Gaussian}
+Standard deviation is used to control the level of blurred ness. 
+
+
+
+\section{Canny edge detector}
+\begin{enumerate}
+	\item Smooth the image
+	\item Calculate the gradient and magnitude
+	\item Nom-maximum suppression = keep the pixel value which has the highest probability of being an edge. 
+\end{enumerate}
+
+Find the pixel we want to keep by going along the gradient, and find the pixel with the highest value. 
+
+Can potentially use 2 thresholds, to provide an interval.
+
+\section{Harris corners}
+Harris corners will be explained next week. Try today in the exercises.
+Goal: Match two imagaes. Easier if they are partly overlapping.
+
+
+
+\end{document}
+
+
+
+
+
+

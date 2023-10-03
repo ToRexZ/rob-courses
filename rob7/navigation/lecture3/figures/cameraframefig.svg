@@ -1,0 +1,343 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="240mm"
+   height="120mm"
+   viewBox="0 0 240 120"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.3 (1:1.3+202307231459+0e150ed6c4)"
+   sodipodi:docname="cameraframefig.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <defs
+     id="defs2">
+    <marker
+       style="overflow:visible"
+       id="marker5"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker5-2"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path5-9" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker6"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path6" />
+    </marker>
+    <rect
+       x="305.1666"
+       y="205.15422"
+       width="34.990883"
+       height="35.198029"
+       id="rect7" />
+    <rect
+       x="305.1666"
+       y="205.15422"
+       width="34.990883"
+       height="35.198029"
+       id="rect7-3" />
+    <rect
+       x="305.1666"
+       y="205.15422"
+       width="34.990883"
+       height="35.198029"
+       id="rect7-3-0" />
+    <rect
+       x="305.1666"
+       y="205.15422"
+       width="71.577881"
+       height="56.819675"
+       id="rect7-3-5" />
+    <marker
+       style="overflow:visible"
+       id="marker5-3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path5-6" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ConcaveTriangle-7"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path7-0" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker6-0"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Concave triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.7)"
+         d="M -2,-4 9,0 -2,4 c 2,-2.33 2,-5.66 0,-8 z"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:none"
+         id="path6-6" />
+    </marker>
+    <rect
+       x="305.1666"
+       y="205.15422"
+       width="76.590675"
+       height="51.180408"
+       id="rect7-2" />
+    <rect
+       x="305.1666"
+       y="205.15422"
+       width="64.857399"
+       height="61.817516"
+       id="rect7-3-9" />
+    <rect
+       x="305.1666"
+       y="205.15422"
+       width="71.577881"
+       height="56.819675"
+       id="rect7-3-5-2" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.9887478"
+     inkscape:cx="480.45309"
+     inkscape:cy="224.26172"
+     inkscape:document-units="mm"
+     inkscape:current-layer="g1"
+     showgrid="true"
+     showborder="true"
+     width="200mm"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     inkscape:window-width="2488"
+     inkscape:window-height="1536"
+     inkscape:window-x="72"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid815"
+       units="mm"
+       spacingx="10"
+       spacingy="10"
+       empspacing="4"
+       dotted="false"
+       originx="0"
+       originy="0"
+       visible="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-177)">
+    <g
+       id="g1"
+       transform="translate(2.7680824,-2.621944)">
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.264999;marker-end:url(#marker5);fill-opacity:1"
+         d="M 79.999998,257 H 99.999997"
+         id="path2" />
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.264999;marker-end:url(#marker5-2);fill-opacity:1"
+         d="m 80,257 63.23618,-27.07987"
+         id="path2-1"
+         sodipodi:nodetypes="cc" />
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.264999;marker-end:url(#ConcaveTriangle);fill-opacity:1"
+         d="M 79.999998,257 V 237"
+         id="path3" />
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.264999;marker-end:url(#marker6);fill-opacity:1"
+         d="M 80,257 65.491368,271.54291"
+         id="path4"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,0,177)"
+         id="text7"
+         style="font-size:20px;white-space:pre;shape-inside:url(#rect7);display:inline;fill:#000000;stroke:#000000;stroke-width:1.00157;fill-opacity:1"><tspan
+           x="305.16602"
+           y="222.84961"
+           id="tspan8">$j$</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,14.724586,204.62012)"
+         id="text7-6"
+         style="font-size:20px;white-space:pre;shape-inside:url(#rect7-3);display:inline;fill:#000000;stroke:#000000;stroke-width:1.00157;fill-opacity:1"><tspan
+           x="305.16602"
+           y="222.84961"
+           id="tspan9">$i$</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,32.986739,179.65906)"
+         id="text7-6-2"
+         style="font-size:20px;white-space:pre;shape-inside:url(#rect7-3-0);display:inline;fill:#000000;stroke:#000000;stroke-width:1.00157;fill-opacity:1"><tspan
+           x="305.16602"
+           y="222.84961"
+           id="tspan10">$t$</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,-10.40522,215.38387)"
+         id="text7-6-6"
+         style="font-size:20px;white-space:pre;shape-inside:url(#rect7-3-5);display:inline;fill:#000000;stroke:#000000;stroke-width:1.00157;fill-opacity:1"><tspan
+           x="305.16602"
+           y="222.84961"
+           id="tspan11">$k$</tspan></text>
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.264999;marker-end:url(#marker5-3);fill-opacity:1"
+         d="m 145.33358,229.17813 h 20"
+         id="path2-6" />
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.264999;marker-end:url(#ConcaveTriangle-7);fill-opacity:1"
+         d="m 145.33358,229.17813 v -20"
+         id="path3-1" />
+      <path
+         style="fill:#000000;stroke:#000000;stroke-width:0.264999;marker-end:url(#marker6-0);fill-opacity:1"
+         d="m 145.33358,229.17813 -14.50863,14.54291"
+         id="path4-8"
+         sodipodi:nodetypes="cc" />
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,65.333581,149.17813)"
+         id="text7-7"
+         style="font-size:20px;white-space:pre;shape-inside:url(#rect7-2);display:inline;fill:#000000;stroke:#000000;stroke-width:1.00157;fill-opacity:1"><tspan
+           x="305.16602"
+           y="222.84961"
+           id="tspan12">$j'$</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,80.058167,176.79825)"
+         id="text7-6-9"
+         style="font-size:20px;white-space:pre;shape-inside:url(#rect7-3-9);display:inline;fill:#000000;stroke:#000000;stroke-width:1.00157;fill-opacity:1"><tspan
+           x="305.16602"
+           y="222.84961"
+           id="tspan13">$i'$</tspan></text>
+      <text
+         xml:space="preserve"
+         transform="matrix(0.26458333,0,0,0.26458333,54.928361,187.562)"
+         id="text7-6-6-2"
+         style="font-size:20px;white-space:pre;shape-inside:url(#rect7-3-5-2);display:inline;fill:#000000;stroke:#000000;stroke-width:1.00157;fill-opacity:1"><tspan
+           x="305.16602"
+           y="222.84961"
+           id="tspan14">$k'$</tspan></text>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,145 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robot Perception: Lecture 2 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Feature Descriptors}
+Today we will talk about more robuts features. These features are described by a pixel, and use only the information just around them.
+
+These features are "old school" since it has been overtaken by AI. 
+They are however still relevant. There is no need to train these feature extraction algorithms. 
+
+\vspace{5pt}
+
+\textbf{Descriptors} are more advanced when using e.g. edges rather than just pixel values. 
+
+Bad features have very little change in pixel values around them. 
+Medium features are edges, which are somewhat directional
+Best features are corners, which have very few potential matches other than the excact match.
+
+% \fbox{ \textbf{Self-difference:} is the difference between the image and the image slightly shifted.}
+
+\subsection{Harris corners}
+
+\textbf{Issue:}  We use eigenvalues to consider the quality of a corner, but they are rotation invariant. 
+
+\textbf{Issue:} Brightness invariance. If you threshold the corners, then some cornes may move outside the threshold. 
+
+
+\subsection{Histogram of Oriented Corners (HOG)}
+
+\begin{enumerate}
+	\item Find gradients
+	\item Compute orientation of gradients in cell
+	\item Create histograms, or orientation vectors (which are also histograms), which, which show the heatmap of how many edges are oriented in a certain direction with a specific resolution, based on the resolution of the histogram. 
+	\item Normalize histograms. Use the L2-norm
+	\item Collect HOG's over the detection window. 
+	\item Run a classifier (SVM). 
+\end{enumerate}
+
+\textbf{Benefits:} 
+\begin{itemize}
+	\item Light invariant
+	\item Scale invariant
+\end{itemize}
+
+
+\textbf{Issues:} 
+Not rotation invariant.
+
+\subsection{Scale Invariant Feature Transform (SIFT)}
+\begin{itemize}
+	\item Use Difference of Gaussians (DoG) - Subtract gausian blurred images from eac other and do that in different octaves and $ \sigma $'s. 
+	\item Compute gradient directions and magnitudes
+	\item Rotate the dominant features to the same direction. This entails rotation invariance.
+\end{itemize}
+
+\subsection{Deep Features}
+Deep learning
+
+
+\section{Feature selection}
+Find transformation between two images.
+
+Look for homography.
+The typical approach is least squares to detect the same features, however there are outliers.
+
+RANSAC solves this issue.
+
+\subsection{RANSAC}
+\begin{itemize}
+	\item Select random subset of the original selection of data, e.g. corners.
+	\item A model is fitted to the subset
+	\item Try the model, and count inliers while keeping track of the model with the most inliers.
+	\item Untill you are satisfied or run out of time.
+\end{itemize}
+
+\textbf{Benefits:} Works great to find inliers (horizontal lines, two images side by side), and it is great when there is a lot of noise. 
+
+
+\section{Dimensionality reduction}
+\textbf{Goal:} Reduce data, while maintaining as much information as possible.
+
+\subsection{Principle Component Analysis (PCA)}
+Based on the Covariance matrix.
+\hfill \fbox{Covariance matrix is Symmetric.}
+
+\begin{equation}
+\Sigma = \begin{bmatrix}
+1 & 2 \\
+2 & 3
+\end{bmatrix}
+\end{equation}
+
+Transform the covariance matrix into a diagonal matrix using the eigenvectors, and extract the singular values/eigenvalues.
+
+
+\begin{equation}
+\Sigma = \begin{bmatrix}
+1.05 & 0 \\
+0 & 0.8
+\end{bmatrix}
+\end{equation}
+
+Then just choose the amount of principle components that you want.
+
+\vspace{5pt}
+
+\textbf{Note} Important that the data is standardized before doing PCA. (within the same range, e.g. -1:1, but it can be other ranges.
+
+
+\hfill \fbox{PCA is unsupervised.}
+
+\subsection{Linear Descriminant Analysis (LDA)}
+Find the projection of data such that the ration of between-class scatter $ s_b $ and within-class scatter $ s_w $ 
+
+
+\end{document}

@@ -1,0 +1,70 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robotic Perception: Lecture 5 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Training}
+
+
+\section{Basic perfomance metrics}
+\begin{itemize}
+	\item TP = true positive etc.
+	\item Recognition rate = TP/number of tested samples
+	\item etc.
+\end{itemize}
+
+Confusion matrix: a matrix which displays the outputs relative to the outputs. 
+You can derive different metrics from the data in the confusion matrix, and put them into the adjecent columns. \\
+ROC curve (Reciever Operating Characteristic). Plot FP ratios and TP ratios against each other. 
+
+
+\section{Classic machine learning methods}
+Self supervised learning, is predicting based on the data produced by its own predictions. 
+
+\textbf{K-means clustering} 
+There may exist $ K $clusters in the data. For every point, compute the distance to each cluster center, and assign it to the closest cluster. 
+Disadvantages: If a cluster is confined within another cluster, then it would categorise them all as one cluster. 
+
+\vspace{5pt}
+
+\textbf{DBSCAN} 
+Can find arbitrarily shaped clusters, as long as there is a uniform density in the clusters. It uses the distance to neighbours to determine if a data point is within the cluster, and then it works kinda like grass fire algorithm.
+
+\subsection{Supervised learning}
+\textbf{Bias} is errors from assumptions model that makes bad predictions about the data.
+
+
+\subsubsection{Support Vector Machines}
+Based on hyperplanes, there is a margin around a vector, which can be used to devide two classes. \\
+In this case you could manually introduce a dimension to make it easier to classify.
+It is easy to do when the dataset is very small. 
+
+\end{document}

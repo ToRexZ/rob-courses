@@ -1,0 +1,41 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robotic Perception: Lecture 7 \\
+	\large Exercises}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Exercise 1}
+\textbf{First open the notebook, run each step in the demo and familiarize yourself with the code.} 
+The code uses mask-RCNN. 
+The code is not runable because tenserflow has been reworked.
+
+
+
+\end{document}

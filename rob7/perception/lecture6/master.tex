@@ -1,0 +1,122 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robotic Perception: Lecture 6 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Recap}
+
+\section{CNN}
+
+\subsection{Individual neuron}
+
+\subsection{Convolutional vs fully connected}
+
+
+Convolutional neural network, has multidimensional data. You can have 1d convolutions, but often we do $ 3 \times 3$ where the last dimension can e.g. be the color channels of the image. Thus $ x $, $ y $ and colors.\\ A standard fully connected nerual network has only 2 dimensions. 
+
+
+Filters are run through each channel at the image, and values are summed across the filter, AND across the channels. This gives the new activation function.
+\begin{equation}
+ a = \sum_{i=0}^{n}{w_i \cdot x_i + b} 
+\end{equation}
+The filter values are learned and not handcrafted.
+
+
+\hfill \fbox{\textbf{Equivariance}is if you do the same in the input as you do in the output.}
+
+By design, the network is scaling invariant, but in practice, the size of the network can actually result in scaling equivariance.
+
+
+ImageNet has 14 million images an d 20.000 classes. Use transfer learning.
+
+\section{AlexNet}
+It has 8 layers. 
+
+
+
+Convulutional 
+$ F  \times  F \times  D \times  K + K $
+
+\begin{itemize}
+	\item F is the filter size
+	\item D is input depth
+	\item K number of filters
+\end{itemize}
+
+The output size parameters are padding and stride. 
+
+
+\section{Activation function}
+\subsection{ReLU}
+\begin{equation}
+f(x) = max(0,x)
+\end{equation}
+Easier to train.
+
+\section{Pooling}
+Sampling an image from a kernel. 
+\begin{itemize}
+	\item Max-pooling
+	\item Average pooling
+	\item Sum pooling
+\end{itemize}
+ 
+
+\section{Batch normalization}
+Learn what transformation is best to do from every layer to the next layer. \\
+The hyper parameter is you can choose which layers have batch normalization. \\
+It is done during training, and it reduces the training time. 
+
+
+
+\section{Optimization algorithms}
+
+Mini-batch gradient descent, is doing gradient descent based on smaller batches of the pixels. 
+
+
+\section{VGG-Net}
+Smaller filters than AlexNet.
+
+\section{GoogLeNet}
+Have different sizes and combinations of convolutions and then learn what combination and size is best. 
+
+\section{ResNet}
+Allow gradient flow to bypass some parts of the network, to avoid degration. 
+
+
+\section{General network training tips}
+There is more than one parameter to choose a network from. 
+
+\section{Data augmentation}
+Use different techniques to alter the training images, to augment the training process. But be carefull, you could e.g. crop out the desired part of the image. 
+
+
+
+\end{document}

@@ -1,0 +1,166 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Navigation: Lecture 3 \\
+	\large Odometry Sytems, Localisation}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Intro}
+2 different types of Odometry.
+
+\begin{itemize}
+	\item Vision based
+	\item Wheel odometry
+\end{itemize}
+
+Note: We will leave it at the open loop today.
+
+\section{Recap}
+Sensor classification
+\begin{itemize}
+	\item Exteroceptive
+	\item Proprioceptive 
+\end{itemize}
+
+Different sensors for robotics.
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+
+\section{Odometry}
+We look at 3 different coordinate system
+
+\begin{itemize}
+	\item World
+	\item Robot body 
+	\item Camera
+\end{itemize}
+
+\subsection{Wheel odometry}
+Some encoders are absolute. \\
+Some are quadrature encoders.
+	- It only gives pulses
+
+
+Today we will derive the differential drive robot.
+
+\subsection{Differential-Drive Robots}
+
+We assume that we have no slippage.
+
+The next position of the robot is:
+$
+p = \begin{bmatrix}
+x' \\
+y' \\
+\theta'
+\end{bmatrix}
+$
+
+The movement of the robot wheel centers, are relative to the robot center.  
+
+$\frac{d}{dt}x_r = \omega_r \cdot r \cdot h$ 
+$\frac{d}{dt}x_l = \omega_l \cdot r \cdot h$ 
+where $h$ is the the heading vector, and r is the radius of the robot.
+
+The equations of motion is 
+
+
+
+$\dot{x} = \omega_s \cdot h$
+
+
+$\dot{h} = w_d \cdot R_{\frac{\pi}{2}} \cdot h$
+
+We control the angular velocity of the robot itself.
+from that we can solve for the two wheel velocities.
+
+
+We can use the first order euler method to solve the differential equations of motion.
+we discretizese the timeline.
+In the slides, they use the 2'nd order method. (numerical solver)
+
+\textbf{Proporties}
+Wheel odometry drits, because the wheels slips. You don't know the exact radius of the wheels, which can be affected over time, by e.g. rubber destruction, loss of airpressure. 
+
+Numerical error, where the error grows. 
+
+
+\subsection{Alternative odometry}
+\begin{itemize}
+	\item Visual 
+	\item Laser-based 
+	\item Radar-based
+	\item Auditory
+	\item $\cdots$
+	\item Combinations of above
+\end{itemize}
+
+\subsection{Visual Odometry}
+The idea of visual odometry is that:
+\begin{itemize}
+	\item Identify POI (Points of Interest)
+\end{itemize}
+
+\subsubsection{The workings of a camera}
+\begin{figure}[ht]
+    \centering
+    \incfig[1]{camera}
+    \caption{The inner workings of a camera}
+    \label{fig:camera}
+\end{figure}
+
+
+We can use triangles to compute the projection of the point into the sensor, and thus the pixel.
+This gives a single dimension of positional accuracy, thus the radial distance. 
+
+In a stereo camera, the distance between the two cameras are called the base $b$.
+Having two pinholes, we can then compute the triangles of based on the position of the point of interest. 
+
+
+With a stereo camera, we get local $x,y,z$ coordinates
+
+
+% \begin{figure}[ht]
+%    \centering
+%    \incfig[1]{cameraframefig}
+%    \caption{cameraFrameFig}
+%    \label{fig:cameraframefig}
+%\end{figure}
+
+\section{Probabilistic map generation}
+
+$E[\hat{x}_{n+1}] = f(x_n, u_n) + f_x E[\hat{x_n} - x_n] + f_u E[\hat{u_n} - u_n]$
+
+
+
+
+
+\end{document}

@@ -1,0 +1,144 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advaned Robot Navigation: Lecture 7 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Recap}
+\begin{itemize}
+	\item EKF robot starting position is [0,0]
+	\item Landmark uncertainty is added onto the robot position uncertainty.
+	\item Full SLAM is generating the whole path/trajectory.
+	\item Online SLAM is only based on the last robot position.
+
+\end{itemize}
+
+\subsection{EKF SLAM}
+\begin{itemize}
+	\item EKF SLAM is a very big problem. This problem scales quadraticly, since the both a row and a column is added each time the robot finds a new landmark. 
+	\item The problem of data association is vary big in EKF SLAM.
+	\item The state vector becomes very big and the covariance matrix becomes very big.
+	\item EKF is \textbf{assuming} that everything is distributed with a gaussian, and that the motion and measurement model is linear.  
+\end{itemize}
+
+\section{Particle filter SLAM}
+\begin{itemize}
+	\item Instead of a gaussian distribution of the motion- and measurement model, it is non-parametric, which entails that we do not assume anything about the distributiuon of the models. 
+	\item The particle's probability of being the robot position, is based on its weight.
+\end{itemize}
+
+For each particle we update:
+\begin{itemize}
+	\item Compare the particle's predictions of measurements with the actual measurements. If it is closer to the actual measurments, it gets a higher weight.
+	\item Normalise the weights.
+	\item Add noise to the particles, grap the percentage of highest weight, and generate the new particles wich all have equal weight. 
+	\item It is assumed that the new equal weights are 0. The most important thing is that they have equal weight.
+\end{itemize}
+
+
+At timestep $ t_0 $ we randomly pick $ N=3 $ states represented as 
+ \begin{equation}
+	 x_0 = {x_0^{[1]},x_0^{[2]}, x_0^{[3]}}
+\end{equation}
+
+Where all $ x_0^{[i]}$'s  have equal weights.
+
+We measure, and then update:
+\begin{itemize}
+	\item Emprically recover the sensor model.
+\end{itemize}
+
+compute the $ P(x_t|z_1) $.
+\vspace{5pt}
+
+\textbf{Problem:} The number of particles to represent the exterior grows exponentially?? check up on the logarithmic scaling, which i read. 
+
+\subsection{Decomposition}
+You can factor the posteerior landmarks.
+
+\begin{equation}
+	p(x_{0:t}, m_{0:...})
+\end{equation}
+
+\section{Graph based SLAM}
+Soft constraints between the landmarks.
+
+Given the robot path, the landmarks are independent. This entails that the landmarks does not move together, they are independent of each other. 
+
+\section{Rao-Blackwellization Paricle filter}
+\textbf{Key koncept:} Decrease the number of particles while maintainng accuracy.
+
+Partition state nodes $ Z(t) $ into $ R(t) $ and $ X(t) $ such that:
+\begin{itemize}
+	\item $ P(R_{1:t}) = $
+\end{itemize}
+
+Partition into robot path and the conditionally independent particles. 
+
+For each particle we have a map.
+
+We only have particles for the robot position, and then a map corresponding to that particle. This reduces the number of particles immensly. e.g. Each landmark contains 10 landmarks. 
+This is te general case, which can then be applied to the particle filter. 
+
+We give weights to each particle, based on the map that they have. 
+The map is the landmarks. Each particle have a map of all the landmarks, and based on the precision of these landmarks, we give a weight.
+
+Applying the EKF for each landmark position.
+This is FastSLAM
+
+
+\section{Wrapup}
+EKF data association is difficult becuase both the robot and the landmarks are added. In particle filters, we assume that the pose of the robot is known in each particle. Therefore it is easier to do data association. \\
+This is called \textbf{pr particle data association}  
+
+pr particle data association:
+\begin{itemize}
+	\item Pick the most probable match
+	\item Pick the random associateed weight by observation likelihoods
+\end{itemize}
+If the probality is too low, generate a new landmarks. Becuase if we associate a landmark with other landmarks, and the probaililty of that being the landmark, then it does not make sense to associate it with that landmark. Then assume that you have seen a new landmark.
+
+
+\section{Open Challenges in SLAM}
+\begin{itemize}
+	\item Perception problem
+	\item Multirobot SLAM
+	\item Dynamic maps
+	\item Sensitivity to incorrect data association
+	\item Visual SLAM
+\end{itemize}
+
+For Markov Decision process, we need further background. Therefore the self study is important.
+
+\vspace{5pt}
+
+\textbf{note} Instead of using the entire robot path, in practice it is enough to use only the previous path position. 
+
+\end{document}
