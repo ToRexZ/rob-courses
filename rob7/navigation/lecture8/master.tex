@@ -1,0 +1,111 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robot Navigation: Lecture 8 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Recap}
+Bayes filter branch out into particle filter and kalman filter.
+EKF local linear approximation.
+
+These filters are used for localisation.
+
+\subsection{Map building}
+\textbf{Landmark:} a landmark is a distinguishable feature in the environment. Camera $\rightarrow$  spot in a certain color
+Leads into \textbf{SLAM} which can brach out into: 
+\begin{itemize}
+	\item EKF, include landmarks in state $ \rightarrow  $ landmarks$^2$
+	\item PF SLAM $ \rightarrow  $ FastSLAM $ \rightarrow  $ Linear scaling
+\end{itemize}
+
+\textbf{Action model $ \leftarrow $ mobility model} which is applied to close a time gap. Other times we do a perception update, where we use a sensor model, which incorporates information 
+
+Only update the perceptions if there is a new measurement ready.
+You can use action updates and perception updates independently.
+
+\subsection{Random walk model}
+\begin{equation}
+	x_{n+1} = x_n + v_n 
+\end{equation}
+where $ v_n $ is some measurement noise.
+A very imprecise model 
+
+if your odometry malfuncitons, then you cannot just use your motion model in the action update. 
+
+\section{Path Planning}
+Initial assumptions:
+\begin{itemize}
+	\item Holonomic
+	\item Point robot
+\end{itemize}
+
+We will apply Minkowski-sum later on.
+
+\subsection{Holonomic robots}
+A car is non-holonomic, because the number of global degrees of freedom, are higher than the free configuration degrees of freedom. 
+
+A train is holonomic, because we have reduced the global degrees of freedom. 
+
+you "expand" the obstacle to confine the width of the robot and make that our new obstacle. 
+
+If we dont do the conservative approximation of the robot by taking e.g. a circle of the robot.
+
+\subsection{C-Obstacles}
+How do we map the workspace obstacles to the C-space?
+
+We define an anchor point on the robot, which is the point that abstracts the robot, and that point will be outside the minkowsky sum.
+we check if:
+\begin{equation}
+p + r \in O
+\end{equation}
+where $ P $ is the translation of the  $ r $ vector in the Robot.
+
+Then 
+\begin{equation}
+\exists o \in O, P +r = o \rightarrow p = o-r
+\end{equation}
+
+where
+\begin{equation}
+	C = \{P = o + r | o \in O, r \in -R \}
+\end{equation}
+
+matlab: Polyshape which gives a polygonal shape based on a set of coordinates. The minkowsky sum is a 3'rd party library. The minkowsky sum is computed with the best possible heading, and is therefore not as conservative.
+
+Discretisising the headings and recomputing the minkowsky sum, gives a set of maps which combined on top of each other, gives a way to search position and heading.
+
+The star algorithm produces the same result.
+
+
+
+
+
+\end{document}
