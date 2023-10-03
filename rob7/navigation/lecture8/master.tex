@@ -104,6 +104,82 @@ Discretisising the headings and recomputing the minkowsky sum, gives a set of ma
 
 The star algorithm produces the same result.
 
+\section{Graph Search}
+A graph
+\begin{equation}
+G = (V,E)
+\end{equation}
+where $ V = \{v_1,...,v_n\} $ is vertecies, and  $ E = \{(v_i,v_j)| v_i, v_j \in V \} $ is edges.
+
+Let $ W = E \rightarrow R_{+} $ be the positive weights of an edge.
+
+A path is a sequence of edges. where the cost of the path is
+\begin{equation}
+c(P) \sum_{j}^{}{w(e_j)}
+\end{equation}
+
+\textbf{Conceptually} 
+\begin{itemize}
+	\item Vertices are junctions
+	\item Edges are roads that connect junctions
+	\item $ W $ is the travel length of roads/edges
+\end{itemize}
+
+
+
+
+
+\subsection{Visibility Graph}
+Workload is quite modest.
+The path gracefully touches the obstacles.
+
+
+\subsection{Astar}
+Heuristic
+
+\subsection{D*}
+An incremental replanning of version of A*
+
+\subsection{Value itteration}
+Algebraic version to graph search.
+
+\begin{equation}
+E(v) = C(v, goal)
+\end{equation}
+which is optimal.
+
+From $ v $ to  $ goal $ there may be some stepping stone through  $ v' $ which is part of some path. 
+
+\vspace{5pt}
+
+\textbf{Sidenote} Bellmann optimality principle. If a path between $ v $ and  $ goal $ is optimal, then every subpath of this path is also optimal.
+
+\fbox{If $ w(e) + c(p) = E(v) $ then $ c(p) = E(v') $, thus $ E(v) = w(e) + E(v') $}
+
+Thus generally 
+
+\section{Potential Fields}
+let 
+\begin{equation}
+U: Q \rightarrow \mathbb{R}
+\end{equation}
+
+\begin{equation}
+\nabla U: Q \rightarrow \mathbb{R}^{n} 
+\end{equation}
+
+\begin{equation}
+\nabla U(q) = v
+\end{equation}
+So we let the velocity be proportional to force
+
+\begin{equation}
+	\frac{dq}{dt} = -\zeta \cdot \nabla U(q)
+\end{equation}
+
+
+
+
 
 
 
