@@ -1,0 +1,431 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Mobility: Lecture 4 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Observers}
+We need the entire system $ \Sigma $
+ \begin{equation}
+	 \dot{x} = Ax + Bu, \hspace{5pt} x(0) = x_0
+\end{equation}
+\begin{equation}
+y = Cx
+\end{equation}
+
+The set of all initial conditions which induces a solution which converges into the nullspace of C
+\begin{framed}
+	\textbf{Def:} (A,C) is observablee if $ V = {0}$ with  $ V = \{x_0 \in \mathbb{R}^{n} | y(t; x_0, 0) = 0 \forall t \geq 0\} $ 
+\end{framed}
+
+The solution is 
+\begin{equation}
+ x = e^{At} x_0 + \int_{0}^{t}{e^{A(t-\tau)} Bu(\tau) d \tau}   
+\end{equation}
+
+\begin{equation}
+y(t;x_0,0) = C e^{At}x_0 
+\end{equation}
+Note that this is the set of all $ y $ where the output becomes 0. Thus for all the initial conditions which gives 0 in output.
+
+Evidently $ x_0 = 0 $ is in this space
+
+It is not possible to do an example yet, because we would have to verify this definition for all t.
+
+\begin{equation}
+V = null(A|C)
+\end{equation}
+
+where the matrix
+\begin{equation}
+	(A|C) = \begin{bmatrix}
+	C \\
+	C A\\
+	\vdots \\
+	C A^{n-1}  
+	\end{bmatrix} \in \mathbb{R}^{pn \times n} 
+\end{equation}
+
+Looks a lot like the controlability matrix (it is just the transpose of that matrix). Lets explore that.
+\begin{equation}
+	(A|C)* = \left[C* A*C* \cdots (A*)^{n-1}C* \right] = [A*|C*] 
+\end{equation}
+Where the controlability matrix is given by $ (A|B) $ where  $ A $ is the system matrix and  $ B $ is the input matrix. This entails that the observability matrix $ [A*|C*] $ has the system matrix  $ A $ and  $ C $ is the input matrix in the controlability matrix.
+
+
+\textbf{Remark on nullspace} 
+\begin{equation}
+	null(M) = \{x | M x = 0 \}
+\end{equation}
+\begin{equation}
+	= \{x | m; \perp x, m; \text{the $i$'th row of $m$} \}
+\end{equation}
+\begin{equation}
+= (Range M^{*})^{\perp} 
+\end{equation}
+
+ $ \downarrow $
+
+\begin{equation}
+null(A|C) = (Range(A|C)^{*} )^{\perp} 
+\end{equation}
+\begin{equation}
+	= (Range[A^{*}|C^{*} ])^{\perp} 
+\end{equation}
+\begin{equation}
+	\{0\} = null(A|C) \leftrightarrow Range[A^{*} |C^{*}] = \mathbb{R}^{n} 
+\end{equation}
+
+
+\section{Observability}
+
+\begin{framed}
+	$ (A|C) \text{obs.} \leftrightarrow rank[A^{*}|C^{*}] = n $
+\end{framed}
+When the matrix $ (A|C) $ is obserable, the condition above has to have full rank. This entails that when it has full rank, then the only "nasty" vector, that makes the ooutput be 0, is the 0 vector.
+
+\subsection{Example: Pendulum}
+\begin{equation}
+\ddot{\theta} = a sin \theta - b \dot{\theta} \approx a \theta - b \dot{\theta}
+\end{equation}
+where the second part of this equation is the linearization "small angle approximation" this works only for small angles. 
+\begin{equation}
+x_1 = \theta, x_2 = \dot{\theta}
+\end{equation}
+
+where 
+\begin{equation}
+	\dot{\begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix} } = \begin{bmatrix}
+0 & 1 \\
+a & -b
+\end{bmatrix} \begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix} = \begin{bmatrix}
+0 & 1 \\
+2 & -1
+\end{bmatrix} \begin{bmatrix}
+x_1 \\
+x_2
+\end{bmatrix} 
+\end{equation}
+
+where $ a = 2 $ and  $ b = 1 $
+
+\begin{equation}
+	C =  \begin{bmatrix}
+	1 & 0 
+\end{bmatrix} : A^{*} \begin{bmatrix}
+0 & 2 \\
+1 & -1
+\end{bmatrix}, C^{*} = \begin{bmatrix}
+1 \\
+0
+\end{bmatrix}, \hspace{5pt}
+[A^{*}|C^{*}] = \begin{bmatrix}
+1 & 0 \\
+0 & 1
+\end{bmatrix}
+\end{equation}
+Since $[A^{*}|C^{*}]$ does have full rank i.e.  $ Rank([A^{*}|C^{*}]) = n $ which is the definition of the observability.
+
+\textbf{Note:} the Kalman decomposition of this is still corriculum.
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\textbf{Stabilize} $ \dot{x} = Ax + Bu $
+
+\begin{equation}\label{eq1}
+u = K x
+\end{equation}
+The problem of this is that we do not know all of the system states. For the pendulum case we do not know the angle of the system. Thus equation (\ref{eq1}) never possible in practicality. We do not know anything about the system, because we have just made a model of the system.
+
+From this point on, we will focus on developing a routine which can estimate $ x $
+we will only do the full state observer.
+
+\section{Observer}
+\textbf{Attention} There will be a lot of figures in this section. They are however the same as the figures in the lecture note. \\
+An observer takes in the input $ u $ and the output $ y $ and results in a estimate $ \hat{x} $ of the states. 
+
+Where $ O = $
+\begin{equation}
+\dot{\hat{x}} = A \hat{x} + Bu + L(y-\hat{y})
+\end{equation}
+\begin{equation}
+\hat{y} = C \hat{x}
+\end{equation}
+
+$ \hat{x} $ is usually something that we calculate and implement directly on microcontrollers.
+
+Note in the equation (\ref{eq1}) we just take out the hidden states of the plant, but this is not allowed in standard IO systems. Therefore we can only analyse based on the output of the plant, namely $ y $.
+
+We can not compute the Plant, but we can choose the observer part of the system easily. 
+
+If this is a good observer, we can look at the error on the estimated states. 
+
+\begin{equation}
+e = x - \hat{x}
+\end{equation}
+
+We can take the time derivative of this error 
+\begin{equation}
+	\dot{e} = \dot{x} - \dot{\hat{x}} = Ax + Bu - (A \hat{x} + B u + L(y- \hat{y}))
+\end{equation}
+combining and collecting terms
+\begin{equation}
+ = A e - L C e 
+\end{equation}
+Thus 
+\begin{equation}
+\dot{e} = (A-L C)e
+\end{equation}
+
+\begin{framed}
+	Hence: Choose $ L $ s.t.  $ Re(\lambda) < 0  \forall \lambda \in \sigma(A-LC) $ But it has to be on the correct form to use the place command since that requires $ A - C L $ where the gain matrix is on the end and not on the left of  $ C $. Hence choose $ L $ s.t. $ Re(\lambda) < 0  \forall \lambda \in \sigma(A^{*} - C^{*} L^{*} )$
+\end{framed} 
+
+
+\begin{framed}
+\textbf{Def:} $ (A,C) $ is  \textit{detectable} if there exists $ L $ s.t.  $ Re(\lambda) < 0  \forall \lambda \in \sigma(A-LC) $  
+\end{framed} 
+
+
+To find $ L $ we have to know that  $ (A,C) $ is observable
+
+% \begin{equation}
+% \begin{split}
+\begin{align}
+	(A,C) \text{obs.} &\leftrightarrow Rank[A^{*}|C^{*}] = n \\
+					  &\leftrightarrow (A^{*},C^{*}) \text{is controlable.} \\
+					  &\leftrightarrow (A^{*},C^{*}) \text{ is stabilizable }\\
+					  &\leftrightarrow -||- \sigma(A + \lambda^{*}) \subset \mathbb{C}_{-} \\
+					  &\leftrightarrow \text{there is a $ L = -\lambda^{*}  $ s.t. }\sigma(A - L C) \subset \mathbb{C}_{-} \\
+					  &\leftrightarrow (A,C) \text{is detectable}
+\end{align}
+% \end{equation}
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+\begin{equation}\label{eq2}
+\dot{x} = Ax + Bu = Ax + BK \hat{x} = Ax + B K(x-e)
+\end{equation}
+\begin{equation}
+\dot{e} = (A - L C) e
+\end{equation}
+\[
+\downarrow
+\] 
+\begin{equation}\label{eq3}
+\dot{\begin{bmatrix}
+x \\
+e
+\end{bmatrix} } = \begin{bmatrix}
+A+BK & -BK \\
+0 & A-LC
+\end{bmatrix} \begin{bmatrix}
+x \\
+e
+\end{bmatrix} = \mathbb{A}\begin{bmatrix}
+x \\
+e
+\end{bmatrix} 
+\end{equation}
+
+\textbf{Note:} that $ \sigma(\mathbb{A}) = \sigma(A+BK) \cup \sigma(A- L C)$ 
+
+\begin{framed}
+	\textbf{Def:} The IO system $ \Sigma $ is stabilizable if  $ Re(\lambda) < 0 \forall \lambda \in \sigma(\mathbb{A})$  
+\end{framed} 
+
+Then $ \Sigma $ is stabilizable if  $ (A,B) $ is stabilizable and  $ (A,C) $ is detectable.
+
+We want to choose $ L $ to converge 5 to 10 times faster than  $ K $
+The higher the eigenvalues of $ L $, the quicker $ e $ converges to 0.
+
+\section{Reference tracking}
+\begin{align}
+\dot{x} &= Ax + Bu = Ax + B(K_i x_i + N_u r + K(\hat{x} - N_x r)) \\
+		&= Ax + B(K \hat{x} + K_i x_i + Nr) \hspace{10pt} N = N_u - K N_x\\
+		&= Ax + B(K(x-e) + K_i x_i + N r) 
+\end{align}
+
+
+like we did in equation \ref{eq2} and get it on the matrix form of \ref{eq3}
+
+\begin{equation}
+\dot{x_i} = y - r = C x - r
+\end{equation}
+where 
+\begin{equation}
+\dot{e} = (A - L C) e
+\end{equation}
+Thus we can now collec terms and set up the matrix form.
+
+\begin{equation}
+\dot{\begin{bmatrix}
+x \\
+x_i \\
+e
+\end{bmatrix} } = \begin{bmatrix}
+A+BK & B K_i & -BK\\
+C & 0 & 0\\
+0 & 0 & A-L C
+\end{bmatrix} \begin{bmatrix}
+x \\
+x_i \\
+e
+\end{bmatrix} + \begin{bmatrix}
+B N \\
+- I \\
+0
+\end{bmatrix} r
+\end{equation}
+
+where the upper $ 2 \times 2 $ matrix of the $ \mathbb{A} $ matrix is the matrix used in reference tracking with integra action.
+
+We change coordinates:
+\begin{align}
+	\begin{aligned}
+	z &= \begin{bmatrix}
+x \\
+x_i \\
+e
+\end{bmatrix} - \begin{bmatrix}
+x' \\
+0 \\
+0
+\end{bmatrix} \\ \label{eq6} \dot{z} &= \begin{bmatrix}
+A + BK & B K_i & -B K\\
+C & 0 & 0\\
+0 & 0 & A - C L
+\end{bmatrix} z + \begin{bmatrix}
+(A+BK) x' \\
+C x' \\
+0	
+\end{bmatrix} + \begin{bmatrix}
+B N \\
+-I \\
+0
+\end{bmatrix} 
+	\end{aligned}
+\end{align}
+
+\begin{align}\label{eq4}
+	A x' + B K x' + B N r &= A x' + B K x' + B N_u r - B K N_x r \\
+						  &= A x' + B K x' + B u' - B K x'\\
+						  &= 0
+\end{align}
+\begin{align}\label{eq5}
+C x' - I r &= C x' - r = 0 
+\end{align}
+
+Note that (\ref{eq4}) is based on the first row of (\ref{eq6}) and likewise (\ref{eq5}) is based on the second row of (\ref{eq6})
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\section{Anti windup}
+
+\begin{align}
+	\dot{\hat{x}} &= A \hat{x} + B u + L(y-\hat{y})  \\
+	x_i &= y-r \\
+	u &= K \hat{x} + K_i x_i + N r \\
+	 &= \begin{bmatrix}
+	K & K_i 
+	\end{bmatrix} \overline{x} + N r
+\end{align} 
+
+note $ N $ is fixed, you cant modify N. \\
+We insert $ u $ into the first equation.
+
+
+\begin{equation}
+\begin{bmatrix}
+\hat{x} \\
+x_i
+\end{bmatrix} = \begin{bmatrix}
+A + B K - L C & B K_i \\
+0 & 0
+\end{bmatrix} \begin{bmatrix}
+\hat{x} \\
+x_i
+\end{bmatrix} + \begin{bmatrix}
+L  \\
+I
+\end{bmatrix} y + \begin{bmatrix}
+B N \\
+- I
+\end{bmatrix} r
+\end{equation}
+
+Then
+\begin{equation}
+	\dot{\overline{x}} = F \overline{x} - G_y y + G_r r
+\end{equation}
+Where:
+\begin{equation}
+G_y = \begin{bmatrix}
+-L \\
+-I
+\end{bmatrix} 
+\end{equation}
+
+
+\textbf{TODO:} Make a piecewise snippet 
+the saturation function
+\begin{equation}\label{eq9}
+	sat(u) = 
+	\begin{cases}
+		k & u \geq k \\
+		u & u \in [-k, k] \\
+		-k & u \leq - k
+	\end{cases}
+\end{equation}
+
+This becomes active wehenever $ u $ is saturated, and when it is inserted into the block diagram, it is accounted for by the matrix  $ M $  which is called the anti windup gain.
+
+\begin{align}
+	\dot{\overline{x}} &= F \overline{x} - G_y y + G_r r + M(u_s - u)\\
+					   &=  F \overline{x} - G_y y + G_r r - M(\overline{K} \overline{x} + N r) + M u_s\\ &= (F - M \overline{K})\overline{x} + (G_r - M N) r + G_y y + M u_s
+\end{align}
+
+Where $ u_s $ is the saturated  $ u $, i.e. if case 1 or 3 in (\ref{eq9}) occurs.
+you can steer the dynamics if $ (F, \overline{K}) $ is observable. 
+
+Always introduce disturbance on the real $ A $ of the system, otherwise integral action does nothing becuse the model is excactly precise. 
+\end{document}

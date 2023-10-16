@@ -1,0 +1,425 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Mobility: Lecture 5 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Discrete}
+The continuous system is:
+\begin{align}
+	\Sigma: x(k+1) &= A x(k) + B u(k),  \hspace{5pt}x(0) = x_0, \hspace{5pt} k \in \mathbb{N} \\ y(k) &= C x(k)
+\end{align}
+
+Then the discrete system is:
+\begin{equation}
+\dot{x}(t) = A_c x(t) + B u(t)
+\end{equation}
+thus 
+\begin{equation} \label{eq3}
+	\dot{x}(t) = \lim_{h \rightarrow 0} \frac{x(t+h) - x(t)}{h} 
+\end{equation}
+
+\begin{equation}
+\frac{x(t+h) - x(t)}{h} = A_c x(t) + B_c u(t)
+\end{equation}
+\textbf{Note:} that this is an appriximation, but we will not drag the $ \approx $ sign throughout the entire deriviation. 
+And
+
+\begin{align} \label{eq1}
+	x(t+h) &= (h A_c + I) x(t) + h B_c u(t)\\ &= A_d x(t) + B_d u(t)
+\end{align}
+
+And then by sampling the time, we can discretisise the continuous time $ t $
+\begin{equation}
+	t = h k \hspace{10pt} k \in \mathbb{N}
+\end{equation}
+
+Then we can use this in (\ref{eq1}) 
+\begin{equation}
+x(h k+h) = A_d x(h k) + B_d u(hk)
+\end{equation}
+Be carefull. $ k $ is not time, it is a scaling factor on the time, that is why it is in the set of  natural numbers
+
+Then by implicit interpretation, we do not drag $ h k $ around throughout the entire deriviation.
+
+\begin{align}
+ x(k+1) &= A_d x(k) + B u(k) \\
+ y(k) &= C_d x(k) 
+\end{align}
+
+If we look at the eigenvalues of this system, using the approximate discretisation.
+\begin{align}
+\lambda_c v &= A_c v\\  
+			&= \frac{1}{h}(A_d - I)v \\
+			&\updownarrow \\
+			\lambda_d &= h \lambda_c + 1 = h p e^{i \theta} +1
+\end{align}
+where $ v $ is the eigenvector
+
+Here we can see that the sample time $ h $ only effects the length of the complex vectors, and not the angle. 
+And since the sample time have to be as small as possible, it is evident that when we use the length of the vector, then we achive stability by sampling fast enough, as faster sampling time moves the poles closer to $ 0 $. If you put the pole right up against the imaginary axis, we have to sample very fast for it to be inside the unit circle. This is because of the $ +1 $.
+
+Now the general solution is given by
+
+\begin{align}
+	x(1) &= A x(0) + B u(0) \label{eq7}\\
+x(2) &= A x(1) + B u(1) \\
+x(3) &= A^{2} x(0) + A B u(0) + B u(1) \\
+	 &\vdots \\
+x(k+1) &= A^{k+1} x(0) + \sum_{j = 0}^{k}{A^{k-j} B u(j)} \label{eq8}
+\end{align}
+
+This is called lifting, where we transisition from an optimal control problem, to a control problem, where we can use e.g. cvx.
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\subsection{Reachability and controllability}
+\begin{equation}
+	\mathbb{W} = \mathbb{W}_T = \{x = \sum_{j = 0}^{T}{A^{T - j} B u(j)} | u \in \mathbb{U} \}
+\end{equation}
+This is all the points that we can reach in time $ T $ from  $ 0 $.
+
+as $ \mathbb{W}_T $ means the "index"  $ T $ it does matter large $ T $ is. 
+
+
+\centering
+\fbox{$ \mathbb{W} = Range[A|B]$}
+
+\raggedright
+
+we have a definition\\
+\textbf{Def:} $ (A,B) $ is reachable if  $ \mathbb{W} = \mathbb{R}^{n}  $ \\
+\textbf{Def:} $ (A,B) $ is controlable if $ \mathbb{W}^{c}= \mathbb{R}^{n} $ where $ \mathbb{W}^{c} = \mathbb{W}_T^{c} = {x_0 \in \mathbb{R}^{n} | 0 = x(T; x_0, u) } \text{for some } u \in \mathbb{U}$
+
+where $ \mathbb{W}^{c} $ means the "Controllability" subspace, \textbf{it is not the complement} 
+\begin{equation}
+	\mathbb{W}^{c} = \mathbb{W} + null(A^{n})
+\end{equation}
+If we already know that $ (A,B) $ is reachable, then $ \mathbb{W} \in \mathbb{R}^{n} $ entails that it is also controllable. This means that $ 0 $ can be reached from everywhere, but everywhere can not necessarily be reached from  $ 0 $
+
+\subsubsection{Example:}
+\begin{equation}
+\begin{bmatrix}
+0 & 0 \\
+0 & 1
+\end{bmatrix}, \hspace{10pt} B = \begin{bmatrix}
+0 \\
+1
+\end{bmatrix}
+\end{equation}
+entailing that
+\begin{equation}
+	[A|B] = \begin{bmatrix}
+	0 & 0 \\
+	1 & 1
+	\end{bmatrix}
+\end{equation}
+
+\begin{equation}
+ \mathbb{W} = x_2\text{-axis}
+\end{equation}
+
+\begin{equation} \label{eq2}
+A^{2} = A \rightarrow null(A^{2}) = x_1\text{-axis}
+\end{equation}
+
+This entails that $ W^{c} = \mathbb{R}^{n} $ 
+This entails that we can reach only reach points on the $ x_2$-axis, and not the entire space.
+
+Bringing it back to the system.
+\begin{equation}
+x(k+1) = A^{k-1} x_0 + \sum_{j=0}^{k}{A^{k-j} B u(j)} 
+\end{equation}
+where $ A^{k-1} = A$ for all $ k $ because of (\ref{eq2}) 
+
+
+\begin{align}
+ &= A x_0 + B u(0) + A B(u(1) + \cdots + u(k)) \\
+ &= A x_0 +  A B(u(0) + \cdots + u(k)) \hspace{15pt} x_0 = \begin{bmatrix}
+ x_{01} \\
+ x_{02}
+ \end{bmatrix}  \\
+ &= \begin{bmatrix}
+ 0 \\
+ x_{02}
+ \end{bmatrix} + \begin{bmatrix}
+ 0 \\
+ (u(0) + \cdots + u(k))
+ \end{bmatrix} \\
+ &= \begin{bmatrix}
+ 0 \\
+x_{02}+u(0) + \cdots + u(k)
+ \end{bmatrix}  
+\end{align}
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+\subsection{Stabilizable}
+
+the system $ \otimes $
+\begin{align}
+	x(k+1) &= A x(k) \hspace{15pt} x(0) = x_0 \\
+		   &= A ^{k+1} x_0 
+\end{align}
+
+\textbf{Def:} the system  $ \otimes $ is stable if  $ \sigma(A) \subset \mathbb{D}^{0} $ with  $ \mathbb{D}^{0}= \{\lambda \in \mathbb{C} | |\lambda| < 1 \}$ \\
+
+\textbf{Def:} The system $ \otimes $ is stable if  $ x(k) \rightarrow  0$ as $ k- \infty $ for every $ x_0 $ 
+
+Hence to stabilize $ \Sigma $ choose  $ u(k) = K x(k) $ s.t.  $ x(k+1) = A x(k) + B k x(k) = (A + B K) x(k) $ with $ \sigma(A + B K) \in \mathbb{D}$
+
+where $ \mathbb{D}$ is the unit disc. \\
+\vspace{5pt}
+Then $ (A,B)  $ is stabilizable if such a $ K $ exists \\
+Hence $ (A,B) $ is reachable $ \rightarrow (A,B) $ is stabilizable
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\subsection{Reference tracking}
+\begin{equation}
+	y(k) \rightarrow r \hspace{5pt} \text{for } k \rightarrow \infty 
+\end{equation}
+
+Instead of having $ x(k+1) = lim ... $ as in  (\ref{eq3})  then for reference tracking where we want the derivative of $ x $ to be  $ 0 $. 
+
+ \begin{align}
+	 \overline{x} &= A \overline{x} + B \overline{u} \label{eq9}\\ 
+r &= C \overline{x}
+\end{align}
+
+\begin{equation}
+\begin{bmatrix}
+0 \\
+I
+\end{bmatrix} r = \begin{bmatrix}
+A - I & B \\
+C & 0
+\end{bmatrix} \begin{bmatrix}
+\overline{x} \\
+\overline{u}
+\end{bmatrix} \rightarrow \begin{bmatrix}
+\overline{x} \\
+\overline{u}
+\end{bmatrix} = \begin{bmatrix}
+A - I & B \\
+C & 0
+\end{bmatrix}^{-1} \begin{bmatrix}
+0 \\
+I
+\end{bmatrix} r = \begin{bmatrix}
+N_x \\
+N_u
+\end{bmatrix} r = N_r
+\end{equation}
+
+Then the control law \\
+\hspace{40pt}\fbox{$ u(k) K(x(k)- N_x r) + N_u r$ }\\
+yields $ y(k) \rightarrow r $ as $ k \rightarrow \infty  $
+
+We change coordinates
+\begin{align}
+z(k) &=  x(k) - \overline{x} \\
+z(k+1) &= A x(k) + B u(k) - \overline{x} \\
+	   &= A z(k) +A \overline{x} + B(k(x(k) - \overline{x}) + \overline{u}) - \overline{x}\\ &= (A+B K) z(k) + A \overline{x} + B \overline{u} - \overline{x}
+\end{align}
+
+where $ A \overline{x} + B \overline{u} - \overline{x} =  0$  
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+
+\subsection{Integral action}
+\begin{align} 
+x_I(k+1) &= x_I(k) + e(k) = \sum_{j=0}^{k}{e(j)} \label{eq4}\\  
+		 &= x_I + C(xk) - r \label{eq5}
+\end{align}
+
+where (\ref{eq4}) is just a simple integral, which adds the error to all the cumulative error.  
+
+
+\begin{align}
+\begin{bmatrix}
+x(k+1) \\
+x_I(k+1)
+\end{bmatrix}  &=  \begin{bmatrix}
+A & 0 \\
+C & I
+\end{bmatrix} \begin{bmatrix}
+x(k) \\
+x_I(k)
+\end{bmatrix} + \begin{bmatrix}
+B \\
+0
+\end{bmatrix} u(k) + \begin{bmatrix}
+0 \\
+-I
+\end{bmatrix} r
+\end{align}
+
+The control law is given 
+\begin{align}
+u(k) &= K(x(k) - N_x) + K_I x_I(k) + N_u r \\
+	 &= \begin{bmatrix}
+	 K & K_I 
+	 \end{bmatrix} \begin{bmatrix}
+	 x(k) \\
+	 x_I(k)
+ \end{bmatrix} + (N_u -K N_x)r \label{eq6} \\
+\end{align}
+
+Yields $ y(k) \rightarrow r $ as $ k \rightarrow  $ with $ \overline{K} $ chosen s.t. $ \sigma(A + B \overline{K}) \in \mathbb{D} $ 
+
+where $ \overline{K} $ is the first matrix in (\ref{eq6}) 
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\subsection{Anti-windup}
+The industrial version of doing integral action:\\
+\textbf{If}  $ u(k) \in [u_l, u_u] $ \\
+\textbf{Then} $ x_I(k+1) = x_I(k) + e(k) $ \\
+\textbf{Else} $ x_I(k+1) = x_I(k) $
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\subsection{LQR}
+
+\begin{equation}
+	\underset{u}{\min} \hspace{5pt} J \hspace{5pt} , \hspace{5pt} J = \sum_{j=0}^{N-1}{(x(k)^{*}Q x(k) + u(k)^{*}R u(k) ) + x(N)^{*} G x(N)}
+\end{equation}
+Then the solution is
+
+\begin{align}
+	u(k) &= -L(k) x(k)\\
+	L(k) &= (R+ B^{*} S(k+1) B )^{-1} B s(k+1) A \\
+	S(k) &= Q + A^{*} S(k+1) A - B L(k)) \\
+	S(N) &= G
+\end{align}
+Where we have to compute it backwards. 
+
+This is the finite resolution where $ T $ is finite. 
+This is also the solution for the kalman filtering. 
+
+When computing optimal control, we input the sequence of $ x(k) $'s from (\ref{eq7}) - (\ref{eq8})  . This entails that we will compute the optimization problem, where we get a sequence of $u$'s 
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\subsection{Observability}
+We have the unobservable subspace:
+\begin{equation}
+	V^{+} = \{x_0 | y(k; x_0, 0) = 0 \forall k \in \mathbb{N}\}
+\end{equation}
+\textbf{Def:} $ (A,C) $ is observable if $ V^{+} = \{0\}$ \\
+Then: $ V^{+} = null(A|C) = Range[A^{*}|C^{*}]$
+
+Hence $ (A,C) $ is observable iff  $ Rank[A^{*}|C^{*}] = n$; Which is the same as the continuous case. 
+
+There is two different kinds of observers in the discrete case:
+\begin{itemize}
+	\item Prediction observer
+	\item Current observer
+\end{itemize}
+
+\vspace{5pt}
+\hrule
+\vspace{5pt}
+\subsubsection{Prediction observer}
+\begin{align}
+	\hat{x}(k+1) &= A \hat{x}(k) + B u(k) + L(y(k)-\hat{y}(k))\\
+	\hat{y}(k) &= C \hat{x}(k)
+\end{align}
+where the error $ e = x - \hat{x} $ thus:
+
+\begin{align}
+e(k+1) &= A x(k) - B u (k) - ( A \hat{x} + B u( k ) + L C e(k) ) \\ 
+	   &= (A -L C)e(k)
+\end{align}
+\textit{Hence choose $ L $ s.t.  $ \sigma(A - LC ) \subset \mathbb{D}$ then $ e(k) \rightarrow 0 $ as $ k \rightarrow  \infty  $ thus $ \hat{x}(k) \rightarrow x(k) $} 
+
+Then
+\begin{align}
+	u(k) &= K \hat{x}(k)
+\end{align}
+
+\begin{align}
+x(k+1) &=  A x(k) + B K \hat{x}(k) \\
+	   &= A x(k) + B K x(k) - B K e(k) \\
+	   &= (A + B K) x(k) - B K e(k)
+\end{align}
+Thus 
+\begin{equation}
+\begin{bmatrix}
+x(k+1) \\
+e(k+1)
+\end{bmatrix}  = \begin{bmatrix}
+A + B K & - B K \\
+0 & A - L C
+\end{bmatrix} \begin{bmatrix}
+x(k) \\
+e(k)
+\end{bmatrix} 
+\end{equation}
+
+\subsubsection{Current Observer}
+Instead of using the previous output $ y $ then we can use the current output  $ y $
+
+\begin{align}
+	\hat{x}(k+1) &=  \overline{x}(k+1) + L(y(k+1) - \overline{y}(k+1))\label{eq10} \\
+\overline{x}(k+1) &= A \hat{x}(k) + B u(k)	\\
+\overline{y} &= C \overline{x} (k)
+\end{align}
+\textbf{Note} that this $ \overline{x} $ is not the same as the $ \overline{x} $ used in (\ref{eq9}).
+\fbox{$ e(k) = x(k) - \overline{x}(k) $}
+Where 
+\begin{align}
+e(k+1) &= A x(k) + B u(k) - (A \hat{x}(k) + B u(k)) \\
+	   &= A x(k) - A ( \overline{x}(k) + L C e(k) ) \\
+	   &= (A - A L C)e(k) \\
+	   &= (A - \overline{L} C) e(k)
+\end{align}
+where $ \overline{L} = A L $
+
+\textit{Hence choose  $ \overline{L} $ s.t. $ \sigma(A - \overline{L} C) \subset \mathbb{D} $ and set $ L = A^{-1} \overline{L} $} 
+
+This is only applicable for slow systems. 
+The setup is excactly the same as a kalman filter. The only minor difference is that in the kalman filter the $ L $ in (\ref{eq10}) is time dependent. 
+
+\end{document}
+

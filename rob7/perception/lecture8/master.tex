@@ -1,0 +1,135 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robotic Perception: Lecture 8 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Introduction to Depth Sensing}
+Goal of today: recovery of 3D coordinates.
+
+There is dimension reduction which results in ambiguity of the distance of the coordinate in the pixel.
+
+
+\subsection{Non-contact distance measurement}
+\begin{itemize}
+	\item Reflective 
+		\begin{itemize}
+			\item Non-optical
+			\item Optical
+				\begin{itemize}
+					\item Passive
+					\item Active 
+						% \begin{itemize}
+						% 	\item Time-of-Flight
+						% 	\item Light Coding
+						% 		\begin{itemize}
+						% 			\item Triangulation
+						% 			\item Active stereo
+						% 		\end{itemize}
+						% \end{itemize}
+				\end{itemize}
+		\end{itemize}
+\end{itemize}
+
+
+\subsection{Image pairs}
+Theory on Two-view geometry.
+You can either have two cameras or a single moving camera. We will focus on static 2 camera setup. 
+
+There is two problems with this:
+\begin{itemize}
+	\item Determine the point location (Search problem)
+	\item Estimation problem, where is transform.
+\end{itemize}
+
+We focus on epipolar geometry. 
+The epipolar line is the depth line of the first camera, where the distance from the first camera can be considered a constraint on the other dimension.
+
+
+The Baseline is the line between the camera sensors. \\
+The epipolar plane is spanned by the two sensors and the object position $ x $.\\
+The Epipoles are the location where the baseline intersects the image planes. 
+
+
+\subsubsection{Calibrated case}
+We know the intrinsic and the extrinsic cameras parameters. and that the intrinsic parameters are the same for both cameras.
+
+We can use the skew-symmetric matrix which is based on the camera parameters, which can then be used to compute the epipolar geometry.
+
+\subsubsection{Uncalibrated case}
+$ \cdots  $
+
+\subsection{Epipolar geometry}
+Instead of computing the epipolar line (which reduces the dimension from the entire image to just the epipolar line). Furthermore you can use \textbf{rectification} of the images to aling the epipolar lines so you do not need to compute epipolar lines for each pixel in the image. 
+
+
+\section{Passive stereo vision}
+General stereo pipeline: \\
+TODO: enumerate snippet
+\begin{enumerate}
+	\item Calibration
+	\item Rectification based on the intrinsinc camera paramet calibration
+	\item Stero correspondence (Disparity map)
+	\item Depth map using triangulation
+\end{enumerate}
+
+
+
+\subsection{Depth map computation}
+
+\begin{equation}
+z = \frac{f B}{x_r - x_l} 
+\end{equation}
+
+where $ z $ is the distance to the poiint in the physical world.
+
+
+\textbf{The longer the baseline, the more precision on longer distances} 
+
+
+\section{Active stereo}
+Can e.g. be a intel realsense with an IR projector.
+
+
+\subsection{Structured light}
+Project light patterns onto the object of focus. This can give a sense of depth. Can be done with a single camera.
+
+
+\subsection{ToF cameras}
+Resolution lower than stereo cameras but is improving.
+Requires high clock speeds.
+
+Azure connect/kinect
+
+
+Not robust towards glass, or high reflective surfaces.
+
+
+\end{document}

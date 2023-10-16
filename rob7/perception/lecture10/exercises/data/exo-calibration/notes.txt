@@ -1,0 +1,2 @@
+Calibration board: Grid: 20,0 mm. 5x3 inner corners
+Camera: Intel RealSense D415

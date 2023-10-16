@@ -1,0 +1,83 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robotic Perception: Lecture 10 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Camera-Robot calibration}
+\begin{itemize}
+	\item Eye-on-hand / eye-in-hand
+	\item Eye-on-base / eye-to-hand
+\end{itemize}
+
+\subsection{Eye-on-hand - Theory}
+We find transformations from the base of the robot tot the end effector, and a transform from the camera to the end-effector, and then from the object to the camera. 
+This way we can compute the transformation between the object relative to the robot base. 
+
+Then you can take multiple positions of the camera, and then we can equate them to one another. \\
+The camera to the gripper transformation is unknown.
+
+Rearranging the equation gives:
+$ AX = XB $
+Where
+\begin{itemize}
+	\item $ A $ is the robot transformations
+	\item B is the camera transformations
+\end{itemize}
+
+\textbf{Seperable solutions} 
+Estimate rotation, \textbf{and then} the translation
+
+\textbf{Simultainously solutions} 
+estimates and rotation and translation together.
+
+\begin{enumerate}
+	\item Mount camera
+	\item Take images of checkerboards
+	\item Calibrate camera $ \rightarrow  $ extract the extrinsic parameters.
+\end{enumerate}
+
+\textbf{Note:} the checkerboard must be fixed, but can be placed anywhere, because we use the relative pose between the measurements, and not the absolute positions. \\
+\textbf{Note:} This method is only applicable if you do not know the actual transformation between the gripper and the camera mounted on the robot.
+
+\subsection{Eye-on-base - Theory}
+Here we place the checkerboard on the end-effector and move that around. Then we can estimate the camera to base transformation. \\
+\textbf{Note:} that $ ^{g}T_t^{(1)} $  is the transformation from the calibration target (checkerboard) to the gripper. and it is the first measurement.
+
+The base-gripper transformation is inverted compared to the other cameraplacement. 
+
+\subsection{Other methods and variations}
+\begin{itemize}
+	\item Naive approach, $ \rightarrow  $ manual allignment 
+	\item 3D printed camera mount where we know the actual position.
+\end{itemize}
+
+\end{document}

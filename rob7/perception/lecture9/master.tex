@@ -1,0 +1,118 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Advanced Robotic Perception: Lecture 9 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Mask R-CNN}
+Pose estimation of people. \\
+We represent the human with x joints, where we want to know the position of each of these joints. \\
+Done by segmenting different parts of the human, and then having preset constraints towards the different points. \\
+Self occlusion can occur where e.g. an arm of the human is in front of the rest of the body. 
+
+\subsection{Learning the segmentation}
+First some annotation is done.
+
+\subsection{Deep learning}
+Difference between handcrafted models, Machine learning, and deep learning.
+
+\begin{itemize}  
+	\item Handcrafted features are made by humans.
+	\item Machine learning stil uses handcrafted features and learns the classification. 
+	\item Deep learning learns the features, learns the classification.
+\end{itemize}
+
+
+\section{Mask R-CNN}
+It does everything. It kan also just use keypoints. 
+It outputs an image with multiple channels, where each channel has its own class. 
+Works well in populated and occluted scenes. 
+
+
+\section{Pose estimation 3D}
+To get ground truth, you would need a massive setup with cameras. 
+You can have a library with multiple poses, and then fit them onto images. 
+Furthermore it is possible to use 2D images, to estimate position in 3D. Work by stefan, (Underviser). 
+
+
+\section{Pointclouds}
+Using 2d monocular image can provide depth, however it can only provide relative depth, and not absolute depth in e.g. meters. 
+
+There are different 3D representation:
+\begin{itemize}
+	\item Point Cloud
+	\item Voxel Grid
+	\item Mesh
+	\item Multiview/Depth map. (More oldschool) (it uses gradients, which displays the depth of the image using the grayscale.)
+\end{itemize}
+
+\subsection{Disparity}
+Using Disparity, you loose resolution the further you go away, the disparity to distance map almost looks like an inverse logarithm or $ \frac{1}{x}  $ where $ x $ is the distance.
+
+\vspace{5pt}
+
+\textbf{Disparity to depth} \\
+Closed form solution.
+Can also be used for 3d using the reprojection equation, which uses the intrinsic and extrinsic camera parameters.
+
+
+\subsection{PCL (Pointcloud Library)}
+Important to use a filter. You can use the 50 nearest points to figure out the standard deviation and then if it is further away than some  threshold, then it is probably an outlier. 
+
+
+\section{Deeplearning on Pointclouds}
+images are always
+\begin{itemize}
+	\item Grid structure
+	\item Spatial cohesion (you know where every pixel is in the image.)
+\end{itemize}
+
+Pointclouds however
+\begin{itemize}
+	\item Permutation: The order of rows does not matter. This entails that you need an algorithm which can handle all orders of rows of the point cloud.\footnote{A row is a point where the colums hold e.g. X, Y and Z.}
+\end{itemize}
+
+\subsection{Point net}
+First you do a point projection which projects 3 dimensions into e.g. 64 projection, and then it does max pooling on the point features. The pooling makes it invariant to the roworder. You do max-pooling across each dimension. This works very well. 
+
+You need the correct number of input points. Therefore you can either throw away points, or dublicate points to add them in order to get e.g. 1024 points. 
+
+\section{Graph neural networks}
+You can get neighborhood information and use cnn's to use the neighborhood information for segmentation.
+
+\section{Exam}
+draw 2-3 topics and then talk about the miniproject.
+
+
+
+
+\end{document}
