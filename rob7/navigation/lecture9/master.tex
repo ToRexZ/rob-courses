@@ -1,0 +1,137 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Navigation: Lecture 9 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Path planning recap}
+Two domains 
+\begin{itemize}
+	\item Planning $ \rightarrow  $ low frequency
+	\item Collision avoidance $ \rightarrow $ high frequency
+\end{itemize}
+
+We often want to discretizise the continuous physical environment, into e.g. graphs. 
+
+It is fair to assume that optimality is dependent on completeness. 
+
+\section{Planning under uncertainty}
+Here the cost is associated with a state.
+The problem with standard graph search algorithms.
+\begin{itemize}
+	\item The robot is not trustworthy, there may be uncertainty about the robot actually performing the control input. probablity less than 1.
+	\item What is the best action based on this.
+\end{itemize}
+
+When a robot is up against the wall, you would remove the probability of the robot going in that direction, and then redistribute it across the other directions by deviding it.
+
+
+\section{Markov decission process}
+
+The probability to reach the next state $ s' $ from state $ s $ choosing action $ a $
+\begin{equation}
+T(s,a,s')
+\end{equation}
+This is given in some sort of table, combining all the probabilities. 
+
+In each state the agent recieves a reward $ R(s) $
+
+ \textbf{Def:} 
+ set of states
+ \begin{equation}
+ S
+ \end{equation}
+ 
+ set of actions
+ \begin{equation}
+ A
+ \end{equation}
+ Initial state
+ \begin{equation}
+ s_0
+ \end{equation}
+ Transition model
+ \begin{equation}
+	 T(s,a,s') s.t. p(s_{t+1}|s_t,...,s_1, a_t,...,a_1) = p(s_{t+1}|s_t,a_t) = T(s_t, a_t, s_{t+1})
+ \end{equation}
+ 
+ We also define policies:
+
+ Mapping from state space to the set of actions
+
+ \begin{equation}
+ \pi : S \rightarrow A
+ \end{equation}
+ \begin{equation}
+ a = \pi(s)
+ \end{equation}
+ \begin{equation}
+	 (\pi(a|s) = p(a_t=a|s_t=s))
+ \end{equation}
+ 
+The number of possible policies is
+\begin{equation}
+card(A)^{card(S)} 
+\end{equation}
+
+e.g. $ 3^{12} $ different policies $ =500.000 - 1.000.000 $
+
+If we define some policy $ a = \pi(s) $
+Then conditional probablity can be reduced to $ p(s_{t+1}|s_t) $
+Thus  $ p(s_{t+1}|s_t,...,s_1) $
+
+Thus a markov decision process plus a policy, is then reduced to a markov process. 
+
+
+because the expected value of all the rewards towards the goal is $ \infty  $, a discounting factor $ 0 \leq \gamma \leq 1 $
+
+As long as it is bounded, it will always converge. \\
+This says that the present reward is greater than future rewards. 
+
+It is done in state space, and the policy is not time dependent. Thus we have the same policy for all time. 
+
+The lower the gamma, the faster the convergence. 
+
+\subsection{Partially Observable Decision Process}
+nasty, not solveable.
+
+\subsection{Vector Field Histogram}
+Used in obstacle avoidance, and find the bin with the lowest probability, in order and move in that direction. This does however not consider the kinematic and dynamic limitations. Therefore we can use masked polar histogram. 
+
+Or use the dynamic window approach.
+
+
+
+
+
+
+\end{document}
+
