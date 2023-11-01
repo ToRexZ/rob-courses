@@ -1,0 +1,135 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Mobility: Lecture 6 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Model predictive control}
+It is optimal control. \\
+Can handle both states and control constraints. \\
+A state constraint can be an obstacle. I.e. some states unattainable.
+Can merge motion control and path planning. \\
+Reinforcement learning is also optimal control, but it does not handle constraints that well. \\
+In \textit{Model predictive control}, we need a model to predict the motion, thus, we do not predict the model. 
+
+\textbf{Idea} 
+Minimize a cost function. We optimize with respect to the cost function, over a certain prediction horizon $ H_p $. This prediction horizon is a  \textbf{Tuning parameter} 
+\subsection{Algorithm}
+\begin{enumerate}
+	\item Sample the system and obtain $ x_k $.
+	\item Solve the finite horizon optimal control problem, which results in $ U = [u_k , u_{k+1}, u_{H_p - 1}]$
+	\item Apply $ u_k $ to the robot, which results in  $ x_{k+1} $
+\end{enumerate}
+
+
+
+\subsection{State space model}
+Consider the discrete time linear system 
+
+\begin{align}
+x(k+1) &= A x(k) + B u(k)  \\
+y(k) &= C_y x(k) \\
+z(k) &= C_z x(k) 
+\end{align}
+
+where $ z $ is the output to be controlled.
+
+
+Let the quadratic cost function be 
+\begin{equation}\label{eq1}
+	V(k) = \sum_{i = H_w}^{H_p}{|| \hat{z}(k+i|k) - r(k+i|k)||_{Q(i)}^{2}} + \sum_{i=0}^{H_u-1}{|| \Delta \hat{u} (k+i | k) ||_{R(i)}^{2} }
+\end{equation}
+
+Where the first part is the error, between the reference signal $ r $ and the controlled output  $ z $
+ $ H_w $ is the window parameter, which is a  \textbf{tuning parameter} because it determines from where in the future we should predict from, to reduce computational requirements.
+
+Note that $ \Delta u$ is the difference in control inputs and  $ H_u $ is the control horizon, where  $ H_p \geq H_u $
+
+$ Q $ is the running cost, which determines the weight of a given timestep. The system is still time invariant. It is depenendent on $ i $, and it is static for every time i am calculating. 
+
+
+\subsection{Constraints}
+\begin{itemize}
+	\item Actuator slew rate (Maximum rate of change of the actuator)
+	\item Actuator range
+	\item Controlled variable constraints.
+\end{itemize}
+
+\textbf{MPC} is very dependent on the model. If we have a bad model, bad control inputs are given, and vice versa. 
+
+
+The colums of the control variable constraints are determined by the number of constraints * the number of timesteps + 1.
+
+(\ref{eq1}) is minimized w.r.t. $ \Delta U(k) $
+
+Subject to
+
+\begin{align}
+x(k+i+1) &= A x(k+i|k) + B u(k+i|k)  \\
+y(k+i|k) &= C_y x(k+i|k) \\
+z(k+i|k) &= C_z x(k+i|k) 
+\end{align}
+
+
+and the constraints 
+\begin{equation}
+E \begin{bmatrix}
+\Delta U(k) \\
+1
+\end{bmatrix} \leq 0 , F \begin{bmatrix}
+U(k) \\
+1
+\end{bmatrix} \leq 0, G \begin{bmatrix}
+Z(k) \\
+1
+\end{bmatrix} \leq 0
+\end{equation}
+
+The problem here is that the function is optimized w.r.t $ \Delta U $ and not $ u $
+
+So we need to reformulate the dynamics and constraints such that it is dependent on $ \Delta U $.
+
+Now we have found the entire computation. (slide 10)
+
+This can be collected and rewritten into a sequence of state vectors. 
+nlopt and acado. They compute the big matrices.
+
+\textbf{Note} that these matrices are often ill-conditioned. 
+
+
+To guarantee that there is a minimum, we need to compute the hessian, to verify that the problem is convex. 
+
+
+
+
+
+\end{document}
+
