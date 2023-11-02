@@ -1,0 +1,96 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Robot Mobility: Lecture 7 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\subsection{Recap}
+
+Predict both
+\begin{itemize}
+	\item States
+	\item Control input
+\end{itemize}
+We optimize a sequence of control inputs, but we only implement the first input, and the reoptimize. \\
+Sometimes due to missed timimg, we can implement not the first, but the second or third contol input. 
+
+
+\section{Model Predictive Control II}
+\textbf{Constraints} 
+\begin{itemize}
+	\item Slew
+	\item State constraint $ Z $
+	\item And one more
+\end{itemize}
+
+E, F, and G linear \textbf{in}-equality constraints 
+
+
+We want to express the constraints in terms of $ \Delta U $, which should be  $ \leq $ some terms which does not depend on  $ \Delta U $.
+
+\subsection{Infeasibility}
+\textbf{Unconstrained} Infeasible for the system to execute the desired control input.
+\textbf{Constrained} 
+
+Because of disturbance or uncertainty, the control input may be thrown outside of the constraints. Therefore the control input can become infeasible, and then for future optimizations, from an infeasible state, then the system can very easily become very infeasible. \\
+There are different ways to account for this: Ad hoc strategies
+\begin{itemize}
+	\item Apply the previous control input.
+	\item Apply the controller $ \hat{u}(k+1|k) $ or $ \hat{u}(k+2|k) $ computed last time.
+\end{itemize}
+
+Systematic strategies:
+\begin{itemize}
+	\item Avoid hard constraints (softening the constraints)
+	\item Actively manage the constraints and/or the horizons at each time
+\end{itemize}
+
+\subsubsection{Soft constraints}
+We introduce the slack variables $ \epsilon $
+The  $ \epsilon $ is both in the constraints and also in the constraints. That means if  $ \epsilon \geq 0 $, then the cost function is also penalized. This way it is only used if it is absolutely possible. 
+
+
+\subsubsection{Stability}
+Maybe Stability is only defined within the horizon.
+
+We can guaranty stability in two ways:
+\begin{itemize}
+	\item terminal constraints\\
+		We set the last predicted state e.g. equal to 0. Note that the 0 is the equibrium point and not a scalar.
+	\item inifinite horizon\\
+		
+\end{itemize}
+
+
+
+
+
+\end{document}
