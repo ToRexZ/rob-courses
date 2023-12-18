@@ -54,25 +54,25 @@
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{CurvatureContinuity.pdf}}%
-    \put(-0.0017408,0.09599664){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_0$\end{tabular}}}}%
-    \put(0.14470862,0.16170191){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_1$\end{tabular}}}}%
-    \put(0.28123957,0.13463897){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_3$\end{tabular}}}}%
-    \put(0.14168366,0.12032894){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$p_2$\end{tabular}}}}%
+    \put(0.04054892,0.09003992){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$p_0$\end{tabular}}}}%
+    \put(0.14525847,0.16298489){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_1$\end{tabular}}}}%
+    \put(0.28960832,0.13573867){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_3$\end{tabular}}}}%
+    \put(0.13032006,0.11739639){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$p_2$\end{tabular}}}}%
     \put(0.15809965,0.0071099){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$\neq C$\end{tabular}}}}%
-    \put(0.0797413,0.17627001){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$c_0$\end{tabular}}}}%
-    \put(0.21795688,0.11299331){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$c_1$\end{tabular}}}}%
-    \put(0.35541615,0.2018691){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$c_2$\end{tabular}}}}%
-    \put(0.26271587,0.17506605){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_4$\end{tabular}}}}%
-    \put(0.46505178,0.17755257){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_5$\end{tabular}}}}%
+    \put(0.07827503,0.17810285){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$c_0$\end{tabular}}}}%
+    \put(0.21795688,0.11775868){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$c_1$\end{tabular}}}}%
+    \put(0.35559944,0.20932175){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$c_2$\end{tabular}}}}%
+    \put(0.24823646,0.17917936){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_4$\end{tabular}}}}%
+    \put(0.47091687,0.17901884){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_5$\end{tabular}}}}%
     \put(0.41775315,0.14304181){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_6$\end{tabular}}}}%
-    \put(0.6709575,0.12368517){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_7$\end{tabular}}}}%
-    \put(0.42640206,0.2018691){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$-\mathbf{T}_2$\end{tabular}}}}%
-    \put(0.69732642,0.1787438){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{T}_m$\end{tabular}}}}%
+    \put(0.6709575,0.12185234){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_7$\end{tabular}}}}%
+    \put(0.41137281,0.20846732){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$-\mathbf{T}_2$\end{tabular}}}}%
+    \put(0.71749304,0.1976853){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{T}_m$\end{tabular}}}}%
     \put(0.51220942,0.07607582){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$\mathbf{T}_3$\end{tabular}}}}%
-    \put(0.63924941,0.16859107){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_{n-1}$\end{tabular}}}}%
-    \put(0.9402711,0.14689687){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_n$\end{tabular}}}}%
+    \put(0.63576701,0.17424113){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_{n-1}$\end{tabular}}}}%
+    \put(0.94027111,0.14689687){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$p_n$\end{tabular}}}}%
     \put(0.79210881,0.13674414){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_m$\end{tabular}}}}%
-    \put(0.57978182,0.13341943){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_3$\end{tabular}}}}%
+    \put(0.57978182,0.13598541){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$c_3$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=2]{CurvatureContinuity.pdf}}%
     \put(0.28607791,0.00576855){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$C^0$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=3]{CurvatureContinuity.pdf}}%
@@ -80,6 +80,6 @@
     \put(0,0){\includegraphics[width=\unitlength,page=4]{CurvatureContinuity.pdf}}%
     \put(0.66466958,0.00800292){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}$C^1$\end{tabular}}}}%
     \put(0,0){\includegraphics[width=\unitlength,page=5]{CurvatureContinuity.pdf}}%
-    \put(0.59896609,0.09183823){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$-\mathbf{T}_4$\end{tabular}}}}%
+    \put(0.58302038,0.09367109){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}$-\mathbf{T}_4$\end{tabular}}}}%
   \end{picture}%
 \endgroup%

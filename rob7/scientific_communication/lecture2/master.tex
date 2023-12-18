@@ -1,0 +1,92 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Scientific Communication: Lecture 2 \\
+	\large Lecture Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{The review process}
+Reviewing is part of the researchers job. However there is no reward, and no money to be earned. \\
+Be a good reviewer $\rightarrow$ \textit{"What you give, you can expect to recieve."}  \\
+Reviews can be used to stay up to date with state of the art. \\
+The typical procedure is 
+\begin{itemize}
+	\item Recieve an email about an upcomming conference, where you are asked about if you want to review it. 
+	\item Can you review it based on the title, and some of the references in the paper. 
+	\item Inform the author about any of incompetences that you may have, and thus be honest about what you know something about, and what you don't.
+	\item \textbf{Determine novelty}. Are papers \textit{research papers}, or are they \textit{survey-} or \textit{overview papers} which has the opposite objective.
+	\item \textbf{Determine correctness}. Go at it! be as correct as possible, but keep in mind the field. For papers with simulation studies, determine if the instructions, data, and information are enough for a reproducable result. Determine if the odd observations in the simulations are discussed by the author. Note that there can be mistakes in references, and will thus the paper will inherit those mistakes. 
+	\item \textbf{Determine significance}. How creative and groundbreaking is it. 
+\end{itemize}
+
+Be specific and helpful. Specify the exact paragraph is unclear, not just say that the paper is unclear. \\
+Typically reviews are done anonymously. 
+
+
+\subsection{Questions to ask youself:}
+\begin{itemize}
+	\item What is the purpose of the paper?
+	\item Is the paper appropriate for the journal?
+	\item Is the goal significant?
+	\item Is the method/approach valid?
+	\item Is the execution of the method/research correct?
+	\item Are the conclusions drawn from the results valid?
+	\item Is the overall presentation satisfactory?
+	\item what did you, the reader, learn?
+\end{itemize}
+
+\begin{enumerate}
+	\item A review is \textbf{1 page} of text. Start by giving an overall assesment. Determine what consider strong and weak points.
+	\item Then go into general comments. Use bullet points.
+	\item Specific comments: This is where you can be nitpicky. Use bullet points.
+\end{enumerate}
+
+\section{Presentation session}
+15 min presentation, 5 min questions. Only 1 person does the presentation. It can be the same person who does the poster presentation.
+
+\section{Poster design}
+More condese version of the presentation, with more interaction. max 3 minutes. They will stop us. \textit{"Elevator speech."} 
+
+\begin{itemize}
+	\item Not too much text. 
+	\item Follow IMRAD structure.
+	\item Be consistent in e.g. colors.
+	\item Print the poster in A4 and you should be able to read it in arms length. 
+\end{itemize}
+
+
+We should review group:
+\begin{itemize}
+	\item 750
+	\item 751
+\end{itemize}
+
+
+\end{document} 

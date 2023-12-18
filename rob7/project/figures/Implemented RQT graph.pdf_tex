@@ -1,0 +1,89 @@
+%% Creator: Inkscape 1.3.2 (1:1.3.2+202311252150+091e20ef0f), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'Implemented RQT graph.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{526.92103589bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.73800488)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0.79916618,0.71664284){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}tt_traversal\end{tabular}}}}%
+    \put(0.26835122,0.71569392){\color[rgb]{0,0,0}\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}tt_smooth_trajectory\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Implemented RQT graph.pdf}}%
+    \put(0.19829763,0.35037597){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Transition curve service\end{tabular}}}}%
+    \put(0.09530813,0.16993549){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}DDP\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Implemented RQT graph.pdf}}%
+    \put(0.24221939,0.59854432){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Trajectory node\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Implemented RQT graph.pdf}}%
+    \put(0.04389207,0.69111003){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Template\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Implemented RQT graph.pdf}}%
+    \put(0.3086142,0.46972618){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}start, goal\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Implemented RQT graph.pdf}}%
+    \put(0.12475382,0.48234832){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Curve[]\\Velocity[]\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{Implemented RQT graph.pdf}}%
+    \put(0.20042417,0.04229957){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}CCD\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{Implemented RQT graph.pdf}}%
+    \put(0.31659027,0.16665413){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Quintic\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{Implemented RQT graph.pdf}}%
+    \put(0.78739711,0.34951138){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Controller\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{Implemented RQT graph.pdf}}%
+    \put(0.8313188,0.59767972){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Start traversal\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{Implemented RQT graph.pdf}}%
+    \put(0.89802401,0.46859751){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Trajectory\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{Implemented RQT graph.pdf}}%
+    \put(0.53283717,0.59801529){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Trajectory\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{Implemented RQT graph.pdf}}%
+    \put(0.90646811,0.1845383){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Gazebo\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{Implemented RQT graph.pdf}}%
+    \put(0.68518599,0.18781956){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Visualizer\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=14]{Implemented RQT graph.pdf}}%
+    \put(0.79151212,0.06654637){\color[rgb]{0,0,0}\makebox(0,0)[t]{\lineheight{1.25}\smash{\begin{tabular}[t]{c}Rviz\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=15]{Implemented RQT graph.pdf}}%
+  \end{picture}%
+\endgroup%
