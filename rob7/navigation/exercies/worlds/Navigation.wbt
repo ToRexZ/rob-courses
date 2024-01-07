@@ -1,0 +1,49 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/RectangleArena.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/pal_robotics/tiago_base/protos/TiagoBase.proto"
+
+WorldInfo {
+  FPS 144
+}
+Viewpoint {
+  orientation -0.5778307737303002 0.5763879995123022 0.577830832466085 2.0957685681319704
+  position 6.176886881140347e-05 1.4772973746558782e-07 18.17160548137061
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  floorSize 10 10
+}
+DEF robot TiagoBase {
+  controller "6_path_planning"
+  supervisor TRUE
+  bodySlot [
+    Compass {
+    }
+  ]
+  lidarSlot [
+    DEF Lidar Lidar {
+      fieldOfView 3.14
+      numberOfLayers 1
+      maxRange 10
+    }
+  ]
+}
+Solid {
+  translation 6.03 2 1
+  children [
+    DEF Obstacle Shape {
+      appearance PBRAppearance {
+        baseColor 0 1 0
+      }
+      geometry Cylinder {
+      }
+    }
+  ]
+  boundingObject USE Obstacle
+}
