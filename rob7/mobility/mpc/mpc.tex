@@ -1,0 +1,62 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Model Predictive Control\\
+	\large Litterature Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{A basic formulation}
+We assume that state values cannot be measured, thus we need an observer. So we use state estimates 
+$ \hat{x}(k|k) $ of $ x(k|k) $ indicating that it is a measurement that is based on all states up until time $ k $ \\
+It is based on $ u(k-1) $ and not $ u(k) $ since that input has not been determined yet. \\
+$ \hat{u}(k+i|k) $ denotes the future values at time $ k + i $ on input $ u $ which is assumed on time $ k $. This means that i is some horizon, and  $ u(k+j|k) , j = 0,1, \ldots, i-1 $ is the inputs at each time step.
+
+
+we have the cost function:
+
+\begin{align} \label{eq:costfunction}
+V &= \sum_{i=H_w}^{H_p}{|| \hat{z}(k+i|k) - r(k+i|k)||_{Q(i)}^{2} } + \sum_{i = 0}^{H_u - 1}{|| \Delta \hat{u}(k+i|k)||_{R(i)}^{2} }
+\end{align}
+
+where $ r(k+i|k) $ is a reference trajectory and $ \hat{z}(k+i|k) $ is the controlled outputs. The prediction horizon has length $ H_p $ but $ H_w $ indicates the prediciton window, which determines when to start penalizing. If $ H_w > 1 $ then we only penalize from that point forward, as there may be some delay between control inputs and effects. $ H_u $ is the control horizon, where $ H_u \leq H_p $ and future control differences between $ \Delta \hat{u}(k+i|k) = 0 $ and $ \Delta \hat{u}(k+i|k) $ where $ i > H_u $. Note that the cost function in (\ref{eq:costfunction}) only penalizes changes in $ u $ and not  $ u $ itself. The matrices $ Q(i) $ and $ R(i) $ are weights and both positive semidefinite $ (\cdot) \geq 0$ 
+
+\section{Constraints}
+There are different constraints, which are assumed to hold over the entire control- and prediction horizon.
+
+\begin{align}
+	E \hspace{3pt} vec( \Delta \hat{u}(k|k), \ldots, \Delta \hat{u}(k+H_u - 1|k), 1) &\leq vec(0) \label{eq:constraint1} \\ 
+	F \hspace{3pt} vec( \Delta \hat{u}(k|k), \ldots, \hat{u}(k+H_u - 1|k), 1) &\leq vec(0) \label{eq:constraint2}\\
+	G \hspace{3pt} vec( \hat{z}(k+H_w | k) , \ldots, \hat{z}(k+H_p|k), 1) &\leq vec(0) \label{eq:constraint3}
+\end{align}
+
+where $ E, F, $ and $ G $ are matrices of suitable dimensions. (\ref{eq:constraint1}) can be used to represent actuator slew rate (change of input of an actuator), actuator ranges (\ref{eq:constraint2}), and control variable constraints on $ z $ based on (\ref{eq:constraint3}) 
+
+\end{document}
