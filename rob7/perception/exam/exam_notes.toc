@@ -1,0 +1,51 @@
+\babel@toc {english}{}\relax 
+\contentsline {section}{\numberline {1}Pool}{6}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Harris Corner, HOG, SIFT}{7}{subsection.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.1}Gradient analysis}{7}{subsubsection.1.1.1}%
+\contentsline {subsubsection}{\numberline {1.1.2}Harris corner}{7}{subsubsection.1.1.2}%
+\contentsline {subsubsection}{\numberline {1.1.3}HOG - Histogram of Oriented Gradients}{8}{subsubsection.1.1.3}%
+\contentsline {subsubsection}{\numberline {1.1.4}SIFT - Scale Invariant Feature Transform}{9}{subsubsection.1.1.4}%
+\contentsline {subsection}{\numberline {1.2}Linear regression, RANSAC}{12}{subsection.1.2}%
+\contentsline {subsubsection}{\numberline {1.2.1}RANSAC - RANdom Sample Consensus}{12}{subsubsection.1.2.1}%
+\contentsline {subsection}{\numberline {1.3}PCA-LDA - Principal Component Analysis, Linear Discriminant Analysis}{13}{subsection.1.3}%
+\contentsline {subsubsection}{\numberline {1.3.1}PCA}{13}{subsubsection.1.3.1}%
+\contentsline {subsubsection}{\numberline {1.3.2}LDA}{14}{subsubsection.1.3.2}%
+\contentsline {subsection}{\numberline {1.4}Background subtraction, image differencing}{15}{subsection.1.4}%
+\contentsline {subsubsection}{\numberline {1.4.1}Background Subtraction}{15}{subsubsection.1.4.1}%
+\contentsline {subsubsection}{\numberline {1.4.2}Image differencing}{16}{subsubsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.5}Optical Flow}{17}{subsection.1.5}%
+\contentsline {subsubsection}{\numberline {1.5.1}Lucas-Kanade Algorithm}{17}{subsubsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.6}Tracking - Kalman filter, mean shift}{19}{subsection.1.6}%
+\contentsline {subsubsection}{\numberline {1.6.1}Kalman filter}{19}{subsubsection.1.6.1}%
+\contentsline {subsubsection}{\numberline {1.6.2}Mean shift tracking}{20}{subsubsection.1.6.2}%
+\contentsline {subsection}{\numberline {1.7}Multi Object tracking}{22}{subsection.1.7}%
+\contentsline {subsubsection}{\numberline {1.7.1}Hungarian algorithm}{22}{subsubsection.1.7.1}%
+\contentsline {subsection}{\numberline {1.8}Depth sensing}{24}{subsection.1.8}%
+\contentsline {subsubsection}{\numberline {1.8.1}Two view geometry}{25}{subsubsection.1.8.1}%
+\contentsline {subsubsection}{\numberline {1.8.2}Depth sensing with two view geometry}{26}{subsubsection.1.8.2}%
+\contentsline {subsubsection}{\numberline {1.8.3}Active depth sensors}{28}{subsubsection.1.8.3}%
+\contentsline {subsection}{\numberline {1.9}Camera calibration, Hand-eye calibration}{29}{subsection.1.9}%
+\contentsline {subsubsection}{\numberline {1.9.1}Camera calibration}{29}{subsubsection.1.9.1}%
+\contentsline {subsubsection}{\numberline {1.9.2}Hand-eye calibration}{31}{subsubsection.1.9.2}%
+\contentsline {section}{\numberline {2}Pool}{33}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Clustering algorithms}{34}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}K-means clustering}{34}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Mean-shift clustering}{35}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}DBSCAN - Density-based Spatial Clustering of Applications with Noise}{35}{subsubsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.2}Classification algorithms}{37}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Decision tree classifiers}{37}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Random Forest}{37}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}SVM - Support Vector Machines}{38}{subsubsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.3}CNN: Convolutions, pooling}{40}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Pooling}{42}{subsubsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.4}CNN: Training and fine-tuning}{43}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}CNN: Object detection}{45}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}CNN: Semantic and instance segmentation}{48}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Semantic segmentation}{48}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Instance segmentation}{49}{subsubsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.7}CNN: Pose estimation}{50}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Point cloud processing}{52}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.9}Deep learning for point clouds}{53}{subsection.2.9}%
+\contentsline {section}{\numberline {3}Mini project}{55}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Miniproject}{56}{subsection.3.1}%
+\contentsline {subsubsection}{\numberline {3.1.1}Tips}{57}{subsubsection.3.1.1}%

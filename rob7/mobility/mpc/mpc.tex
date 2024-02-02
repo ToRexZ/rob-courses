@@ -46,17 +46,93 @@ we have the cost function:
 V &= \sum_{i=H_w}^{H_p}{|| \hat{z}(k+i|k) - r(k+i|k)||_{Q(i)}^{2} } + \sum_{i = 0}^{H_u - 1}{|| \Delta \hat{u}(k+i|k)||_{R(i)}^{2} }
 \end{align}
 
-where $ r(k+i|k) $ is a reference trajectory and $ \hat{z}(k+i|k) $ is the controlled outputs. The prediction horizon has length $ H_p $ but $ H_w $ indicates the prediciton window, which determines when to start penalizing. If $ H_w > 1 $ then we only penalize from that point forward, as there may be some delay between control inputs and effects. $ H_u $ is the control horizon, where $ H_u \leq H_p $ and future control differences between $ \Delta \hat{u}(k+i|k) = 0 $ and $ \Delta \hat{u}(k+i|k) $ where $ i > H_u $. Note that the cost function in (\ref{eq:costfunction}) only penalizes changes in $ u $ and not  $ u $ itself. The matrices $ Q(i) $ and $ R(i) $ are weights and both positive semidefinite $ (\cdot) \geq 0$ 
+where $ r(k+i|k) $ is a reference trajectory and $ \hat{z}(k+i|k) $ is the controlled outputs. The prediction horizon has length $ H_p $ but $ H_w $ indicates the prediciton window, which determines when to start penalizing. If $ H_w > 1 $ then we only penalize from that point forward, as there may be some delay between control inputs and effects. $ H_u $ is the control horizon, where $ H_u \leq H_p $ and future control differences between $ \Delta \hat{u}(k+i|k) = 0 $ and $ \Delta \hat{u}(k+i|k) $ where $ i > H_u $. Note that the cost function in (\ref{eq:costfunction}) only penalizes changes in $ u $ and not  $ u $ itself. The matrices $ Q(i) $ and $ R(i) $ are weights and both positive semidefinite $ (\cdot) \geq 0$. $ Q(i) $ penalizes the change in control variables $ z $ and $ R(i) $ penalizes change in input variables.
 
 \section{Constraints}
 There are different constraints, which are assumed to hold over the entire control- and prediction horizon.
 
 \begin{align}
 	E \hspace{3pt} vec( \Delta \hat{u}(k|k), \ldots, \Delta \hat{u}(k+H_u - 1|k), 1) &\leq vec(0) \label{eq:constraint1} \\ 
-	F \hspace{3pt} vec( \Delta \hat{u}(k|k), \ldots, \hat{u}(k+H_u - 1|k), 1) &\leq vec(0) \label{eq:constraint2}\\
+	F \hspace{3pt} vec( \hat{u}(k|k), \ldots, \hat{u}(k+H_u - 1|k), 1) &\leq vec(0) \label{eq:constraint2}\\
 	G \hspace{3pt} vec( \hat{z}(k+H_w | k) , \ldots, \hat{z}(k+H_p|k), 1) &\leq vec(0) \label{eq:constraint3}
 \end{align}
 
 where $ E, F, $ and $ G $ are matrices of suitable dimensions. (\ref{eq:constraint1}) can be used to represent actuator slew rate (change of input of an actuator), actuator ranges (\ref{eq:constraint2}), and control variable constraints on $ z $ based on (\ref{eq:constraint3}) 
+
+\section{General features of constrained predictive control}
+Predictive controllers often act linearly in the enterior of the feasible region, but non linearly close to the constraints. Although constrained predictive controllers are nonlinear they are usually time invariant. This means that there is a control function $ u = h(x) $ such that $ u $ depends interely on the state $ x $ and not on time $ t $.
+
+If the number of inputs $ u $ is not the same as number of measured $ y $ and controlled $ z $ outputs, then at least one of these representations is not minimal - that is it must be either uncontrollable or unobservable since they will have different state dimensions.
+
+\section{Allowing computational delay}
+The time between measurements are assumed to be the same $ T_s $ and the plant output $ y(k) $ is measured at $ k T_s $. Then if there is a disturbance into the system, it is assumed to be measured at the same time. This is labelled  $ d_m (k) $. There is a delay $ \tau $, from the measurement is taken until the predictive controller has completed its computations. $ \tau $ is assumed to be the same in every timestep.  
+
+
+\section{Prediction}
+The prediction algorithm can have great effect on the performance of the algorithm. Therefore the reader is advised to choose the prediction alorithm wisely, as a tuning parameter. 
+
+\section{No disturbances, full state measurement}
+We assume that the entire state vector is measured. that is $ \hat{x}(k|k) = x(k) = y(k) $, so $ C_y = I $. We assume no knowledge of the distubances or potential measurement noise. We itterate the prediction:
+
+\begin{align}
+\hat{x}(k+1|k) &= A x(k) + B \hat{u}(k|k) \\
+\hat{x}(k+2|k) &= A \hat{x}(k+1|k) + B \hat{u}(k+1|k) \\
+&= A^{2} x(k) + A B \hat{u}(k|k) + B \hat{u}(k+1|k) \\
+&\vdots\\
+\hat{x}(k+H_p|k) &= A \hat{x}(k+ H_p - 1|k) + B \hat{u}(k+H_p - 1|k) \\
+				 &= A^{H_p} x(k) + A^{H_p -1} B \hat{u}(k|k) + \ldots + B \hat{u}(k+H_p - 1|k)
+\end{align}
+
+
+\section{Constant output disturbance}
+
+
+\section{Unconstrained problems}
+We can rewrite the cost function (\ref{eq:costfunction}) as 
+
+\begin{align}
+	V(k) &= ||Z(k) - T(k)||_{Q}^{2} + || \Delta U(k) ||_{R}^{2}  
+\end{align}
+
+where 
+\begin{align}
+Z(k) &= \begin{bmatrix}
+\hat{z}(k+ H_w|k) \\
+\vdots \\
+\hat{z}(k+ H_p|k) 
+\end{bmatrix} \\
+T(k) &= \begin{bmatrix}
+\hat{r}(k+ H_w|k) \\
+\vdots \\
+\hat{r}(k+ H_p|k) 
+\end{bmatrix}  \\
+\Delta U(k) &= \begin{bmatrix}
+\hat{u}(k|k) \\
+\vdots \\
+\hat{u}(k+ H_u - 1|k) 
+\end{bmatrix}  
+\end{align}
+
+Where the $ Q $ and  $ R $ matrices are weight matrices
+
+
+\section{Handling infeasibility}
+There are multiple ways of handling infeasibility of the quadratic programming problem 
+\begin{itemize}
+	\item Ad hoc measures:
+		\begin{itemize}
+			\item Use $ u(k - 1|k) $ instead of the newly computed control law.
+			\item Use the next $ u(k + 2 | k) $, such that we still look forward
+		\end{itemize}
+	\item Active constraint management
+		\begin{itemize}
+			\item Relax the least important constraints. 
+		\end{itemize}
+\end{itemize}
+One strategy is softening constraints. That is, constraints can be violated if absolutely necessary. 
+\textbf{Input constraints are usually very hard.} and \textbf{Output constraints are usually better.} 
+This makes sense as the robot may have limited maximum wheel acceleration, or max velocities etc. 
+Introduce slack variables. 
+remember active/inactive constraints. 
 
 \end{document}

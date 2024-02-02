@@ -1,0 +1,123 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Project Exam \\
+	\large Presentation Notes}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Test}
+Hello, My name is Victor and I am here to present the results of the project.\\
+I will go through the 5 tests that were conducted to verify most of the requirements of the solution. The 5 tests are based on standard performance metrics of path planning algorithms. The tests are: Continuity, Completeness, Time optimality, Path optimality, Acceleration. All the tests were conducted in Simulation, and visualized using Rviz and Python. In general the tests compare our CCD planner against the standard DPP algorithm. 
+
+\section{Continuity}
+The objective of the continuity test is to verify the requirement of $ C^{1} $ and $ G^{2} $ continuity of the path. For the geometric continuity test, we generated 100 DPP paths and 100 CCD paths between uniformly scattered start and goal poses in a $ 10 \times 10 $ area. This is supposed to mimic single transitions between end points of paint segments. By manual inspection curvature plots like this, of each path, it was clear that every path did indeed have a continuous curvature profile, and thus 100\% success rate on $ G^{2} $ continuity. 
+
+$ C^{1}  $ continuity was tested by inspecting a path for an entire football field, and verifying that all segments were connected within a threshold of 1 milimeter. This test also showed 100\% Continuity.
+
+\section{Completeness}
+The objective of the completeness test is to verify that the planner is complete, and thus be able to plan a transition between line or arc segments, if one exists. Instead of proving this theoretically, we used monte carlo trials by sampling 100 different start and end poses in a $ 10 \times 10 $ m area. Between these poses, a path was planned, plotted like you see here on the right and then manually inspected to check if the path was found, and if it was feasible. This test showed  100\% completeness for transitions between paint segments. As you can see here on the right on the example of a path, that even though there are some problems with the algorithm, which Asbjørn will discuss more about, it manages to find a feasible path. 
+
+\section{Path Optimality}
+The objective of the path optimality test is to compare the length of the path against the mathematically proved optimality of a DPP path, if it is longer than 10\% longer than the Dubins path, the marginal requirement is not satisfied, and idealy it is shorter than the Dubins path. Since the length of the additional clothoids were dependent on $ \sigma $, paths at different values, ranging from $ 0.3 $ to $ 3.0 $ were generated. To get an idea of the optimality in a realistic scenario, a path for an entire football field including transitions is measured. In addition, since only 4 out of the 6 configurations was implemented missing LSR and RSL, these were removed from the DPP planner to level the playing field (pun intended). 
+
+With a path length of 1915 for $ \sigma = 1.0 $ we saw an increase in path length of 14\% and thereby a loss in optimality. Likewise for $ \sigma = 2.1$ a better result of approximately 8\% was achieved. 
+
+
+\section{Time Optimality} The objective of the time optimality test is to illustrate how the execution time compares to the DPP trajectory. The execution time should at least be the same as the execution time of the dubins path, and idealy it has a shorter execution time. This test is conducted on a football field once again, and run with a velocity of $ 1.5 \frac{m}{s} $ on a path generated with $ \sigma = 1.0 $. The key difference between this test and the path length optimality test, is to test the effect of the reduced padding under the  CCD algorithm. Therefore the DPP planner is run with Turf Tanks current padding parameters of 0.5 and 0.1, pre, and post, while the CCD planner is run without. \\ Even though padding was Added to the DPP and removed from the CCD, we still saw an increase in execution time of 12\% which is undesireable. 
+
+
+\section{Acceleration}
+The objective of the acceleration test is to see if the CCD planner actually achieves a reduced wheel acceleration compared to the current DPP planner. Marginally speaking, the wheel acceleration should be lower than the DPP, and ideally be below 50\% of the dubins path. The accelerations are measured during a single transition on a right corner with 3 m of inlet and outlet. $ \sigma  $ is set to 1. This is done 10 times and averaged. It is clear that there are 4 spikes on the CCD graph and only 2 spikes on the DPP path, and this is due to the additional wrap around caused by the violated $\theta_{lim}$ constraint. The average wheel acceleration was however reduced by 59\% compared to the current Turf Tank path planner. 
+
+
+
+\section{Anye Presentation}
+\begin{itemize}
+	\item Slide 5 title.
+\end{itemize}
+
+\section{Mads}
+\begin{itemize}
+	\item Do not mention that "that frederik and i came up with."
+	\item Slide 24, remove the axis perhaps. 
+\end{itemize}
+
+\section{Frederik}
+\begin{itemize}
+	\item A bit slow speaking, but i know it is because you are practicing. 
+\end{itemize}
+
+\section{My presentation}
+\begin{itemize}
+	\item Should apparently present the requirements. 
+\end{itemize}
+
+\section{Asbjørn}
+\begin{itemize}
+	\item 44, add $\theta$lim constraint
+	\item 48, Constraint $\theta$lim to be below $\beta$ $ \rightarrow $ should be completely removed using either a recomputation of sigma or kappamax. 
+	\item Twosider conclusion. 
+\end{itemize}
+
+
+\section{TODO}
+\begin{itemize}
+	\item Help anye with pictures.
+\end{itemize}
+
+
+
+\section{Notes}
+\begin{itemize}
+	\item It has been proven that a path without the $ \sigma_{max} $ constraint is optimal. Consists of lines, arcs and clothoid arcs of maximum curvature constraint. 
+	\item Depending on perspective, we can say that we have made a local planner which plans transitions. 
+	\item The curvature is upper bounded and the turning radius is lower bounded. 
+	\item Point where the curvature changes its direction are called \textbf{cusp points} 
+	\item Freichard also proposes that we use all ccd configurations to find the shortest one. 
+	\item We have said that the radius is positive in the right osculating circle and negative in the left, but this does not comply with the rest of the ccd path theory. So we should have inverted it. 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+\end{itemize}
+
+
+
+
+
+
+
+
+\end{document}
