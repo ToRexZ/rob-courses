@@ -7,3 +7,6 @@
 [submodule "rob8/project/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs"]
 	path = rob8/project/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs
 	url = https://github.com/RoboticsAAU/hand_prosthesis_rl_control_pkgs.git
+[submodule "rob8/project/development/hand_rl_ws/src/mia_hand_ros_pkgs"]
+	path = rob8/project/development/hand_rl_ws/src/mia_hand_ros_pkgs
+	url = https://ToRexZ@bitbucket.org/prensiliasrl/mia_hand_ros_pkgs.git
