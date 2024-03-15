@@ -1,0 +1,7 @@
+set(point_cloud_ros_SETUP_PY_SETUP_MODULE "distutils.core")
+set(point_cloud_ros_SETUP_PY_VERSION "1.0.0")
+set(point_cloud_ros_SETUP_PY_SCRIPTS "")
+set(point_cloud_ros_SETUP_PY_PACKAGES "point_cloud_ros")
+set(point_cloud_ros_SETUP_PY_PACKAGE_DIRS "src/point_cloud_ros")
+set(point_cloud_ros_SETUP_PY_MODULES "")
+set(point_cloud_ros_SETUP_PY_MODULE_DIRS "")

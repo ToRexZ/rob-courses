@@ -1,0 +1,107 @@
+[
+{
+  "directory": "/development/hand_rl_ws/build/gtest/googlemock",
+  "command": "/usr/bin/c++  -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_main_EXPORTS -isystem /usr/src/googletest/googlemock/include -isystem /usr/src/googletest/googlemock -isystem /usr/src/googletest/googletest/include -isystem /usr/src/googletest/googletest  -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -DGTEST_HAS_PTHREAD=1 -std=c++11 -o CMakeFiles/gmock_main.dir/src/gmock_main.cc.o -c /usr/src/googletest/googlemock/src/gmock_main.cc",
+  "file": "/usr/src/googletest/googlemock/src/gmock_main.cc"
+},
+{
+  "directory": "/development/hand_rl_ws/build/gtest/googlemock",
+  "command": "/usr/bin/c++  -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgmock_EXPORTS -I/usr/src/googletest/googlemock/include -I/usr/src/googletest/googlemock -isystem /usr/src/googletest/googletest/include -isystem /usr/src/googletest/googletest  -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -DGTEST_HAS_PTHREAD=1 -std=c++11 -o CMakeFiles/gmock.dir/src/gmock-all.cc.o -c /usr/src/googletest/googlemock/src/gmock-all.cc",
+  "file": "/usr/src/googletest/googlemock/src/gmock-all.cc"
+},
+{
+  "directory": "/development/hand_rl_ws/build/gtest/googletest",
+  "command": "/usr/bin/c++  -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgtest_main_EXPORTS -isystem /usr/src/googletest/googletest/include -isystem /usr/src/googletest/googletest  -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -DGTEST_HAS_PTHREAD=1 -std=c++11 -o CMakeFiles/gtest_main.dir/src/gtest_main.cc.o -c /usr/src/googletest/googletest/src/gtest_main.cc",
+  "file": "/usr/src/googletest/googletest/src/gtest_main.cc"
+},
+{
+  "directory": "/development/hand_rl_ws/build/gtest/googletest",
+  "command": "/usr/bin/c++  -DGTEST_CREATE_SHARED_LIBRARY=1 -Dgtest_EXPORTS -I/usr/src/googletest/googletest/include -I/usr/src/googletest/googletest  -fPIC   -Wall -Wshadow -Wno-error=dangling-else -DGTEST_HAS_PTHREAD=1 -fexceptions -Wextra -Wno-unused-parameter -Wno-missing-field-initializers -std=c++11 -o CMakeFiles/gtest.dir/src/gtest-all.cc.o -c /usr/src/googletest/googletest/src/gtest-all.cc",
+  "file": "/usr/src/googletest/googletest/src/gtest-all.cc"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_driver",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_driver\\\" -Dmia_hand_driver_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/devel/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_driver.dir/src/serial_port.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/src/serial_port.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/src/serial_port.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_driver",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_driver\\\" -Dmia_hand_driver_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/devel/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_driver.dir/src/cpp_driver.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/src/cpp_driver.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/src/cpp_driver.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_driver",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_driver\\\" -Dmia_hand_driver_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/devel/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_driver.dir/src/ros_driver.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/src/ros_driver.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/src/ros_driver.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_driver",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_driver\\\" -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/devel/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp    -o CMakeFiles/mia_hand_driver_node.dir/src/mia_hand_driver_node.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/src/mia_hand_driver_node.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/src/mia_hand_driver_node.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/hand_prosthesis_rl_control_pkgs/thirdparty/depth_camera_gazebo_plugin",
+  "command": "/usr/bin/c++  -DBOOST_ALL_NO_LIB -DBOOST_ATOMIC_DYN_LINK -DBOOST_DATE_TIME_DYN_LINK -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_REGEX_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -DBOOST_TEST_DYN_LINK -DBOOST_THREAD_DYN_LINK -DLIBBULLET_VERSION=2.88 -DLIBBULLET_VERSION_GT_282 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"depth_camera_gazebo_plugin\\\" -Ddepth_camera_gazebo_plugin_EXPORTS -I/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/thirdparty/depth_camera_gazebo_plugin/include -isystem /opt/ros/noetic/include -isystem /opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/gazebo-11 -isystem /usr/include/bullet -isystem /usr/include/simbody -isystem /usr/include/sdformat-9.8 -isystem /usr/include/ignition/math6 -isystem /usr/include/OGRE -isystem /usr/include/OGRE/Terrain -isystem /usr/include/OGRE/Paging -isystem /usr/include/ignition/transport8 -isystem /usr/include/ignition/msgs5 -isystem /usr/include/ignition/common3 -isystem /usr/include/ignition/fuel_tools4 -isystem /usr/include/eigen3 -isystem /usr/include/sdformat-9.8/sdf/.. -isystem /usr/include/ignition/cmake2 -isystem /usr/include/uuid    -fPIC   -I/usr/include/uuid -std=gnu++17 -o CMakeFiles/depth_camera_gazebo_plugin.dir/src/DepthCameraPlugin.cpp.o -c /development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/thirdparty/depth_camera_gazebo_plugin/src/DepthCameraPlugin.cpp",
+  "file": "/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/thirdparty/depth_camera_gazebo_plugin/src/DepthCameraPlugin.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/hand_prosthesis_rl_control_pkgs/thirdparty/depth_camera_gazebo_plugin",
+  "command": "/usr/bin/c++  -DBOOST_ALL_NO_LIB -DBOOST_ATOMIC_DYN_LINK -DBOOST_DATE_TIME_DYN_LINK -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_REGEX_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -DBOOST_TEST_DYN_LINK -DBOOST_THREAD_DYN_LINK -DLIBBULLET_VERSION=2.88 -DLIBBULLET_VERSION_GT_282 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"depth_camera_gazebo_plugin\\\" -Ddepth_camera_gazebo_plugin_EXPORTS -I/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/thirdparty/depth_camera_gazebo_plugin/include -isystem /opt/ros/noetic/include -isystem /opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -isystem /usr/include/gazebo-11 -isystem /usr/include/bullet -isystem /usr/include/simbody -isystem /usr/include/sdformat-9.8 -isystem /usr/include/ignition/math6 -isystem /usr/include/OGRE -isystem /usr/include/OGRE/Terrain -isystem /usr/include/OGRE/Paging -isystem /usr/include/ignition/transport8 -isystem /usr/include/ignition/msgs5 -isystem /usr/include/ignition/common3 -isystem /usr/include/ignition/fuel_tools4 -isystem /usr/include/eigen3 -isystem /usr/include/sdformat-9.8/sdf/.. -isystem /usr/include/ignition/cmake2 -isystem /usr/include/uuid    -fPIC   -I/usr/include/uuid -std=gnu++17 -o CMakeFiles/depth_camera_gazebo_plugin.dir/src/gazebo_ros_depth_camera.cpp.o -c /development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/thirdparty/depth_camera_gazebo_plugin/src/gazebo_ros_depth_camera.cpp",
+  "file": "/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/thirdparty/depth_camera_gazebo_plugin/src/gazebo_ros_depth_camera.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/hand_prosthesis_rl_control_pkgs/move_hand_pkg",
+  "command": "/usr/bin/c++  -DBOOST_TEST_DYN_LINK -DLIBBULLET_VERSION=2.88 -DLIBBULLET_VERSION_GT_282 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"move_hand_pkg\\\" -Dgazebo_ros_move_hand_EXPORTS -I/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/move_hand_pkg/include -I/usr/include/gazebo-11 -I/usr/include/bullet -I/usr/include/simbody -I/usr/include/sdformat-9.8 -I/usr/include/ignition/math6 -I/usr/include/OGRE -I/usr/include/OGRE/Terrain -I/usr/include/OGRE/Paging -I/usr/include/ignition/transport8 -I/usr/include/ignition/msgs5 -I/usr/include/ignition/common3 -I/usr/include/ignition/fuel_tools4 -I/opt/ros/noetic/include    -fPIC   -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/gazebo_ros_move_hand.dir/src/gazebo_ros_move_hand.cpp.o -c /development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/move_hand_pkg/src/gazebo_ros_move_hand.cpp",
+  "file": "/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/move_hand_pkg/src/gazebo_ros_move_hand.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_description",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_description\\\" -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp    -o CMakeFiles/remap_mia_joint_states.dir/src/remap_mia_joint_states.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/src/remap_mia_joint_states.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/src/remap_mia_joint_states.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_description",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_description\\\" -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp    -o CMakeFiles/remap_mia_joint_states.dir/src/mia_thumb_opp_passivejoints.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/src/mia_thumb_opp_passivejoints.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/src/mia_thumb_opp_passivejoints.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_description",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_description\\\" -Dmia_hand_description_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_description.dir/src/mia_thumb_opp_passivejoints.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/src/mia_thumb_opp_passivejoints.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/src/mia_thumb_opp_passivejoints.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_ros_control",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_ros_control\\\" -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/include -I/development/hand_rl_ws/devel/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp    -o CMakeFiles/Mia_hw_node.dir/src/Mia_hw_node.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/Mia_hw_node.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/Mia_hw_node.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_ros_control",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_ros_control\\\" -Dmia_hand_ros_control_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/include -I/development/hand_rl_ws/devel/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_ros_control.dir/src/Mia_hw_node.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/Mia_hw_node.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/Mia_hw_node.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_ros_control",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_ros_control\\\" -Dmia_hand_ros_control_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/include -I/development/hand_rl_ws/devel/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_ros_control.dir/src/mia_mrl_transmission.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/mia_mrl_transmission.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/mia_mrl_transmission.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_ros_control",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_ros_control\\\" -Dmia_hand_ros_control_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/include -I/development/hand_rl_ws/devel/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_ros_control.dir/src/mia_thfle_transmission.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/mia_thfle_transmission.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/mia_thfle_transmission.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_ros_control",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_ros_control\\\" -Dmia_hand_ros_control_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/include -I/development/hand_rl_ws/devel/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_ros_control.dir/src/mia_index_transmission.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/mia_index_transmission.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/mia_index_transmission.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_ros_control",
+  "command": "/usr/bin/c++  -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_ros_control\\\" -Dmia_hand_ros_control_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/include -I/development/hand_rl_ws/devel/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp  -fPIC   -o CMakeFiles/mia_hand_ros_control.dir/src/mia_hw_interface.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/mia_hw_interface.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/src/mia_hw_interface.cpp"
+},
+{
+  "directory": "/development/hand_rl_ws/build/mia_hand_ros_pkgs/mia_hand_gazebo",
+  "command": "/usr/bin/c++  -DBOOST_ALL_NO_LIB -DBOOST_ATOMIC_DYN_LINK -DBOOST_DATE_TIME_DYN_LINK -DBOOST_FILESYSTEM_DYN_LINK -DBOOST_IOSTREAMS_DYN_LINK -DBOOST_PROGRAM_OPTIONS_DYN_LINK -DBOOST_REGEX_DYN_LINK -DBOOST_SYSTEM_DYN_LINK -DBOOST_TEST_DYN_LINK -DBOOST_THREAD_DYN_LINK -DLIBBULLET_VERSION=2.88 -DLIBBULLET_VERSION_GT_282 -DROSCONSOLE_BACKEND_LOG4CXX -DROS_BUILD_SHARED_LIBS=1 -DROS_PACKAGE_NAME=\\\"mia_hand_gazebo\\\" -Dmia_hand_gazebo_EXPORTS -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_gazebo/include -I/development/hand_rl_ws/devel/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_description/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_ros_control/include -I/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_driver/include -I/opt/ros/noetic/include -I/opt/ros/noetic/share/xmlrpcpp/cmake/../../../include/xmlrpcpp -I/usr/include/gazebo-11 -I/usr/include/bullet -I/usr/include/sdformat-9.8 -I/usr/include/OGRE -I/usr/include/OGRE/Terrain -I/usr/include/OGRE/Paging -isystem /usr/include/simbody -isystem /usr/include/ignition/math6 -isystem /usr/include/ignition/transport8 -isystem /usr/include/ignition/msgs5 -isystem /usr/include/ignition/common3 -isystem /usr/include/ignition/fuel_tools4 -isystem /usr/include/eigen3 -isystem /usr/include/sdformat-9.8/sdf/.. -isystem /usr/include/ignition/cmake2 -isystem /usr/include/uuid  -fPIC   -I/usr/include/uuid -std=gnu++17 -o CMakeFiles/mia_hand_gazebo.dir/src/Mia_hw_sim.cpp.o -c /development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_gazebo/src/Mia_hw_sim.cpp",
+  "file": "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_gazebo/src/Mia_hw_sim.cpp"
+}
+]

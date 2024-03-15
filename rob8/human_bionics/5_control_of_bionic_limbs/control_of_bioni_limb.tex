@@ -1,0 +1,160 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 5: Advanced methods for the control of bionic limbs  \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+Previous methods are called direct interfacing. This would be e.g. osseo integration. \\ 
+They are more semi-autonomous control. 
+
+
+The content on moodle will be on the exam. Read the litterature and follow the lectures, and i should have no problem handling the exam. 
+
+\subsection{DEKA Bionic arm}
+\begin{itemize}
+	\item 7 degrees of freedom. 
+	\item Modular, so we can make it transhumeral, and transhameral amputee. 
+\end{itemize}
+
+Grasp types
+\begin{itemize}
+	\item Palmar grasp
+	\item Lateral grasp
+\end{itemize}
+
+\section{Control methods}
+The biggest issue is how to control the prosthesis, and not the mechatronic problems. 
+\subsection{Pattern classification}
+pattern classification can only contorol a single movement at a time. 
+
+Sweat can have a negative effect on the signal, which will throw of the pattern classifier off. 
+
+The position of the prosthesis movement, may have different results in the pattern classifier, which is why if you want to hold an egg and move the hand with the egg around in circles. This may trigger other classes in the classifier algorithm, and it will maybe drop the egg.
+
+\vspace{5pt}
+
+
+
+\subsection{Cybathlon}
+Cybathlon is a tournament where the companies compete in the race of building the best prostheses. 
+
+Body powered prosthesis, which is controlled by the counter latteral shoulder. Totally passive, so no active motors. That prostheses won the competition. $ \rightarrow $ that shows that we do not know how to control advanced mechatronics.  
+
+\subsection{Control interfaces}
+IMU on the feet. Still not ideal. 
+
+
+\section{Alternative control methods}
+Neural impulse $ \rightarrow $ Electromechanical transformation $ \rightarrow $ Muscle activation $ \rightarrow $ Linear muscle activation $ \rightarrow $ Acts around a joint with a moment arm, and that results in torque. 
+
+\subsection{Machine learning}
+Disregards the steps above. The solution is musculo-skeletal modelling.
+
+\subsection{Simulatneous control of wrist rotation and flexion/extension}
+Use EMG. Asked to do a figure 8, such that it is a fluid motion. 
+
+Move the cursor to a target on the screen using EMG. Represent movement of the prostheses in the plane, and then train the patient to use the EMG signals to control the cursor.  
+Use musculo-skeletal modelling, then he can move more than one degree of freedom at a time. 
+
+\subsubsection{Functional test:}
+Squeze a toejklemme (pin) test. The musculo-skeletal modelling is simulated online, which is how he controls the prostheses. 
+
+All prosthesis are made to be "non back-drivable". He decides how much force he wants, and then the prostheses stays at that level while he can relax. 
+
+The amputee will have to provide much more force than a typical human has to do because the emg pattern classifier should be able to register it. 
+
+
+\subsection{Model Based Control}
+Model based control outperforms traditional control methods. 
+The main disadvantages of model based control methods, are the calibration and the computational cost. 
+
+calibration may be different for the same person when they come in a couple of months later. 
+
+Calibration is done using exploration algorithms, since the problems are not convex due to many different parameters. 
+
+\subsection{Context-aware prosthesis}
+Intention estimation. 
+Have sensors in different places:
+\begin{itemize}
+	\item Amputee (smart watch)
+	\item Prosthesis (emg)
+	\item Exteroceptive sensors that can sense the environment. 
+\end{itemize}
+
+in 2017 they connected google glassess to the michelangelo hand.
+
+\vspace{5pt}
+
+\subsection{Google glasses}
+There is a small display that is positioned virtually 1 meter away from the eye. You can use touch and swipe motions to interface with ge google glasses. It is like programming an android phone. Same interface as with the phone. 
+
+Visual feedback, with different screen. You can have multiple prosthesis connected. 
+Can both use bars that displays the level of force, or you can actually make a graphical representation of the hand to diplay how it is moving. 
+
+You can see if the prosthesis is doing something that you did not control, so you can direct your intention towards the prostheses. You can monitor the EMG, and actually know how much force the collected EMG results in in the prosthesis. 
+
+The visual feedback may not be needed after the training. 
+
+\subsection{IMU}
+Use IMU/Smart watch to support bimanual (Use both hands) interaction with prosthesis.
+
+Start with hands in natural position, and move the hand. Detect if the movements should be symmetric or if they should be anti symmetric. Depending on how you move the hands, they achieved much faster speeds to control IMU.
+
+\subsection{Computer vision sensors}
+Show the object to the hand, and then the hand automatically finds the grasp etc. 
+
+use classic blob analysis, Seperate the object from the background.
+The only manual thing is decide when to grasp the object. 
+use the features of the blob to decide the grasp type, e.g. angle, principal dimensions like width and height. 
+
+Use decision trees to decide the grasp based on these dimensions. 
+
+The subject only needs to provide two commands. Open the hand $ \rightarrow $ aim the camera $ \rightarrow $ and then go to grasp the object and command when to close. 
+
+From the IMU on the wrists, it is actually possible to estimate the intention of what side of the subject want to grasp the objet from, and then reconfigure the grasp. 
+
+Use AR and reflective markers on the wrist, then we can get the spatial information of the hand in the camera frame. 
+
+
+The prosthesis should be "sticking to" the object. 
+
+You can actually run computer vision algorithms in the cloud. Can achieve soft real time with this method. Problem with semi autonomous control. 
+
+Use LCCP (Local Convex ...) which can segment different parts of the obejct. Like seperate the lid and body from a can. 
+
+
+
+
+
+\end{document}

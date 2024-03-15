@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Config>
+	<HandSpeedDelta>0, 0, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200, 200</HandSpeedDelta>
+	<HandDelta>0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14, 15, 17, 18, 20, 21, 23, 25, 26</HandDelta>
+	<HandInertia>1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 15, 16, 18, 19, 21, 23</HandInertia>
+	<HandSpeedInertia>20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 130, 140, 150, 160, 170, 180, 190, 200</HandSpeedInertia>
+	<RotSpeedDelta>0, 0, 20, 210, 210</RotSpeedDelta>
+	<RotDelta>0, 1, 2, 49, 50</RotDelta>
+	<RotInertia>0, 1, 16</RotInertia>
+	<RotSpeedInertia>10, 30, 210</RotSpeedInertia>
+	<FlexSpeedDelta>0, 0, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120, 120</FlexSpeedDelta>
+	<FlexDelta>0, 2, 3, 4, 7, 9, 13, 17, 19, 22, 24, 27, 30, 31</FlexDelta>
+	<FlexInertia>2, 3, 5, 7, 9, 11, 14, 16, 19, 21, 24</FlexInertia>
+	<FlexSpeedInertia>20, 30, 40, 50, 60, 70, 80, 90, 100, 110, 120</FlexSpeedInertia>
+	<sens_pal>250, 229, 210, 204, 198, 192, 185, 179, 173, 166, 165</sens_pal>
+	<physical_pal>11, 9.5, 7.1, 5.8, 5, 4, 2.9, 1.7, 1.1, 0.2, 0</physical_pal>
+	<sens_lat>5, 50, 59, 66, 71, 76, 85, 87</sens_lat>
+	<physical_lat>7, 4.2, 3.2, 2.2, 1.7, 1.1, 0.4, 0</physical_lat>
+	<sens_rot>0, 114, 141, 255</sens_rot>
+	<physical_rot>0, 150, -150, -1</physical_rot>
+	<sens_flex>0, 36, 219, 255</sens_flex>
+	<physical_flex>0, 75, -50, -1</physical_flex>
+	<sens_force>140, 200</sens_force>
+	<physical_force>0, 100</physical_force>
+	<SensorLimits_mainDrive>0, 94, 160, 250</SensorLimits_mainDrive>
+	<SensorLimits_thumbDrive>148, 255</SensorLimits_thumbDrive>
+	<SensorLimits_rotDrive>0, 114, 141, 255</SensorLimits_rotDrive>
+	<SensorLimits_flexDrive>0, 37, 218, 255</SensorLimits_flexDrive>
+	<SensorLimits_speedH>0, 180</SensorLimits_speedH>
+	<SensorLimits_speedR>0, 120</SensorLimits_speedR>
+	<SensorLimits_speedF>0, 110</SensorLimits_speedF>
+</Config>

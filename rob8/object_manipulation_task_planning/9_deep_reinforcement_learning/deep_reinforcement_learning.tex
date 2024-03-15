@@ -1,0 +1,130 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 9: Deep Reinforcement Learning  \\
+	\large Object Manipulation and Task Planning}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Deep Reinforcement Learning}
+Strarted around 2014/2015.
+Not the same as \textit{deep} in computervision. In DRL (deep reinforcement learning)they do only have around 3 layers. 
+
+\section{RL Recap}
+\begin{itemize}
+	\item Learn how to make good actions by chasing a high reward.
+	\item Trial and error learning.
+\end{itemize}
+Types of ML:
+\begin{itemize}
+	\item Supervised learning (Labelled data)
+	\item Unsupervised learning (Unlabelled data $ \rightarrow $ clustering algorithms)
+	\item Reinforcement learning (Agent acts with the enviromnent by trial and error.)
+\end{itemize}
+
+Sim2real gap $ \rightarrow $ There will be issues when moving from simulaiton to a real robot. 
+
+It is much faster to have multiple agents in the same environment that learns the same policy. By moving the robot a small step makes a very small step in the observation space, gives a very small change in the policy. Therefore it is very difficult to explore the observation space. Therfore having multiple robots, can result in much greater variety in the learning. 
+
+\subsection{MDP's}
+\begin{itemize}
+	\item Sequential Decision Making
+\end{itemize}
+
+Rewards for pickup an object:
+\begin{itemize}
+	\item Distance to object
+	\item Force sensors on the grippers
+	\item Negative survival rewards. 
+	\item Negative reward for unexpected force on the arm.
+\end{itemize}
+
+continuous states are usually bounded between some values. 
+
+Similar algorithms
+\begin{itemize}
+	\item Behaviour cloning: Tesla runs this in shadow mode. 
+	\item Inverse reinforcement learning
+\end{itemize}
+
+\subsection{Actions}
+Continous or discrete actions 
+
+\subsection{Policy}
+Map between states to actions
+
+\subsection{Value function}
+how good is it to be in the current state. The far sighted judgement about what rewards i will get if i take the following actions.
+
+
+\subsection{Task}
+\begin{itemize}
+	\item Episodic: Termination of the environment
+	\item Continuing: Smart thermostat, it will keep accumulating rewards in this episode, which entails that every "episode" will yield infinite rewards. 
+\end{itemize}
+
+
+\subsection{Rewards}
+\begin{itemize}
+	\item Sparse: Reward when episode ends.
+	\item Dense: reward for every step.
+\end{itemize}
+
+
+
+\section{Practical applications of DRL}
+Apprentenchip learning. There will be a professional person controlling the helicopter while recording his inputs, and then make an RL algorithm learn from that. You can also use RL to control mobile robots, instead of using MoveBase. 
+
+\subsection{Space Rover Exploration of planetary surfaces}
+Train thousands of robots in parallel to adopt path planning behaviour. You can also use multiple robot arms to grasp objects. Take depth and rgb data to extract object position, and use CNN's to extract features of the objects to train the algorihm on. 
+
+
+\subsection{Papers}
+\begin{itemize}
+	\item DQN
+	\item PPO
+	\item DDPG
+\end{itemize}
+
+
+\section{PPO}
+Talk much more about it next time.
+Learns the actions directly instead of just learning the Q-value to a fixed action. Has 2 networks. 
+
+\section{Exercises}
+Use tensorboard to keep track of training. 
+
+MLP $ \rightarrow $ 2 layers.
+
+Use weights and biases page (like tensorboard, but cloud based and good for hyperparameter tuning.)
+
+
+\end{document}

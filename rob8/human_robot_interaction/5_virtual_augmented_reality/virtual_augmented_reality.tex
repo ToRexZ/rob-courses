@@ -1,0 +1,139 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 5: Virtual,augmented reality  \\
+	\large Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Mixed Reality}
+spectrum
+\begin{itemize}
+	\item Reality
+	\item Augmented Reality
+	\item Augmented Virtuality - Add real objects to virtual environemnts
+	\item Virtual Reality
+\end{itemize}
+
+NUI - Natural User Interface
+
+\section{Robot Navigation}
+You can use AR to display the path/ waypoints
+
+\section{Robot Manipulation}
+Can also display the path /waypoints for the robot manipulator. 
+\section{Robot Debugging}
+Can for example show collisions on the robot. 
+\section{Social Interaction}
+Can display e.g. eyes on the robot to make it more human like to make it show more emotions on the robot that way. 
+
+\section{Display Hardware}
+How do we view these augmented reality features. 
+\begin{itemize}
+	\item Screen - the user is tethered for the screen.
+	\item 3D monitor - More expensive. 
+	\item Projector based - Project some lines onto objects using a standard projector. This can also be used to display xrays of what is inside a box for example. Volnurable to occlution by the user. 
+	\item Tables - They are cheaper, provide realtime video feed from the camera. Comes with a touch screen interface for the user. 
+	\item Head mounted Displays. (Optical seethrough which is expensive) some can also have hand tracking enabled. The augmented reality part is however quite restricted in the users field of view. Creates a "letterbox effect". May be difficult to know where the edges of the internal box ends. You have to keep your eyes locked straight ahead to keep your eyes within the augmented field of view. 
+	\item Video pass-through HMD - as expensive as the applevision pro. There is a video delay which may make it difficult to use in close collaboration, or if they break you are essentially blind. 
+	\item VR headset, which only displays a virtual world exclusively. 
+	\item Cave Automatic Virtual Environments - Back projection on 5 walls around you. (Biomuseum in panama)
+\end{itemize}
+
+
+Track the user in the living room and distort the image on a screen to fit their movement. 
+
+
+\section{Tracking the real world}
+\begin{itemize}
+	\item Fiducial markers (those used for camera calibration)
+	\item Motion capture cameras. Very expensive and very restrictive
+	\item Odometry, great if combined with other tracking methods, like visual inputs. 
+	\item Virtual object manual alignment 
+	\item Iterative Closest point alignment - point cloud alignment algorithms. Iterate to minimize the distance between two pointclouds. Suitable for initial frame synchronization between multiple agents. 
+	\item Machine learning based. E.g. Estimate human pose or object pose estimation algorithms. Works great on already trained objects, but they have problems with estimating positions of unknown objects. 
+\end{itemize}
+
+\section{Design Taxonomy}
+Split up into the above categories (the ones first presented)
+
+\section{Virtual entity}
+Entities that are added to virtual or real environment (Augmented reality)
+\begin{itemize}
+	\item Visualisation robots: current real robot status.
+	\item Simulated robots: completely isolated from the real world. 
+	\item Digital twin: Tandem between real world and simulation. Preview actions.
+	\item Simulated agent: Simulated for training for agents. Can be human agents, asl long as it is used for training robots. 
+\end{itemize}
+
+\section{Virtual Alterations}
+Used to change the proporties of the robots
+\begin{itemize}
+	\item Could be cosmetic
+	\item Could be functional
+	\item Morphological
+		\begin{itemize}
+			\item Body extensions
+			\item Body diminishments
+			\item Form transformations
+		\end{itemize}
+\end{itemize}
+
+
+\section{Robot status visualisation}
+\begin{itemize}
+	\item Internal
+		\begin{itemize}
+			\item Internal readings
+			\item Internal readiness - is the sensors ready to send data etc. 
+		\end{itemize}
+	\item external
+		\begin{itemize}
+			\item Robot Poses
+			\item Robot alterations
+		\end{itemize}
+\end{itemize}
+
+\section{Robot comprehension Visualisation}
+How do we display anything that is in the control system of the robot. 
+\begin{itemize}
+	\item Environment - can show spatial region. What region can the robot manipulate within. 
+	\item Entity - Entity labels, attributes, entity locations, appearances. 
+	\item Task - Headings, waypoints, callouts (a list of commands that have been sent to the robot ), Spatial previews (what are things gonna look like), alteration previews.  
+\end{itemize}
+
+
+\section{Exercises}
+Brainstorm vam-hmi usecases. What hardware is best suited, make sketches. 
+
+
+
+\end{document}

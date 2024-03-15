@@ -1,0 +1,8 @@
+prefix=/development/hand_rl_ws/devel
+
+Name: hand_prosthesis_env
+Description: Description of hand_prosthesis_env
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: rospy std_msgs

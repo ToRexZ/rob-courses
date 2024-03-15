@@ -1,0 +1,87 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 2: Haptic feedback in extended reality, telemanipulation and prosthetics  \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Close the loop}
+We need to provide feedback to the user. It is not just about controlling the prosthesis, but also about providing feedback. 
+
+The problem with virtual reality, is the lack of feedback on other sensors than the visual receptors. A headset that has been developped to restore sensory feedback with fans, pla element (heat and cooling) and smell. Multisensory add-ons.
+
+\vspace{5pt}
+
+
+The best thing to do is restore force feedback. This is called \textit{kinsthetic feedback}. This can be done with a kinesthetic arm, which is an underactuated articulated manipulator, which records the movement of the end-effector. It does still however provide a 3degree of freedom force feedback. The samplingtime must be very high and compute the force by the physics simulation within 1 ms, and therefore reduce the lag as much as possible. 
+
+\vspace{5pt}
+
+A way of providing feedback without having a grounded device, we could use an exoskeleton. This could however also be grounded, depending on the level of feedback. The full feedback wearable system must be able to provide full feedback and withstand the force provided by the human, and therefore be more powerfull than the standard assistive exoskeleton. 
+
+\vspace{5pt}
+
+In addition to just restore force, it is also important to restore tactile sensation regarding pressure on the hand. The superficial tactile receptors, are more spatially focussed, and therefore they are activated by touch withing a smaller era of superficial contact. Devices that restore tactile sensation, are very small and mounted on the fingertips. Some devices are made to restore skin streching with a band underneath the finger, and some are made to change position and orientation of the contact point. Another type is UltraHaptics, by using ultrasound with beamforming (desktop device). Microfluidics is very small and provide nice feedback but it is very expensive. 
+
+
+\subsubsection{Eccentric rotating mass (ERM)}
+Mass offset from axis of rotation of a small motor. 2 parameters of input (higher velocity results in higher intensity.) 
+
+\subsubsection{Linear resonant actuators}
+uses magents and springs, but it has a resonance frequency. 
+
+\subsubsection{Vibrotactile vests}
+Haptic feedback on the torso.
+
+
+\subsection{Electrical stimulation}
+There are different receptors in the skin. 
+\begin{itemize}
+	\item Meissner corpuscle
+	\item Pacinian corpuscle
+	\item Merkel disks
+	\item Rufini endings
+\end{itemize}
+
+You need at least to electrodes, one ground and one active electrode. Therefore most electrodes are coencentric. A single stimulator can provide multiple ways of tactile feedback. You can control the frequency, and the current by increasing the amplitude or width of the pulse. It is important to have negative pulses, else the tissue can be damaged, by change in PH value of the skin. It is important to retract the current out of the skin after it is injected. All the types of receptors are stimulated at once, which can feel unnatural.
+
+\subsubsection{Electrotactile stimulation}
+When using electrotactile stimulation in conjunction with EMG electrodes, the stimulating electrodes can effect the emg measurements with artifacts. 
+
+
+\subsection{Human sense of touch}
+
+
+
+
+
+\end{document}

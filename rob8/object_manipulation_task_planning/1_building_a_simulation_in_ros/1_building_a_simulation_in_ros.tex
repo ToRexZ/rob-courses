@@ -1,0 +1,113 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 1:Lecture Notes Building a simulation in ROS \\
+	\large Object Manipulation and Task Planning}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Setup of ROS simulation}
+In order to grasp correctly, more advanced control of the gripper is needed. I believe he said impedance control.
+
+
+\section{Layers}
+\subsection{Low level control}
+hardware
+\subsection{Movement Primitives}
+
+\subsection{Robot Behaviour}
+
+\subsection{Task planning}
+Putting the above together, gives taks plannning.
+
+\section{High Level Task Programming Robot Skills}
+Industrial manipulators are "inflexible", as they only do one thing. One way to program the robots to make them modular is to use Skillbased Programming. Large c++/python files $ \rightarrow $ smaller modular (reusable) blocks of code.\\
+As robotics engineers we usually design "robot primitives" but we need an intermediate layer between the task level, called "Robot Skills".
+
+
+\subsection{Robot Skill}
+A robot skill has an initial condition. it assesses the following questions.
+
+\begin{itemize}
+	\item Can i do it?
+	\item How am i doing?
+\end{itemize}
+
+Robot Skills are concatenated into skills sequences. The goal is to generate enough skill sequences, such that the operator can program on a task level. 
+
+Standard sequence of skills are programmed offline. Some parameterizations can be done online, e.g. the position of an object. 
+
+Kinesthetic teaching is a learning physically. 
+
+\section{Gazebo}
+Gazebo has lazy loading, where it loads part of the map instead of the entire map at a time. \\
+Remember to set mass and inertia parameters.\\
+We need to provide collision geometry.\\
+Inertia can also be calculated in meshlab.
+
+
+max\_vel (xacro) is the correcting force that repels the gripper from penetrating the bounding object.
+
+min\_depth is the minimum depth into the object before the repulsion force is triggered. 
+
+
+Robot controller effort is important, as e.g. distance controllers may not provide any effort to hold onto the object, therefore it does not grip the object.
+
+
+\subsection{Parameter testing}
+There is a testbed that can test the physics parameters in gazebo. RQT Dynamic Reconfigure.
+
+\subsection{URDF}
+Cannot do loops between links and joints.
+URDF is immutable when the robot\_description has been published. Nodes do not reread it.
+
+
+\subsection{Xacro}
+Provides loops.
+Xacro can provide sensor information.
+Reusable.
+It can import macros (resuble models (joint or links))
+
+check\_urdf robot.urdf
+
+Xacro has parameters that can be used for variables.
+
+For mirrored object you can use "reflect parameters". This is done using 
+
+
+\subsection{ROS2 Limitation}
+Conveyor and maybe the Computer vision part may have problems.
+
+
+
+
+
+\end{document}

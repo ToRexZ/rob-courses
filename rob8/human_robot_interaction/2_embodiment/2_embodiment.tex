@@ -1,0 +1,85 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 2: Embodiment  \\
+	\large Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+The process of seamlessly extending the robots perception of its own body. e.g. The famous rubber hand expermiment.
+
+\section{Can we embody foreign objects}
+Yes, it is all about the level of embodiment. 
+
+For the rubber hand experiment, it is important that the movement should be congruent (simultaneous), then it will trick the participant into self agency else if there is incongruence, then it thinks that it is another agent. This can be modelled with bayesian inference.
+
+\section{Bayesian inference}
+We base our belief or prediction on a current observation and  previous memory. The higher the likelihood of the observation given what we believe we should observe, then heigher the belief of thinking that the action performed on the rubber glove is done on the human hand.
+
+\section{Statistical optimal percept}
+Through multisensory integration, the haptic and the visual sensory feeling has to be fused, but through time the total belief can change to rely on visual from haptic and vice versa. 
+
+The location of the hand is also important. It has to be within reach.
+
+\section{Amputees and prosthetics}
+$ \approx 90\%$ of amputees feel a phantom limb (they feel like their hand is still there.) They can also feel that the hand has been telescoped up to the cutoff points. To avoid phantom limb pain, patients can go through mirror therapy, where the mirror image of the healthy hand emulates the missing hand. It only works on patients that does not have the telescopic effect.  
+
+Using a cookie sorting game and VR, it was possible to reduce both the phantom limb pain and also the telescopic effect. 
+
+
+\section{Sensory substitution/supplementation}
+How can we solve the problem of sending the feeling feedback of the prosthetics. 
+Could be done by stimulating other places. Using an electric tongue interface with glasses for blind people, it is possible to make blind people see. Even though they were born blind, they still showed an activation in the visual cortex of the brain due to neuroplasticity.
+
+\section{Davinci robot (embodyment of teleoperated robotics)}
+There is great embodyment, but it still lacks force feedback. The surgeouns have no idea how much the robot is pushing or pulling. 
+
+\section{Hard vs Soft Embodiment}
+Should we design the system to \textit{mimic} the missing body part or should we design the system to \textit{improve} the missing body part. 
+
+\begin{itemize}
+	\item Hard: Recreate the lost limb.
+	\item Soft: Look at what is the purpose of the lost limb, and then redesign the whole scheme, and then try to make it better and then improve it. 
+\end{itemize}
+
+\section{Assesment of Embodiment}
+how do we measure embodiment?
+\begin{itemize}
+	\item You can asses it with questionaires. 
+	\item Use likert-scale. When the question is binary, be carefull to use a scale in the assesment. This will just make the questions noisy.
+	\item Unconscious measure. How much they thought their hands moved (proprioceptive drift). 
+	\item Eye tracking, to asses confidence. The less confident the user, the more they focus on the specific task that they are doing, and not looking at the target. 
+	\item Brain imaging. Illustrate the different activated cortexes in the brain. 
+\end{itemize}
+
+
+
+\end{document}

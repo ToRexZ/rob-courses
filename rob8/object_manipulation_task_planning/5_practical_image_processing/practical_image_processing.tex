@@ -1,0 +1,68 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 5: Practical image processing in robotics  \\
+	\large Object Manipulation and Task Planning}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Computer vision vs image processing}
+Image processing is a subset of computer vision, where you apply sharpnes etc. Outside of controlled environments there are more occlusions and it is not a controlled environment anymore. 
+
+\vspace{5pt}
+
+There are different applications
+\begin{itemize}
+	\item Grasping and manipulation
+	\item Navigation
+	\item Process control and quality documentation
+	\item Surveillance
+	\item $ \vdots $
+	\item Biomedics
+\end{itemize}
+
+\section{Human visual system}
+Above 70\% of our sensory receptors are visual sensors. 
+The photo receptors in the eye are split up into two types, one type is centered in the center of the eye, and the others are outside. That allows us to focus directly on subjects and everything is blurry. 
+
+\section{Distortion}
+Radial vs tangential. Tangential distortion is a shift, or rotation around a diagonal in the image. i.e. decentering of the image. 
+Radial is the barrel effect. 
+
+\section{Choosing a camera}
+Smaller lenses has wider fov. 
+
+\section{Calibration}
+Estimating the extrinsic parameters of the hand-eye calibration is done by putting the checkerboard on the end-effector
+
+
+
+\end{document}

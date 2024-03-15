@@ -1,0 +1,300 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 7+8: Human-robot collaboration and Dynamic Motion Primitives  \\
+	\large }
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Motivation}
+Traditional programming is getting out of fashion, because programmers are expensive  labor. They become aparent in small to medium size enterprises. In addition higher level programming can facilitate customization of products, quick change overs and partial automation.
+
+\section{Franka Robot}
+Collaborative interface $ \rightarrow $ has buttons on top of the wrist.
+\begin{itemize}
+	\item Comes equipped with force sensors in each joint.
+	\item Freedrive
+	\item It has reflexes, which allows it to stop if it hits something, and it does not need to restart the entire program, because it does not have a real emergency stop on it. 
+	\item UR only measures the current that goes into the motors, which is low resolution relative to force sensors. 
+\end{itemize}
+
+\section{Collaborative Robots}
+The safety level is standardised. \\
+Features:
+\begin{itemize}
+	\item Joint torque sensors
+	\item Lightweight design (a person can carry them)
+	\item No pinch design. You can not get pinched in small gaps. 
+	\item Tactile skin
+	\item Compliant actuators 
+	\item A collaborative robot will never be as stiff as a traditional robot, becuase of the compliant actuators.
+\end{itemize}
+
+Sensors:
+\begin{itemize}
+	\item Admittance
+	\item Impedance
+\end{itemize}
+
+Arms:
+\begin{itemize}
+	\item KUKA iiwa (old, expensive)
+	\item UR (RTD interface, offical ROS driver) (Aljaz has developped a realtime UR control loop running 500 Hz, Open source)
+	\item Franka emika (20.000 eur, modern, smaller payload, ROS compatible)
+\end{itemize}
+
+\section{Collaborative Industrial Systems}
+You have to define:
+\begin{itemize}
+	\item Maximum workspace
+	\item Restricted workspace (some overlab with human workspace (full speed robot))
+	\item Operating workspace, it is a smaller workspace and the robot stops
+	\item Collaborative workspace, concurrent tasks between human and robot.
+\end{itemize}
+You can however also run it in a normal workspace.
+
+\vspace{5pt}
+
+
+\textbf{Mixed Workspaces} \\
+Where some of the workspace is collaborative, and some are fully autonomous, and not automated.
+
+\section{New Programming Techniques}
+Robot vendors have their own languages, which are propriotary. \\
+You can use a camera, or other sensors to show the robot how to move.
+\begin{itemize}
+	\item Makes teaching complex tasks simple.
+	\item Non experts can quickly program it.
+	\item Simpler to program certain kinds of tasks.
+	\item Quick to reprogram
+	\item $ \vdots $
+\end{itemize}
+
+\subsection{Demonstration modalities}
+\begin{enumerate}
+	\item Teleoperation/ manual guidance (kinestetic programming)
+		\begin{itemize}
+			\item No mappings required
+			\item No external hardware required
+			\item Intuitive for the user.
+			\item Hard to control due to e.g. friction in the joints. $ \rightarrow $ can be physically tirring.
+			\item Gravity compensation can be bad if the control loop is too slow, e.g. 125 Hz.
+		\end{itemize}
+	\item Sensors on the teacher
+		\begin{itemize}
+			\item Exteroceptive sensors 
+			\item $ \vdots $
+		\end{itemize}
+	\item Shadowing (Do the same thing as the human)
+		\begin{itemize}
+			\item No embodiment mapping, so you do not have to touch the robot
+			\item Demonstrated by the user
+			\item Direct transfer of the human skill. Can also be modified. (teleoperation)
+			\item 
+		\end{itemize}
+	\item Observation (make the robot observe (camera))
+		\begin{itemize}
+			\item Expensive sensors, but it is the most natural demonstration method.Works like teaching humans.
+		\end{itemize}
+\end{enumerate}
+
+Record the following: 
+\begin{itemize}
+	\item Positions and orientation trajectories in cartesian space (use quaternions as orientations)
+	\item Joint configurations
+	\item Force trajectories (noisy)
+\end{itemize}
+
+Time variant data. This entails that we can derive the velocities and accelerations.
+
+\section{Trajectory Construction}
+
+
+
+\section{Dynamic motion primitives}
+The origins of this concept is based on how frogs moves their legs.
+
+\begin{align}
+ \tau \dot{z} &=  K (g - y_0) - Dz + f(x)\\
+ \tau \dot{y} &= z 
+\end{align}
+
+Designed on acceleration level.
+Mass forces and acceleratio goes together. Let the first part of the first equation be the mass, and $ f(x) $ be the acting force.
+
+This representation gauranties continuity. 
+
+$ g $ is the goal/setpoint, and $ y_0 $ is the start state of the desired movement. $ K $ and $ D $ are the positive gains
+You are essentially computing an error between the setpoint and the state. This will give a PD control, which permits Point to Point control.
+$ f(x) $ represent the movement.
+
+\vspace{5pt}
+
+\begin{itemize}
+	\item Not explicitly time dependent. $ \rightarrow $ Can run forever
+	\item Demonstrated/ recorded movment can be reproduced.
+	\item You can alter the path online, by e.g. representing obstacles as potential fields.
+	\item Movement can be stopped and resumed again.
+\end{itemize}
+
+They did a tutorial paper on DMP's, which comes with how to's on the code and euqations.
+
+
+$ \tau $ is the time constant, that defines how long the trajectory will be. (how long the controller should run, not necessarily how long the trajectory will be.). Usefull when reaching motion. You have to consider the physical constraints of the robot.
+
+\subsubsection{Temporal evolution phase system}
+The system has an exponential decaying function. 
+\begin{equation}
+\dot{x} = - a x
+\end{equation}
+
+The DMP's are on a joint level. They are critically damped. 
+
+
+\subsection{Transformation system}
+\begin{equation}
+\tau^{2} \dot{y} = K (g - y) - D \tau \dot{y}
+\end{equation}
+which is typically written as:
+
+\begin{equation}
+	\tau \dot{z} = \alpha_{y} (\beta_y \hdots)
+\end{equation}
+
+
+\subsection{Forcing terms}
+Weighted mixture of Gaussian Basis Functions.
+you have define a center and a width. 
+
+The top of the basis function, should correspond to a point on the trajectory, which you can compute a weight from, then you could do the inverse. 
+
+
+\subsection{Cartesian-space Orientation}
+Math more or less the same.
+
+You need to compute the difference between two quaternions, using a log function. This is a quaternion function that finds the difference between two quaternions. Needed for the proportional part.
+
+Each degree of freedom should have a controller.
+
+
+Important to specify a start configuraiton and start position.
+
+
+\section{Reproduction on the robot}
+Encoding. Can be done offline, 
+
+\newpage
+
+\section{2. part: Robot control in context}
+
+\subsection{Inverse kinematics solver}
+
+\begin{itemize}
+	\item Analytical solver
+	\item Numerical solver
+\end{itemize}
+
+\subsection{Jacobian}
+When you have 6 DOF in cartesian space, and 7 DOF joint space, then the jacobian will be a matrix $ J \in \mathbb{R}^{6 \times 7} $. 
+
+
+\subsection{Position Control}
+You usually have PD control on the actuators, which results in torque. Collaborative robot may also have velocity and torque trajectories. This is also considered a \textit{high gain} controller (very stiff). 
+
+Dynamics. You need to kow the dynamic parameters of the robot. Most important forces are the gravity and coriolis effect. 
+
+\subsection{Position - velocity control}
+Smother motion, if the controller can take both inputs.
+
+
+\section{Measuring data}
+\subsection{force vs force/torque}
+Force only measures a single quantity, but you can use e.g. jacobians to map it to torques in the joints. 
+
+\subsubsection{Force/Torque}
+Integrated systems. Comes with strain gauges on each pin, which provide multi degree of freedom resolution.
+
+If it is mounted on the wrist, then be carefull not to jam the robot into a table, or do not mount a too long tool on it. 
+
+they are susceptive to drift due to temperature increase. 
+
+\subsubsection{Joint torque sensors}
+Radial measurement rather than linear. 
+
+
+\section{Force control strategies}
+\textbf{Note} there is no need for the I term.
+
+types:
+\begin{itemize}
+	\item PD (cascade)
+	\item Parallel
+	\item Hybrid
+\end{itemize}
+
+If it is possible to use velocity as a controller, DO SO. For force controllers, there will be great constant errors due to integration, unless you have a really fast control loop.
+
+
+
+\subsection{Parallel force controller}
+Problem: scale the inputs.
+
+\subsection{Hybrid force controller}
+
+
+\section{Impedance}
+Stiffness control. Control the stiffness of the manipualtor to get a force.
+
+\subsection{Impedance control}
+You need the dynamics to do torque control. 
+You need to model the robot with coriolis and friction. 
+you can control Damping and stiffness, but not the inertia. The robot will behave like a spring, entailing that if you lower the damping and stiffness, the more periodic. 
+
+\subsection{Admittance control}
+Control the motion of the manipulator after the force has been applied. More similar to a force controller relative to impedance control. Must be equipped with force/torque sensors. Admittance control have 6 springs in the wrist which can be tuned. 
+
+\section{Coupling with feedforward trajectory control}
+DMP and Desired force is feed forward. Use a admittance controller as a negative feedback loop, and have the impedance and rigid-body robot controller as the robot controller. 
+
+
+\section{Conclusion}
+\begin{itemize}
+	\item When working with the environment, it is recommended to have some kind of force/torque or force sensors. 
+	\item Admittance controllers should be implemented with carefull parameter selection. 
+\end{itemize}
+
+
+
+
+
+
+
+
+\end{document}

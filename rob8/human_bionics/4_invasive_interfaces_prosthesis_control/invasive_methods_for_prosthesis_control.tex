@@ -1,0 +1,113 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 4: Invasive Interfaces for prosthesis control and feedback \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Closed Loop fully implanted systems}
+The problem with superficially mounted electrodes, is that it is susceptive to loads of noise. We are further away from electrical sources, and it is more difficult to reach inner muscles. 
+Donning and Doffing is annoying to people.  (take on and take off the device.)
+
+\section{Invasive methods}
+\begin{itemize}
+	\item The simplest way is to use needle $ \rightarrow $ intramoscular EMG. (fine-wire EMG)
+	\begin{itemize}
+	\item The wire can be placed by asking the subject to contract the finger, and then feel where the muscle is. Then the wire is inserted with a needle. The wire can break and then be stuck in the muscle. They use platinum/titanium since they are \textit{biocompatible}. You can hit a nerve or bloodvessel by accident, but that is okay. Simple $ \rightarrow $ Does not need surgery. Attach the wires to the skin with a bit of slack because the wire moves in and out of the skin during flexion and extension. 
+
+	\item Percutaneous interface (body going through the skin) $ \rightarrow $ can result in local infections.
+
+	\item \textit{Carpi} is the hand.
+
+	\item You can do multiday assesment where you use emg data from yesterday, on the day and all previous days. This reduces the calibration, however intramoscular emg did not see any benifits to this approach. Even though the system is more stable, it still needs calibration everyday to achive the desired accuracy. 
+
+	\item There is varaiablity of human motion. They may do the same task differently depending on what time it is done. 
+
+	\item The body rejects foreign objects, but if you leave the wires in the muscles in for a month, then it stabilizes and may not try to reject it anymore. 
+	\item Polytis longus (thumb in latin)
+
+	\item Using fine-wire EMG it is possible to control a hand prosthesis directly, by measuring the EMG signals from each muscle in the fingers. This results in a direct mapping without the need for classification. 
+	\end{itemize}
+\item Epimysial electrode (connective tissue on top of the muscle is called apimysial (white stuff on the muscle)) 
+	\begin{itemize}
+		\item Needs surgery.
+		\item The surgeoun fixates the electrodes on the epimysial.  
+		\item Completely inside of the body. 
+		\item You need an IRAF link to transmit the signals outside of the body. $ \rightarrow $ Great signal loos during this transmission. 
+		\item Myoplant system:
+			\begin{itemize}
+				\item Longer, placed longitudally on the muscle $ \rightarrow $ Has more electrodes. 
+				\item The amplifier is sealed in silicon to keep the body and the electronics seperated. 
+				\item They placed both the Epimysial electrodes and surface emg elctrodes on the same place on the muscle. This entails that they can compare EMG aquisition methods. $ \rightarrow $ The Epimysial electrodes provided much greater signal to noise ratio. 
+				\item Estimate force of the muscle using machine learning from EMG. 
+			\end{itemize}
+		\item Need to transmit power aswell $ \rightarrow $ How to charge the device? Induction. 
+		\item Ideally a matrix of electrodes should be placed on the muscles.
+	\end{itemize}
+\item MIRA System $ \rightarrow $  Using intramoscular electrode wires with helical wires. Usually the amplifier is placed somwhere that doesnot move as much, e.g. on the chest, and then the wires are routed out to the muscle. 
+\item IMES System: Intramuscular implangs (Distributed system)
+	\begin{itemize}
+		\item The device is passive, but the power is send into the electrode in conjunction with the signal, then the device starts working and transmits the result pack. Ceramic tube. Specially processed such that it cannot break.
+	\end{itemize}
+\item The MyoKinetic interface $ \rightarrow $ Based on magnets/hall effect
+	\begin{itemize}
+		\item Put magnets inside the muscles. 
+		\item Inverse electrical mathematical equations. \\
+			How can you extract the location of the magnets using hall effect sensors on the skin that measures the magnetic field. You do not know the location of the magnets. 
+		\item They made a rig that they can test their location estimator on using artificial tendons. They can relatively precisely estimate the positon aswell as the orientation of the magnets.   
+		\item By supplying electrical signals it is possible to vibrate the magnets, since it alters the electromagnetic field.  $ \rightarrow $ This can be used for feedback. 
+Transhumearl amputee (above arm amputee)
+	\end{itemize}
+	osseointegrated prosthesis $ \rightarrow $ integrate a rod into the bone, and then extend it outside of he body. That results in a \textit{stoma} (opening in the body) where the skin just goes around the titanium rod. This can result in infection but cured with antibiotics. The pipe can be used to transmit the signals outside of the body, due to the stoma. Now it is possible to eliminate one of the problems around transmitting intramoscular signals outside of the body. 
+\end{itemize}
+
+\subsection{Paradox of prosthesis control}
+The higher the degree of amputation, the lower the number of available interfaces to control the system from.
+
+\subsection{Regenerative Peripheral nerve interfaces}
+Use a piece of any muscle in the body, and put a cut nerve into the muscle, and then the peripheral nerve will grown and this way it is possible to control that little part of muscle, which can be thought of an natural artificial emg interface. It acts like an amplifier because the nerve signals are very tiny, and very tangled. 
+
+Many amputees experience pain because of nerve bundles of peripheral nerves. 
+
+\subsection{Targeted muscle reinnervation}
+Cut he nerves for some muscles and attach them to other muscles. This is done for highlevel amputees, e.g. transhumeral amputees, thus the chest muscles are unusable because there is no arm to move, therefore the nerves are transferred to control the hand. 
+
+\subsection{The importance of sensory feedback}
+The ratio of motor fibres to sensory feedback, is around 1:10, there is about 10 times as many sensory feedback fibres. 
+\begin{itemize}
+	\item Sensory substituion is where the feedack is moved from the fingertip to feel it on the arm. This can be a problem because it is difficult for the brain to interpret that. When you stimulate the nerve directly, you do not have enough resolution to control individual fibres, therefore it is only areas of the hand that are stimulated. This entails that it is difficult to pinpoint exactly where the sensory feedback comes from. There is a tradeoff between invasiveness/nerve damage and the selecitivy.This is usefull in nerve stimulation.  
+\end{itemize}
+
+
+
+
+\end{document}

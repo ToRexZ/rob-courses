@@ -1,0 +1,69 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 4: State Machines  \\
+	\large Object Manipulation and Task Planning}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{FlexBE}
+\begin{itemize}
+	\item Available and actively developped in ROS2.
+		\item Has a graphical user interface.
+		\item Allows us to pause the execution for operator involvement. 
+		\item Need both the execution engine (behaviour engine) and the FlexBE app (GUI).
+		\item One folder that stores the behaviours, and one folder that stores the states.
+		\item It will initialize a git repository in this folder, remove the .git folder. 
+		\item If we only run the app, we can only program the states, we cannot execute them.
+		\item We can use failed messages from e.g. moveit to do behaviour design based on it. 
+\end{itemize}
+
+\section{Behaviour design}
+FlexBE works on top of the motion primitives, which is typicaly given through the topics and messages. This abstracts further away from the hardware, and makes it easier for the operator to work with. 
+
+We need a coordinated set of actions. Can also be done with behaviour trees or flowcharts.
+
+
+\begin{itemize}
+	\item States are referred to as blobs. 
+	\item Some values might change at runtime, this needs to be taken into account. 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+	\item 
+\end{itemize}
+
+
+
+\end{document}

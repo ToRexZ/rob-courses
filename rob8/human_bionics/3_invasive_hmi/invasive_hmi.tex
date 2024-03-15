@@ -1,0 +1,122 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 3: Human Machine Interfacing using Invasive Methods.  \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Tactility}
+
+\begin{itemize}
+	\item Electrotactile stimulation.
+		\begin{itemize}
+			\item Silent $ \rightarrow $ no noise.
+			\item Very compact. Both the battery/control compartment and the electrode can be very small.
+			\item Numerous stimulation channels.
+		\end{itemize}
+	\item Haptic: Vibrotactile stimulation (Non modality matched)
+	\item Mechanical stimuliation (modality matched)
+\end{itemize}
+
+\subsection{Electotactile stimulation}
+The shape and distribution of the channels can be printed very flexibly. The
+only limitation is the connection of the wires.\\
+Different parameters:
+\begin{itemize}
+	\item Spatial/temporal
+		\begin{itemize}
+			\item Speed of activation
+			\item Number of active channels
+		\end{itemize}
+	\item Frequency
+	\item Intensity
+\end{itemize}
+
+Frequency can only be the same in each channel. The patterns are callend \textit{icons}.  
+
+There are different patterns for full finger matrices.
+\begin{itemize}
+	\item Full phalange
+	\item Random
+	\item Lateral
+	\item Up/Down
+	\item Snake
+\end{itemize}
+
+\subsubsection{Force feedback in VR}
+usefull in remote scenarios. The higher the frequency the higher the force in target levels. It is not a linear relation ship between the actual frequency and the perceived frequency. Easy to identify the difference between 1 and 2 Hz, but difficult to distinguish 50 and 51. 
+The spatial modulation changes the affected space on the finger, which should try to minic actual force feedback better.
+
+\subsubsection{Disadvantages}
+\begin{itemize}
+	\item The sensation can feel electrical, (unnatural). Important that the electrode is well connected to the skin. 
+	\item The amplitude across different users should change. $ \rightarrow $ Need intensity calibration
+\end{itemize}
+
+\subsubsection{VR Brush stroke}
+
+You can do the rubber hand illusion with VR and vibrotactile stimulation, and Martin has tried to do it with electrotactile stimulation. This gives higher channel resolution.  It is done with sliding patterns in the full phalange matrix.
+
+There were no difference between single electrodes and phalange matrices. 
+
+\subsection{Sixth sense}
+wearable electrotactile stimulation. Worn by firefighters. Use anodes to close the circuit, they cannnot be used for stimulation. 
+
+The different pads are in a $ 2 \times 3 $ pattern, which should be activated in a specific pattern to communicate. They needed to divide the difference rows into different frequencies, which achieved a bit better result. The best result was that all pads should be stimulated and the frequency is binary, either you should \textit{listen} to the pad or \textit{not listen}. This resulted in the best result, such that the user should only listen to the frequency. But the meaning of the different patterns where still difficult to understand. 
+
+\vspace{5pt}
+
+They designed different patterns, 
+\begin{itemize}
+	\item Braille alphabet. 
+	\item Pencil Drawing of the standard letters 
+	\item Large pencil drawings.
+	\item Pushbutton phone layout
+\end{itemize}
+
+
+\subsection{Prosthesis feedback}
+You can do sectorized sheceme of eletroctactile stimulation and use EMG to control the prosthesis. Depending on the level of pronation, you can use the electrotactile stimulation around the arm, like a clock. However the feedback is not congruent with the orientation of the hand, i.e. it does not match the same orientation of the hand. This can be solved by a congruent scheme. 
+
+The prosthesis itself does give a bit of feedback: this is called \textit{incidental} feedback 
+\begin{itemize}
+	\item Moment of inertia of the prosthesis
+	\item You can hear the motors.
+\end{itemize}
+
+There is a tradeoff between closed loop feedback and open loop feedback. The closed loop feedback is slower as the patient tries to asses each feedback instead of just going directly for the grasp. 
+
+
+\section{Vibrotactile sensory feedback}
+You can place a belt inside the socket which gives radial information about the direction of the force on the lower limb proshtesis. A big problem of lower limb prosthesis with mechanical knee joints is \textit{buckling} which is rapid flexion of the knee and you "falder sammen" 
+
+\end{document}

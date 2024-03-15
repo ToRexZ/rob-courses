@@ -1,0 +1,112 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 1: Advanced Methods for Human Machine Interfacing  \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+exam is passed/not-passed (reexam is oral)
+
+\section{Human Machine Interfacing}
+Human user can both be a patient, but it can also be a standard person. 
+\begin{itemize}
+	\item Joystick is a constrained interface. We want to say "go there" and then the robot should go there.
+\end{itemize}
+
+We want to extract commands from the user by using e.g. emg. \\
+\textbf{Note} We want bidirectional information exchanging. 
+
+Natural interfacing is important. Do not use joysticks, but rather just point.
+
+\section{Human Tracking}
+Track both the robot but also the human
+\begin{itemize}
+	\item Motion capture system. (retroreflective markers with IR cameras)
+		\begin{itemize}
+			\item Problems: confined to a limited space.
+			\item Markers must be seen by 3 cameras.
+		\end{itemize}
+	\item Human Motion tracking with strapped IMU's onto a human. Use measurements and do sensorfusion of the gyroscope (velocity) and the accelerometer (acceleration), with a kalman filter.
+	\item You can use IR detectors which are relatively cheap, (cheaper than the other systems). They can work by tracking the sensors onboard of the device. 
+	\item Kinematic suits (Wearable data gloves)
+\end{itemize}
+The above systems are denoted in decreasing order with respect to price. 
+
+
+\section{Hand tracking}
+LEAP motion is an interface that uses lasers to measure hand and finger movement above. It uses point cloude data. The problems with this is that it is difficult to hold the hands above the device. This can be mounted directly on the VR headset, but this requires that the hands are within the field of view of the LEAP motion device. 
+
+EMG (myoband) can be used, because it solves the problems above. A new version (facebook control labs) has 16 channels, and sends data with wifi. This permits a higher sampling frequency, about 1000 Hz, while the original myoband was limited by bluetooth to around 200 Hz. 
+
+
+High density EMG permits a much higher resolution of muscle potential measuring. Requries more dificult mounting. Double side sticky foam, and we need gel onto the foam such that it enters the holes. Lastly it is cleaned. This is very inconvinient outside of a lab. Has very high potential, but the amplifier is like a big box so it is not convinient outside of a lab. We will learn more about this in a future lecture.
+It is possible to have 2D images of snapshots of potentials in a grid. Play them through time and you have video of EMG. 
+
+
+\section{HD EMG to recognize hand gestures}
+Invariant of wrist conditions. You need to do pattern classification of EMG. This is done by extracting features, by doing some signal processing. EMG signals are \textit{Stochastic signals} so they vary from sample to sample. Therefore we use windowing and compute segments from these windows. You can compute the features from the data in the windows. Next we do feature selecttion methods (PCA, LDA, etc.) 
+
+\section{selecting important electrodes}
+This is about reducing the dimensionality of the feature vector.
+
+\section{WEARPLEX}
+Project making high density electrodes available in textiles through clothing.
+
+
+
+\section{Force Myography}
+Uses force sensors.
+
+
+
+\section{Mechanomyography}
+Uses accelerometer.
+
+
+\section{Sonography}
+Using Sonar to increase depth resolution and reach deeper into the body. 
+
+
+\section{Using Brain Signals for control}
+EEG is complicated, you need a cap with metal plates with gel to measure brain signals. Some guys in Aarhus are developping EEG from Ear electrodes. But this is very local, so it can pretty much only measure brain signals regarding hearing and sounds. 
+
+
+Headphones with electrodes (conductive materials wrapped around the cups.)
+
+
+Nextmind focuses on the back of the head, which measures visual stimulus. 
+
+You can also mount the electrodes inside the blood vesels and veins or use neural dust in nano technologies. 
+
+
+\end{document}

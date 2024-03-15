@@ -1,0 +1,134 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Introduction and Theory\\
+	\large Lecture 1: Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Interaction levels}
+\begin{itemize}
+	\item Planning, Generation and synchronization
+	\item Recognition, Classification and Interpretation
+\end{itemize}
+
+Gestures like pointing at a projector, and then pausing the speech until the hand is pointing, or the other way around. 
+
+There is the cognitive level, and there is the material level. In this course we only look at the material level.
+
+\subsection{Human Robot Trust Research}
+They are looking at different levels of trust between the robot and the human. 
+
+
+exam:
+
+oral, 20 minuts.
+Human perceptual system is no longer there.
+
+
+We look at Workspace negotiation. 
+
+Interface technology, are the devices that we use to interface with the robots. 
+
+\section{HRI vs Robotics}
+Robotics is about creating the physical objects.\\
+HRI is the way that these robot interact socially with humans. 
+
+\subsection{Service robot at restaurant}
+
+For a robot waiter, then the HRI question is about, how the robot interacts with the customer. How does it interact with e.g. a family vs a business man. There may be different social norms that are accepted by waiters, and certain behaviours that are accepted and some are considered rude. 
+
+
+\section{Example of a current Topic in HRI}
+It is difficult to determine e.g. speech between humans and speech directed towards the robot. 
+
+\section{Verbal interaction}
+Besides chatGPT there are different verbal tools.
+\begin{itemize}
+	\item Automatic Speech Recognition (ASR)
+	\item Text To Speech (TTS)
+\end{itemize}
+
+Syntax vs semantics vs pragmatics
+
+
+Language can be ambigius. 
+\begin{itemize}
+	\item Guest: Can i have one water
+	\item Robot: Yes, that is permissible.
+	\item Robot: Can you please tell me your order.
+\end{itemize}
+
+Humans are very polite, they do not order directly, so they dress it up a bit. The robot needs context in order to figure out what is exactly meant. 
+
+A study has shown that humans interact the same way towards robots as they interact between each other. 
+
+\section{Non-verbal Interaction}
+Gaze (look intensely in one direction )(falde i staver)
+While robotics is concerned with how we register this, using sensors and classify them. The HRI question is thus what does gaze mean, What is the function of these signals in the interaction?
+
+\subsection{Gaze}
+We register gaze using an eye tracker. Figure out what are the gaze points. 
+\begin{itemize}
+	\item Saccades is reading ahead 4-7 words at a time and only fixating on these, and still understanding it. 
+\end{itemize}
+
+A study has been done where intention regognition is done to gain knowledge of what the user wants to work on next, and achieved 0.5 seconds preinteraction with 80\% accuracy. 
+
+\section{Gestures}
+There are different types of gestures
+\begin{itemize}
+	\item Dietic
+	\item Beat
+	\item Iconic
+	\item Metaphoric
+\end{itemize}
+
+\section{Social Aspects}
+
+
+\section{Spatial behavior}
+What happens in different distances from a human.
+\begin{itemize}
+	\item Intimate
+	\item Personal 
+	\item Social
+	\item Public 
+\end{itemize}
+Different behaviours are allowed in these different spaces. 
+The dynamics of how people get into different static positions, has not been researched much, and this is a problem for robots.
+
+\section{Trust in human robot interaction}
+There is a difference between the actual trustworthyness of a robot, and the percieved trustworthyness by a human. We want both of these axis to correlate. There should not be a big difference. There is the overtrust erea, and there is the under-trust. 
+How do we repair trust?
+
+
+\end{document}

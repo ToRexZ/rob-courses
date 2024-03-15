@@ -1,0 +1,86 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 10: Proximal Policy Optimzation \\
+	\large Object Manipulation and Task Planning}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+\begin{itemize}
+	\item Not necessarily the state of the art. 
+\end{itemize}
+Comparrison to standard deep reinforcement learning. 
+\begin{itemize}
+	\item The distribution can be different in different times during training and execution. This is called dynamic datasets, and you can also use offline reinforcement learning, which utilises a prerecorded dataset. 
+	\item Uses sthochastic gradient descent that does not require a great dataset beforehand. 
+	\item The exercise only needs to train for 10 minutes. 	
+	\item It records the dataset during the training. 
+	\item DQN stores the action taken in each state.
+\end{itemize}
+Challenges:
+\begin{itemize}
+	\item Training instabilities. The everchanging data environment can make the tareining process unstable and unpredictable. 
+	\item 
+\end{itemize}
+
+PPO offers great solutions to the epsilon-greedy tradeoff. Exploration/explotation
+
+Policy Gradient Method
+\begin{itemize}
+	\item Instead of predicting Q-values, we can then output the action directly, so it essentially can work as a continuous action space.
+\end{itemize}
+
+PPO has online learning, so it takes the transitions and makes the action directly. 
+
+Proporties
+\begin{itemize}
+	\item It has a trust region. 
+	\item If the gradient is in a good area, then we update the policy a lot, and vice versa. 
+	\item Calculate the policy gradient loss 
+	\begin{itemize}
+		\item This function includes the policy
+		\item Advantage is indicting how much better this action is compared to the typical action taken in that state. 
+		\item Expectation
+	\end{itemize}
+\item Advantage estimate
+	\begin{itemize}
+		\item Discounted sum of rewards - baseline estimate. uses the value function $ V(s) $
+		\item If the advantage is possitive, the gradient will be positive. This will increase the action policy.
+	\end{itemize}
+\item Conservative gradient methods.
+	\begin{itemize}
+		\item Gradient descent on sampled data may move the policy too for  away from good regions.
+	\end{itemize}
+\item We are looking at ratios between the current policy relative to the previous policy. If the ratio is $ >1 $ then it was better than the previous. Therfore the action is in greater favor relative to the previous policy. 
+\item Clipped surrogate function $ \rightarrow $ we have to set the epsilon value. usually 0.2
+\end{itemize}
+Actor critic. The actor is the neural network that computes the action. The critic neural network tells the actor how it is doing. This can also be done on PPO. 
+\end{document}

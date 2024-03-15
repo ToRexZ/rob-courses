@@ -1,0 +1,65 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 3: Object Detection and Grasping  \\
+	\large Object Detection and Task Planning}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+The goal of today is to do a pickup and let go of the green box, then pick it up at the new location. Bin picking can be an application. Some are general purpose that just assume standard shapes. 
+
+\textbf{Affordances}: What capabilities do we have with the object that we are holding. Depending on where you grasp the object, it has different affordances. E.g. holding a hammer. 
+
+\section{Improving performance}
+Use orthographic view. In the physics panel, it is possible to speed up the factor. 
+
+\section{Manipulation with perception}
+The frame of the object can e.g. have the z-axis pointing downwards, therefore it is possible that the robot grasps it from underneath, which is not possible. Therefore it is not necessary possible to just grasp from the same angle everytime. 
+
+\section{Logical camera}
+Only depth camera. Does not have rgb. Simulation only. The near clipping and far clipping plane sets the depth of field. 
+
+\section{Gazebo world}
+The objects that must be manipulated, must be placed outside the robot\_descritption, and urdf. It must be spawned individually, else it will be attached to the robot. 
+
+There is a webiste called paperswithcode. Usefull. 
+
+\section{TF}
+needs two things to generate transforms:
+\begin{itemize}
+	\item \texttt{/joint\_states} 
+	\item \texttt{/robot\_description} or \texttt{urdf}  
+\end{itemize}
+
+The reference frames can be placed anywhere you want on the object. 
+ 
+\end{document}

@@ -1,0 +1,132 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 3: Embodied Interaction  \\
+	\large Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Embodied Interaction}
+Example is \textit{affective} body movement of a robot. \\
+Agents paradigm of AI:
+\begin{itemize}
+	\item Agents are systems that perceive their environment and act in it.
+	\item 
+\end{itemize}
+General model of the cognitive part of the agent. 
+
+\begin{itemize}
+	\item Perceive
+	\item Act
+	\item Reason
+\end{itemize}
+A good example of this is a thermostat. Depending on the temperature of the room. we let the warn or cold water flow through. 
+
+\section{Gestures}
+Gestures complement what we say, and they may save time if used correctly (Explain where the buststop is without pointing). \\
+Gestures may only have meaning in certain cultures or languages. 
+
+There are multiple taxonomies of the gesutres. 
+\begin{itemize}
+	\item Speech linked
+		\item Non speech linked. 
+\end{itemize}
+
+Gesture space is based around the center of the body. The are a periphary. 
+
+There are multiple ways of doing the same pointing gestures. Depending on the how far out in the periphary the gesture is performed. 
+
+\section{Expressivity Parameters}
+Parameters:
+\begin{itemize}
+	\item Spatial volume (amplitude of the movement.)
+	\item Speed (how quickly it is done)
+	\item Energy (the level of overshoot)
+	\item Fluidity (How continuous is it)
+	\item Repitition (How often the movement is expressed)
+\end{itemize}
+3 phases of gestures (preparation, stroke and the retraction)
+
+
+A gesture speed must match the speed of the sentence, otherwise there would be waiting time either on speech or by gesture. 
+
+\section{Spatial Behaviour}
+2 things to be aware of:
+\begin{itemize}
+	\item Proxemics.
+	\item 
+\end{itemize}
+The size of robots has an effect on how close we allow the robot to get to us. pepper is like a child, so we automatically allow it to get closer. 
+
+\section{Spatial orientation}
+A conversation between two persons, and a 3 person joins them. This is called F-formations for static group interaction. 
+\begin{itemize}
+	\item r-space
+	\item p-space
+	\item o-space 
+\end{itemize}
+If the 2 initial persons that start facing each other, reforms the spatial oriantion to let the 3'rd person in. 
+
+\section{Affective Interaction}
+You can use emotions in interactions. Intrapersonal and interpersonal.
+
+\subsection{Emotions}
+Categorial models there are different levels, refer to the slide.
+\begin{itemize}
+	\item Anger
+	\item Disgust
+	\item Fear
+	\item Enjoyment
+	\item Sadness
+	\item Suprise
+\end{itemize}
+
+It is also important to consider the dynamics of the emotions. E.g we may not know how you go from fear to sadness. What would happen?
+
+PAD model (current way of determining dymanics)
+\begin{itemize}
+	\item 
+\end{itemize}
+
+
+\section{Emotion recognition}
+Look at:
+\begin{itemize}
+	\item Facial Expressions
+	\item Posture
+	\item 
+	\item 
+	\item 
+\end{itemize}
+You can use emg to register emotional state. 
+
+
+\end{document}

@@ -1,0 +1,39 @@
+FROM althack/ros:noetic-gazebo
+
+# Add display capabilities to nvidia driver 
+ENV NVIDIA_DRIVER_CAPABILITIES graphics,utility,compute,display
+
+# Install NVIDIA container toolkit
+RUN curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --dearmor -o /usr/share/keyrings/nvidia-container-toolkit-keyring.gpg \
+    && curl -s -L https://nvidia.github.io/libnvidia-container/stable/deb/nvidia-container-toolkit.list | \
+    sed 's#deb https://#deb [signed-by=/usr/share/keyrings/nvidia-container-toolkit-keyring.gpg] https://#g' | \
+    sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list \
+    && sudo apt-get update
+
+# Install the RealSense SDK
+RUN sudo mkdir -p /etc/apt/keyrings && \
+    curl -sSf https://librealsense.intel.com/Debian/librealsense.pgp | sudo tee /etc/apt/keyrings/librealsense.pgp > /dev/null && \
+    sudo apt-get install -y apt-transport-https && \
+    echo "deb [signed-by=/etc/apt/keyrings/librealsense.pgp] https://librealsense.intel.com/Debian/apt-repo $(lsb_release -cs) main" | \
+    sudo tee /etc/apt/sources.list.d/librealsense.list && \
+    sudo apt-get update && \
+    sudo apt-get install -y librealsense2-dkms librealsense2-utils librealsense2-dev librealsense2-dbg && \
+    sudo rm -rf /var/lib/apt/lists/*
+
+# Install Workspace dependencies
+RUN apt update && apt install -y --no-install-recommends\
+    # List the packages here:
+    libserial-dev\
+    ros-noetic-rqt-joint-trajectory-controller\
+    ros-noetic-joint-trajectory-controller\
+    ros-noetic-ros-controllers \
+    nvidia-container-toolkit\
+    ros-noetic-gazebo-ros-pkgs \
+    ros-noetic-gazebo-ros-control \
+    # Cleanup
+    && rm -rf /var/lib/apt/lists/*
+
+# Set up environment variables for the workspace
+ARG WORKSPACE
+RUN echo "if [ -f ${WORKSPACE}/devel/setup.bash ]; then source ${WORKSPACE}/devel/setup.bash; fi" >> /home/ros/.bashrc
+RUN echo "export GAZEBO_PLUGIN_PATH=${GAZEBO_PLUGIN_PATH}:${WORKSPACE}/src/move_hand/gazebo_plugin_tutorial/build" >> /home/ros/.bashrc

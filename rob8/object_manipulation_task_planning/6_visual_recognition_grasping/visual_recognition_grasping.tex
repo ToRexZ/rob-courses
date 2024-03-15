@@ -1,0 +1,84 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 6: Visual Recognition for robotics grasping applications  \\
+	\large Object Manipulation and Task Planning}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Challenges of visual recognition}
+
+\begin{itemize}
+	\item View-point
+	\item Illumination
+	\item Scale
+	\item Deformation
+	\item Occlusion
+	\item Apperance variation
+	\item Clutter
+\end{itemize}
+
+\section{Evaluation definitions}
+When a model has high \textit{recall} it classifies most of the positives correctly. \\ 
+Mean avearage precision is a weighted average of intersections over union.
+
+\section{Object detection architectures}
+Traditional methods constitute surf and sift. They use a sliding window approach. This is called exhaustive search. 
+
+\section{Object Detection}
+\begin{itemize}
+	\item ImageNet (14+) million annotatad images. 
+	\item Coco labelled images
+\end{itemize}
+
+\section{6D Pose estimation}
+Knowing the objects position w.r.t. the camera. We can describe both rotations and translations.
+\subsubsection{Table top segmentation}
+One algorithm is based on pointclouds, called \textbf{table top segmentation}. Use RANSAC to remove the table top. use K-means clustering to cluster the points into the objects. 
+
+\subsubsection{Grasping affordances}
+Depending on the type of grasp, and where you grasp the object, determines the tasks that are possible with the object. E.g. grapping a watee bottle from the bottom, so it is upside down, thus you cannot drink from it. 
+
+\subsubsection{Grasp representation}
+Sample radom contact points. Find $ c_1 $ and $  c_2 $ and then the center of grasp. 
+
+In most setups, we have a single view. Extract the coordinate frame using PCA. 
+
+\subsubsection{Dex-net (learning based grasping)}
+Utilizing the data to compute the probability of a successfull grasp. 
+
+\subsubsection{Grasp Pose Detection (GPD)}
+Great with unknown objects. 
+
+
+
+
+
+\end{document}

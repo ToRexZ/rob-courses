@@ -1,0 +1,8 @@
+prefix=/development/hand_rl_ws/devel
+
+Name: hand_prosthesis_rl
+Description: Description of hand_prosthesis_rl
+Version: 1.0.0
+Cflags: -I/development/hand_rl_ws/devel/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime rospy std_msgs
