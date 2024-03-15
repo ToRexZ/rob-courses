@@ -1,3 +1,9 @@
 [submodule "rob7/perception/miniproject/Mini-Project-Perception"]
 	path = rob7/perception/miniproject/Mini-Project-Perception
 	url = https://github.com/Asbjorn2625/Mini-Project-Perception.git
+[submodule "rob8/object_manipulation_task_planning/OMTP_Exercises"]
+	path = rob8/object_manipulation_task_planning/OMTP_Exercises
+	url = https://github.com/RoboticsAAU/OMTP_Exercises.git
+[submodule "rob8/project/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs"]
+	path = rob8/project/development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs
+	url = https://github.com/RoboticsAAU/hand_prosthesis_rl_control_pkgs.git
