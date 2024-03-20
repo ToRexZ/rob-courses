@@ -10,3 +10,6 @@
 [submodule "rob8/project/development/hand_rl_ws/src/mia_hand_ros_pkgs"]
 	path = rob8/project/development/hand_rl_ws/src/mia_hand_ros_pkgs
 	url = https://ToRexZ@bitbucket.org/prensiliasrl/mia_hand_ros_pkgs.git
+[submodule "student_work"]
+	path = student_work
+	url = https://github.com/RoboticsAAU/student_work.git
