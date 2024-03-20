@@ -50,6 +50,7 @@
         "ms-python.python",
         "betwo.b2-catkin-tools",
         "DotJoshJohnson.xml",
+        "redhat.vscode-xml",
         "ms-azuretools.vscode-docker",
         "ms-iot.vscode-ros",
         "ms-vscode.cpptools",
@@ -65,7 +66,10 @@
         "tomoki1207.pdf",
         "irongeek.vscode-env",
         "ngtystr.ppm-pgm-viewer-for-vscode",
-        "mutantdino.resourcemonitor"
+        "mutantdino.resourcemonitor",
+        "tinymooshgamesinc.tree-exporter",
+        "wayou.vscode-todo-highlight",
+        "gruntfuggly.todo-tree"
       ]
     }
   },
