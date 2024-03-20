@@ -9,5 +9,9 @@ rob8/object_manipulation_task_planning/rl_env/
 
 
 
+
 **/build/**
 **/devel/**
+
+
+**/.vscode/**
