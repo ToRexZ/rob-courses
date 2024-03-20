@@ -1,0 +1,111 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 6: EEG and Eye tracking  \\
+	\large Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{EEG feature selections}	
+\begin{itemize}
+	\item Tempo based 
+	\item Frequency based
+\end{itemize}
+
+They usually work in windows.
+
+If we can make the robot detect error detection of the human such that it moves to correct the human error. \\
+Paper where they tried to develop an emergency stop for a robot arm using eeg. 
+They could register emergency stops in 200-250 ms which is a lot faster than the human reaching for an emergency stop button.  
+    
+\begin{itemize}
+	\item Attention and Focus $ \rightarrow $ P300
+		\begin{itemize}
+			\item Cycle through the letters of the alphabet and make the user focus on the letter they want, then a peek will come in p300 which is approximately 300 ms after the letter was shown. Therefore this can be used to detect what the user is focussing on. 
+			\item Could also show objects and blink them. This resulted in an increase of 50 hz increase in the area of the brain. 
+			\item They could also show a lamp blinking at 15Hz and using spatial information between the electrodes, it is possible to detect what object the user is focussing on. 
+			\item Does not necessarily need to be visual, can also be auditory. play 3 audio book for the user and a Neural Network Classifier to extract what audiobook the user is listening to.
+		\end{itemize}
+	\item Immersion and Concentration
+		\begin{itemize}
+			\item Compare a red dot to an entire computergame with great immersion. 
+			\item Could be used to control the speed of the robot, by e.g. making it slower in the case of the user is unconcentrated. 
+		\end{itemize}
+	\item Movement intentions
+		\begin{itemize}
+			\item Movement related cortical potential. Slow decrease in amplitude before a movement occurs
+			\item Look at frequency spectrum, where it goes down before the movement and up after the movement. 
+			\item Both of the above can detect movement before they occur. 
+			\item Added different speed zones in the overlapping working error, where the robot initially are not allowed to move fast. They added that if the human is not about to move, it can increse the speed.
+		\end{itemize}
+\end{itemize}
+
+
+\section{Eye tracking}
+\begin{itemize}
+	\item Scleral search coil (coil in a contact lense)
+	\item Electrooculography EOG 
+	\item Limbus reflection
+	\item Video Oculograhy
+\end{itemize}
+
+You need to both detect the center of the eye using curvature and landmarks around the eye in order to determine the viewing direction.
+
+\subsection{VOG systems}
+\begin{itemize}
+	\item Can both be monocular and binocular glasses
+	\item Can both be stationary or mobile
+	\item Research in 3D eye tracking, where the depth of the user can also be detected, however it is very prone to error. 
+\end{itemize}
+
+Can be calibrated using elipses and points. 0.5 cm accuracy on distances of 1m.
+There are also cheaper options wit a littlse less degree accuracy. 
+
+
+\subsection{Intention estimation}
+Can you estimate intention based on where you are looking. When driving, and looking at a bicycle, do you want to drive into the bicycle or do you want to avoid it?
+
+
+Compute probability using hidden markov decision models to compute the highest likelihood of selecting a single object. Look at if it is saturated for a longer period of time, which may result in that this is the object that the user wants to grasp. 
+
+\subsubsection{State model}
+\begin{itemize}
+	\item Target-Attracted Gaze Movement Model $ \rightarrow $ Based on kalman filtering. Used to predict the next position of the gaze, and correct the position and velocity estimate of the gaze in the update step. Includes the gaussian noise as usual in kalman filtering. 
+\end{itemize}
+
+They used a projection to compute the distance of each object to the viewing direcition, and then if they are within a threshold, and the closest, is then considered the object that the user is looking at. 
+
+\subsection{Eye-tracking for evaluation}
+They evaluated the eyetracking during tasks of varying difficulty, where they look at the viewing direction in conjunction with pupil dilation. Using entropy fluctuations and questionaires they could evaluate the eye-tracking algorithm.
+
+\vspace{5pt}
+They can also predict how difficult a task is with 85\% accuracy. 
+
+\end{document}
