@@ -1,2 +1,0 @@
-set(mia_hand_msgs_MESSAGE_FILES "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_msgs/msg/GraspRef.msg;/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_msgs/msg/FingersData.msg;/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_msgs/msg/FingersStrainGauges.msg;/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_msgs/msg/ComponentStatus.msg")
-set(mia_hand_msgs_SERVICE_FILES "/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_msgs/srv/ConnectSerial.srv;/development/hand_rl_ws/src/mia_hand_ros_pkgs/mia_hand_msgs/srv/GetMode.srv")

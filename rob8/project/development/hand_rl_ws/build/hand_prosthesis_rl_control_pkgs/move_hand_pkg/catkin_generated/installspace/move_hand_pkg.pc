@@ -1,8 +1,0 @@
-prefix=/development/hand_rl_ws/install
-
-Name: move_hand_pkg
-Description: Description of move_hand_pkg
-Version: 0.0.0
-Cflags: 
-Libs: -L${prefix}/lib -lgazebo_ros_move_hand
-Requires: gazebo_dev gazebo_ros geometry_msgs nav_msgs tf2 tf2_geometry_msgs tf2_ros

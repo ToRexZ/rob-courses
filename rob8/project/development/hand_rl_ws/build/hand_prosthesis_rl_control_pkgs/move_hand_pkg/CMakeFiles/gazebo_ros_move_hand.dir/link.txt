@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC    -shared -Wl,-soname,libgazebo_ros_move_hand.so -o /development/hand_rl_ws/devel/lib/libgazebo_ros_move_hand.so CMakeFiles/gazebo_ros_move_hand.dir/src/gazebo_ros_move_hand.cpp.o   -L/usr/lib/x86_64-linux-gnu/gazebo-11/plugins 

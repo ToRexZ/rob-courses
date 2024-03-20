@@ -1,8 +1,0 @@
-prefix=/development/hand_rl_ws/devel
-
-Name: point_cloud_ros
-Description: Description of point_cloud_ros
-Version: 1.0.0
-Cflags: 
-Libs: -L${prefix}/lib 
-Requires: 

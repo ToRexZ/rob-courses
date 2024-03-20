@@ -1,7 +1,0 @@
-set(hand_prosthesis_rl_SETUP_PY_SETUP_MODULE "distutils.core")
-set(hand_prosthesis_rl_SETUP_PY_VERSION "1.0.0")
-set(hand_prosthesis_rl_SETUP_PY_SCRIPTS "")
-set(hand_prosthesis_rl_SETUP_PY_PACKAGES "hand_prosthesis_rl")
-set(hand_prosthesis_rl_SETUP_PY_PACKAGE_DIRS "src/hand_prosthesis_rl")
-set(hand_prosthesis_rl_SETUP_PY_MODULES "")
-set(hand_prosthesis_rl_SETUP_PY_MODULE_DIRS "")

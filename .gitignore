@@ -6,3 +6,8 @@ student_work/
 
 rob8/object_manipulation_task_planning/omtp_env/
 rob8/object_manipulation_task_planning/rl_env/
+
+
+
+**/build/**
+**/devel/**
