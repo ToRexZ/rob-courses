@@ -1,0 +1,175 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 5: Soft Robotics using Functional Electrical Stimulation \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{FES (Functional Electrical Stimulation)}
+Human is a perfect robot. FES permits controlling the human like a "plant"
+
+\subsection{Surface FES}
+\begin{itemize}
+	\item You need electrodes. 
+	\item We need to provide electrical stimulators. They can stimulate the muscles.
+\end{itemize}
+
+The inner workings:
+\begin{itemize}
+	\item Contradicts the first slide. It activates the nerves instead of the muscles.  
+	\item It is easier to activate the nerves, as it requires less current to activate the nerve. 
+	\item By stimulating the nerve, the action potential will travel towards the muscle and activate the muscle naturally. 
+	\item The nerves are targeted between the myolin sheets.
+
+\end{itemize}
+How a nerve works:
+\begin{itemize}
+	\item The inside of the nerve has a negative potential
+	\item The outside is positive
+	\item By switching the polarity in one position of the nerve, that positive potential travles through the neighbouring nerves. 
+	\item The electrode will "hyperpolarize" under the positive side. This does not change anything, while the negative electrode will flip the polarity, known as "depolarizing" the nerve. Because of the direction of the electical signals is inverted. 
+	\item You can have multiple cathodes (negative electrode) and you just need one single positive anode. 
+\end{itemize}
+
+The size of the negative electrode gives different resolutions and selectivity levels. Smaller gives better selectivity.
+
+
+\subsubsection{Stimulation profile}
+\begin{itemize}
+	\item If you increase the pulse amplitude,  
+	\item The width gives the ...
+	\item The quantity of the charge, is the area of the pulse (amplitude * pulse width)
+\end{itemize}
+
+Pulse shapes:
+\begin{itemize}
+	\item Symmetric bipolar is great for someone using FES every day, because it removes the charges after it was injected. The positive and negative quantity of charge is equal. 
+	\item Asymmetric Bipolar. Short the skin, and then the skin will discharge like a capacitor. 
+\end{itemize}
+
+\subsubsection{Physiological contraction}
+\begin{itemize}
+	\item The motor neurons together with the muscles, these are called motor units. Where there are multiple fibres in each unit. And there are multiple units in the muscle. 
+	\item The brain activates the motor units asynchronomously which when summmed up into the holistic muscle movement, then it gives a smooth activation. 
+	\item Increasing the frequency, we get smoother activation, 15-20 Hz, called "Tetonic" activation. 
+\end{itemize}
+
+\subsubsection{Recruitment}
+\begin{itemize}
+	\item Lower pulse amplitude, the superficial nerves are activated, and they are the largest.
+	\item Increasing the amplitude results in a deeper activation. 
+	\item The action potential is binary. You cannot increase it, however to increase muscle activation, increase the number of motor units. 
+\end{itemize}
+
+
+\subsection{Artificial vs physiological activation}
+\begin{itemize}
+	\item Artificial is synchronous, which results in all the nerves activates at the same time. The brain activates it 6-8 Hz and 10 Hz. The Artificial electrodes will need to stimulate the nerves with around 40 Hz. This will result in fatique. 
+	\item The Brain will activate the least fatiqued motor units. In electrical stimulatio will always activate the same motor units. 
+	\item The brain activates the smaller motor units first which are the long lasting motor units. This is the opposite with the artificial nerves. The large nerves are connected to the large motor units, which are higher stronger and more explosive bore very easily fatiquing. 
+	\item The muscle and neurological fatique is the largest problem with FES.
+\end{itemize}
+
+
+\subsection{Activating lower extremities}
+By putting electrodes on the glutes and quadrecepts, you can assist a patient in standing, and if you add the calf muscles, you can pretty much assist in walking as well. 
+This can be done with upper limbs as well. Control the degrees of freedom of a human arm this way. You can increase the power of muscle activation but for a normal human might feel discomfort and pain due to the electrical stimulation. However a paralyzed person does not have sensory feedback, so you can increase the power without the patient feeling discomfort. 
+
+
+You need to stimulate the muscles in specific profiles in order to achieve the desired movement, higher level movements like drinking from a cup. 
+
+\section{FES for soft robotics}
+Refered to sof robotics because it uses the human itself as actuation. You can get rid of external actuators like an exoskeleton and the battery. The only thing that is needed is the stimulator which is like a small box that stimulate the musles. 
+
+
+\begin{itemize}
+	\item Textile based neuroprosheses
+	\item Usually the electrodes are self adhesive. If we put them into textiles it gets much better. 
+	\item Using a full body suit, we can do what is called "Motor Neural Prosthesis" which can act like a bypass of the broken back to regain function in the legs again. This uses some control interface to read the brain signal. 
+\end{itemize}
+
+
+\subsection{Treat foot drop}
+Paralysis of the angle. During the gait swing, it is very important to lift the angle, otherwise you would fall. Usually the angle is fixed with a AFO (Angle Foot Orthosis), but this fixes the angle at 90 degrees. Using FES it is possible to control the ankle using an IMU that detects the foot hitting the ground.
+
+\subsection{Lifting the leg}
+The hip flexors are very deep inside the leg, and therefore they cannot be activated using surface electrodes. You can use the flexion withdrawel reflex. This reflex is used to remove the leg if you step on a nail. If this can be activated, where you can put the electrode behind the knee. If you actiate the nerve behind the knee enough, then it is possible to trigger the reflex, that activates all the flexors in the legs. 
+
+
+\subsection{Restoring standing and walking using FES Motor programs}
+\begin{itemize}
+	\item Most of the balancing is done in the hips, which is why it is difficult to help the person balancing. 
+	\item It is necessary to hand craft the activation profiles. Ascenting stairs, it is much more cumbersome than just walking.
+	\item Using a state machine, it is possible to detect what different activies of daily living.
+\end{itemize}
+
+You can control the different muscles by carefully selecting spots in the spinal choord.
+
+
+\subsection{Controlling FES}
+\begin{itemize}
+	\item The muscles as actuators are very non-linear. The muscle is also compliant.
+	\item You can invert the model of the muscle, you can apply the angle, and it returns the pulse width. Non-linear equations are very difficult to invert. 
+	\item People have been combining PID with the inverse model, where the pule width is provided by the inverse model, and then regulated by the PID model.
+	\item This does however not solve the problems of fatique. You can detect the fatique by recording EMG, and looking at the muscle activation. Therefore this method can be adapted to include fatiqing. 
+\end{itemize}
+
+
+\section{Analytical models}
+Mathematical models. 
+
+Complex problem $ \rightarrow $ Very non-linear
+
+\begin{itemize}
+	\item Extensor (compliant $ \rightarrow $ will be modelled as the compliance of the joint. Instead of modelling the individual muscle compliance, we model it around the joint.)
+	\item Flexor (compliant, same as above. )
+	\item Elasticity
+	\item Viscousity (dashpot) $ \rightarrow $ resistance in joint movements. 
+\end{itemize}
+
+
+\begin{itemize}
+	\item Non-linear parts:
+		\begin{itemize}
+			\item The non-linear part is the force equation relative to the length of the muscle. The muscle diagram looks like an inverse parabola. The peak is the optimal efficiency of the muscle, where the most force is applied. 
+			\item Force vs the velocity of the joint and thereby the muscle, is also non-linear. The velocity is linear with saturations, in other words it has constraints. 
+			\item You can describe the muscle contraction by joint angles because as you move the knee, the quads changes length. 
+		\end{itemize}
+	\item Linear parts
+		\begin{itemize}
+			\item The muscle has different dynamics than a motor. This is called activation dynamics. There is a small delay in from the activation of the muscle to the applied force. 
+		\end{itemize}
+\end{itemize}
+
+
+
+\end{document}
