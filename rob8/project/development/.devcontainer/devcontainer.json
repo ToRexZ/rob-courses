@@ -69,7 +69,8 @@
         "mutantdino.resourcemonitor",
         "tinymooshgamesinc.tree-exporter",
         "wayou.vscode-todo-highlight",
-        "gruntfuggly.todo-tree"
+        "gruntfuggly.todo-tree",
+        "ms-vsliveshare.vsliveshare"
       ]
     }
   },
