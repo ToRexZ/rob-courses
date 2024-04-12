@@ -1,0 +1,64 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 7: Using Robotics and functional electrical stimulation to treat tremor  \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+Instead of using fes to make motion, we can also use it to dampen motion.
+
+\section{Pathological tremor}
+Tremor occurs when they do not pay attention to the hand. 
+\begin{itemize}
+	\item Resting Tremor occurs when the patient is resting on the table. 
+	\item Postural tremor occurs when a certain posture is requested. 
+	\item Kinetic tremor occurs when the patient is doing goal directed movements. When the patient is asked to touch his nose, he will start shaking during the movement. 
+\end{itemize}
+
+There is no cure. Can use medicine but more and more is needed, so it is not very effective. 
+
+Tremor starts when there is oscilatory activity in the brain. Subcortical stimulation can prevent the tremor. 
+
+
+you can do invasive surgery using gamma knife which does not open the skull during surgery. Uses concentrated and focussed gamma radiation that destroys a selective part of the brain.   
+
+You can also suppress it with extra mass, so it becomes a low pass filter, by increasing the inertia of the tremor. 
+
+Dashpots (mechanical dampers) can suppress the tremor. 
+Mechanical components also affect the voluntary motion. We need an intelligent system. 
+
+
+
+
+
+\end{document}
+
