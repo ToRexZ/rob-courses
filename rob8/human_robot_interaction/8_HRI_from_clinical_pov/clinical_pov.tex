@@ -1,0 +1,120 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 8: From a Clinical point of view  \\
+	\large Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Examples of successfull HRI}
+\begin{itemize}
+	\item If we place eyes on a robot, then we have an intuitive place to look at the robot. That is a good way to use in the context of data aquisition of where the user looks.
+	\item It does not need to look like person to feel like a person if we e.g. use eyes. 
+\end{itemize}
+\subsection{Design Affordance}
+\begin{itemize}
+	\item Designs impose expectations to objects, like we design a chair to look like a chair, then we expect that we can sit on it. This is called design affordance. 
+	\item It is a way of communication, (one way communication and reciprocal communication.)
+\end{itemize}
+
+\subsection{Paro}
+People with dementia are attached to cats, and paro the seal was a good substitute for a cat. 
+
+
+\section{What is good Human Robot Interaction / What is good interaction}
+\begin{itemize}
+	\item Whenever something is done in a satisfactory fashion. But how is this done?
+	\item It does not need to be super fast.
+\end{itemize}
+
+\section{Medical robots}
+
+\subsection{Prevention}
+\begin{itemize}
+\item Mostly AI based $ \rightarrow $ predicts diseases and spread.
+\item Decision support systems, that assists in making decisions.
+\end{itemize}
+
+\subsection{Diagnosis}
+\begin{itemize}
+	\item Endoscopy robot (a small robot that goes into the throat e.g.) A pill sized robot. It can live stream, collect tissues, and report and mark lesion positions of interest. Magnetically controlled, but very difficult to control within human tissue.
+	\item ION robotic lung biopsies. Difficult to navigate into a broncheous, which is very brittle and could be clogged.
+	\item Magneto sperm. Can navigate in the bloodstream and in the bodily water. This somewhat limits the places where it can swim. Can cary radioactive material and carry it into e.g. cancer cells. Must navigate against flow of the bloodstream in the body. Injected very close to the area of interest. It works in a petridish but may not work in the body where it cannot be seen.
+	\item Tumor targetting nanorobots. Can make small blood clogs around the tumor, which cuts off the bloodsupply to the cancer cells it dies. The blood clog can move, and may cause damage e.g. in the brain. 
+\end{itemize}
+
+
+\subsection{Treatment}
+\begin{itemize}
+	\item ROBERT for assistive robot therapy. Assist as needed. Use EMG and functional electrical stimulation to predict user intention. Increase training for bed ridden patients. 
+	\item REX Robotics which is a bipedal, crutchless exoskeleton, which allows for hands free walking. 
+\end{itemize}
+
+\subsection{Rehabilitation}
+
+
+\subsection{Training robots}
+Robots that look like humans that can be used to train personnel.
+
+\section{Human Robot Interaction in the clinic}
+Usually two different interactions
+\begin{itemize}
+	\item Operator interaction
+	\item Patient interaction
+	\item Patient families
+		\begin{itemize}
+			\item Communication between patient and families. 
+			\item Sometimes the familiy will not want to take on resposibility of taking care of the patient, likewise the patient wont want to be reliable on the family. $ \rightarrow $ Independence. 
+		\end{itemize}
+	\item Other staff
+	\item Tools, Medicin, etc 
+	\item Caregiver (doctor) / Therapist
+	\item Environment
+	\item Maintanance
+	\item Nurse
+	\item Machnines
+	\item Management (we need the cheapest robot, which does not help.)
+	\item  $ \vdots $
+\end{itemize}
+
+
+\section{TEKU Model}
+Analysis of integration of a techonology in an organisation.
+
+
+
+
+
+
+
+
+
+\end{document}
