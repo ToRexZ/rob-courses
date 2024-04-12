@@ -1,0 +1,145 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 8: Dimensionality Reduction in motor control  \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{Introduction}
+We will cover:
+\begin{itemize}
+	\item PCA
+	\item Non-negative Matrix Factorisations
+\end{itemize}
+
+Agenda:
+\begin{itemize}
+	\item Redundancy problem of human robot control
+	\item Principal Component Analysis
+	\item Using NMF
+\end{itemize}
+
+\section{Human Movement Control}
+Humans have more than 100 muscles. 
+\begin{itemize}
+	\item You can train you body to do amazing things.
+	\item The brain sends very specific information to control the muscles.
+\end{itemize}
+
+Different levels of the Central Nervous System:
+\begin{enumerate}
+	\item Supraspinal level $ \rightarrow $  brain (neck and up)
+	\item Spinal Level $ \rightarrow $ You can intersect this level and control parts of a human without interfering with the brain.
+	\item Peripheral Level $ \rightarrow $ This is the muscles it self, and the "afferent" signals, which is signals from the receptors.
+\end{enumerate}
+
+Motor unit is a bundle of muscles and neurons. Muscles are different compared to size. Large muscles may not need that much precision. 
+
+\subsection{Anatomy redundancy problem}
+\begin{itemize}
+	\item The function of the quadrecepts, is to extend the leg, and there is more muscles (motors) that effect the same function.
+	\item The hamstrings, can impede the extension of the leg. However the muscle fibers are tensile.
+\end{itemize}
+
+\subsubsection{How do we control all of these at the same time?}
+The brain sends signals to the spinal cord, and then it distributes the signals to the muscles. The brain controls the muscles in parallel, not SEQUENTIALLY. Some areas of the brain control multiple motor units, sot it sends out bursts, that may affect more then one muscle at a time. You both need to suppress the muscles that counteracts the motion that you are trying to conduct. $ \rightarrow $  If you flex your arm, the triceps should be suppressed. 
+
+
+\section{Dimensionality reduction}
+Normalisation of data: 
+\begin{itemize}
+	\item Divide with the maximum value of the dimension.
+\end{itemize}
+Standardization:
+\begin{itemize}
+	\item Subtract the mean: $ \frac{i - \overline{x}_i}{\sigma} $
+\end{itemize}
+
+\subsection{PCA}
+\begin{enumerate}
+	\item Compute the covariance matrix.
+	\item Center the data.
+	\item Data normalization.
+	\item $ \hdots $
+	\item Compute eigenvalues and corresponding eigenvectors.
+	\item Find the best fitting line.
+\end{enumerate}
+
+You reduce the complexity of the dataset this way.
+
+\subsubsection{Bloodpressure}
+\begin{itemize}
+	\item Diastolic $ \rightarrow $ The pressure of the blood that goes IN to the heart.
+	\item Systolic $ \rightarrow $ The pressure of the blood that goes OUT of the heart.
+\end{itemize}
+120/80 is diastolic/systolic
+
+\subsubsection{Datatypes}
+\begin{itemize}
+	\item Categorigal $ \rightarrow $ Gender
+\item Continuous $ \rightarrow $ Weight
+\end{itemize}
+
+
+\subsubsection{Percentage of the data you need to describe the data}
+You can both base the percentage on the sum of the principal components, or you could set a lower bound on the variance that you want to include. You can also look at how much the percentage drops between the two components.
+
+
+PCA assumes that data is linear. 
+
+\section{Non-linear Matrix Factorizations}
+Decompose dataset into the two main matrixes \\
+SIDENOTE:
+\begin{itemize}
+	\item \textbf{Stance} is when the foot is in the ground.
+	\item \textbf{Swing} is when the foot is swung forwards in the air.
+\end{itemize}
+The datasets regarding gait are very consistent.
+
+Using a linear envelope using a butterworth filter gives a signal on the EMG.
+
+The quads make sure you do not fall by counteracting the hamstrings. 
+
+Plantar flexors  (leg muscles) makes forward prupolsion. The peak activation happens around 45\% of the gait cycle. (starts when the foot is planted into the ground.)
+
+Not only do these muscles control the same joint, but often they are also attached to the same tendon.
+
+
+The muscle weightings multiplied with the activation signals of the knee extensors, knee flexors, and the plantar flexors, is around 92\% reconstruction.
+
+
+
+
+
+
+
+
+\end{document}

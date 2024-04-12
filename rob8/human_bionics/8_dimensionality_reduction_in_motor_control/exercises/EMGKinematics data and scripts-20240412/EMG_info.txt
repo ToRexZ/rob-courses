@@ -1,0 +1,47 @@
+
+The data refers to EMG (in µV) from healthy young adults during normal walking, 
+represented as a full gait cycle (from right heel strike to the following right heel strike). 
+EMG sampling frequency: 2048 Hz
+
+The files "S1_EMGflt" and "S2_EMGflt" are already filtered using:
+- 10-500 Hz band-pass filter
+- Full-wave rectification
+- 10 Hz low-pass filter
+
+=== RIGHT side EMG channels ===
+1-Tibialis anterior
+2-soleus
+3-peroneus
+4-gastrocnemius
+5-vastus lateralis
+6-rectus femoris
+7-biceps femoris
+8-tensor fascia latae
+9-gluteus maximus
+10-erector spinae
+11-external oblique
+12-rectus abdominis
+13-upper trapezius
+14-medial deltoid
+15-splenius capitis
+16-sternocleidomastoid
+
+=== LEFT side EMG channels ===
+17-Tibialis anterior
+18-soleus
+19-peroneus
+20-gastrocnemius
+21-vastus lateralis
+22-rectus femoris
+23-biceps femoris
+24-tensor fascia latae
+25-gluteus maximus
+26-erector spinae
+27-external oblique
+28-rectus abdominis
+29-upper trapezius
+30-medial deltoid
+31-splenius capitis
+32-sternocleidomastoid
+
+

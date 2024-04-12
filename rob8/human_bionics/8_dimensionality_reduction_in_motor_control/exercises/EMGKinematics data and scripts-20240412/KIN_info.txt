@@ -1,0 +1,20 @@
+Kinematics dataset
+Sampling frequency of kinematic data: 80 Hz
+
+The data refers to joint position (or joint angles, expressed in degrees)
+from healthy young adults during normal walking.
+The 100 rows represent time, from 0 to 100% of the gait cycle, segmented from right heel strike to the following right heel strike).
+The 9 columns contain 9 joint angles as follow:
+
+1 - ankle dorsi/plantarflexion (where dorsiflexion are positive angles, and plantarflexion are negative angles)
+2 - ankle inversion/eversion*
+3 - ankle internal/external rotation*
+4 - knee flexion/extension*
+5 - knee valgus/varus or adduction/abduction*
+6 - knee internal/external rotation*
+7 - hip flexion/extension*
+8 - hip abduction/adduction*
+9 - hip internal/external rotation*
+
+* the same rationale for the positive and negative angles described to ankle dorsi/plantarflexion (positive/negative)
+
