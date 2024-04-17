@@ -7,6 +7,8 @@ rob8/object_manipulation_task_planning/omtp_env/
 rob8/object_manipulation_task_planning/rl_env/
 
 
+project/development/hand_rl_ws/.catkin_tools/
+project/development/hand_rl_ws/logs/
 
 
 **/build/**
