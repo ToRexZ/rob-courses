@@ -1,0 +1,148 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 9: HRI from Clinical POV II  \\
+	\large Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+\section{recap}
+
+All of HRI fits into these categories. 
+\begin{itemize}
+	\item Prevention
+	\item Diagnoisis
+	\item Treatment
+	\item Rehabilitation
+\end{itemize}
+
+\section{Exoskeleton}
+Exoskeletons need to be fitted very precisely, and the patient may not be able to feel that it does not fit. One patient broke her angle while she was using a bipedal exoksleton.
+
+
+\section{Human Robot Interaction}
+The robot not only interacts with humans, but it can also affect the interaction between humans. Often times the HRI happens between the robot, patient and clinician.
+
+
+\section{Ethics}
+\begin{itemize}
+	\item Morality? 
+\end{itemize}
+
+Most importantly ethics is a matter of perspective. How do you view a problem, and people may have a different perspectives. 
+
+\subsection{Utilitarianism}
+The greatest amount of good for the greatest number of persons.
+
+\subsubsection{Quality Adjusted Life Year (QALY)}
+A measure of how much quality that the patient would gain over some time. A measure between 0 and 1, where 0 is dead and 1 is perfectly healthy life. The main problem with this is how to evaluate what a procedure is worth?  WHO suggested that you can spend 1-3 GDP per capita, before it gets unprofitable. That is if we design a robotic device that is more expensive than this, then it would evidently render the procedure unprofitable. 
+
+
+\subsection{Challenges for AI}
+Trustworthy AI must provide:
+\begin{enumerate}
+	\item Transparency
+	\item Creditablity
+	\item Auditability
+	\item Reliability
+	\item Recoverability
+\end{enumerate}
+
+A wheelchair user had BCI and the wheelchair could act on its own. However if the patient fell asleep, the wheelchair would just take off and do its own thing.
+
+
+\subsection{DNR - Do Not Recositate}
+If the patient wants to not be revived, then the robout should not provide CPR. Respect the choices of the pateint.
+
+Respect of autonomy. Do we trust the techonology.
+
+Trust in technology. 
+
+Human Autonomy and privacy.
+
+
+\subsection{BCI}
+Can you give consent through BCI? How do we accept it? Are there things that you cannot consent to? Can a patient consent that they decline further lifesupport.
+
+\section{Ethics}
+\subsection{Resaerch protocol}
+How do you choose ethics. The Ethical committee can make choices based on the following data:
+\begin{enumerate}
+	\item Research
+	\item Compile into human readable points for the participant
+	\item Inform the patient $ \rightarrow $ One for each nationality
+	\item Informed consent 
+	\item Recruitment forms
+	\item Add appendixes. Using e.g. surveys, or questionaires
+	\item Application
+	\item Protocol resume
+\end{enumerate}
+
+
+\subsubsection{Protocol / Resume}
+There must always be a doctor who is medically responsible. 
+What is the background and motivation for the experiment?
+Define the purpose of the experiment
+
+What methods are you going to use, how long the test is, and how many times you are going to use it. 
+Describe any risks in the experiment
+Describe the statistics that are to be used on the data. 
+
+Show all the ethical considerations $ \rightarrow $ We can improve the recovery time.Ensure that we have considered all the previous considerations. 
+
+How is the project funded. 
+What is the timeline, and when are you done?
+
+That was document 1.
+
+\subsubsection{Ethical Protocol}
+Fill out the information provided to the patient. This also includes rules like the GDPR rules. 
+One information sheet to participants for every:
+\begin{itemize}
+	\item Experiment
+	\item "Type" of participant, healty and a patient group to compare the two. 
+	\item Expected language of participants
+\end{itemize}
+
+Questionaries does not count as an experiment.
+
+\subsubsection{Process}
+you need to send the data into the committe, and include money for it.
+
+
+
+
+\section{Exercise}
+Define what experiments that are necessary for the guy to be able to use the bipedal exoskeleton.
+
+
+
+
+\end{document}
