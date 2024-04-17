@@ -10,6 +10,29 @@ RUN curl -fsSL https://nvidia.github.io/libnvidia-container/gpgkey | sudo gpg --
     sudo tee /etc/apt/sources.list.d/nvidia-container-toolkit.list \
     && sudo apt-get update
 
+
+# Install CUDA Toolkit and resolve dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    nvidia-cuda-dev \
+    && apt-get install -y --no-install-recommends -f \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install CUDA Toolkit
+RUN curl -O http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/cuda-repo-ubuntu1804_10.1.105-1_amd64.deb \
+    && sudo dpkg -i cuda-repo-ubuntu1804_10.1.105-1_amd64.deb \
+    && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub \ 
+    && sudo apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub \ 
+    && sudo apt-get update \
+    && sudo apt-get install -y cuda \
+    && rm cuda-repo-ubuntu1804_10.1.105-1_amd64.deb
+
+
+
+
+
+
+
 # Install the RealSense SDK
 RUN sudo mkdir -p /etc/apt/keyrings && \
     curl -sSf https://librealsense.intel.com/Debian/librealsense.pgp | sudo tee /etc/apt/keyrings/librealsense.pgp > /dev/null && \
@@ -20,16 +43,21 @@ RUN sudo mkdir -p /etc/apt/keyrings && \
     sudo apt-get install -y librealsense2-dkms librealsense2-utils librealsense2-dev librealsense2-dbg && \
     sudo rm -rf /var/lib/apt/lists/*
 
+
 # Install Workspace dependencies
-RUN apt update && apt install -y --no-install-recommends\
+RUN apt update && apt install -y --no-install-recommends \
     # List the packages here:
     libserial-dev\
     ros-noetic-rqt-joint-trajectory-controller\
     ros-noetic-joint-trajectory-controller\
     ros-noetic-ros-controllers \
-    nvidia-container-toolkit\
+    ros-noetic-image-pipeline \
+    nvidia-container-toolkit \
+    nvidia-cuda-toolkit \
     ros-noetic-gazebo-ros-pkgs \
     ros-noetic-gazebo-ros-control \
+    ros-noetic-realsense2* \
+    python3-catkin-tools \
     # Cleanup
     && rm -rf /var/lib/apt/lists/*
 

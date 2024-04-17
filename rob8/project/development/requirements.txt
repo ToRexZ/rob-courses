@@ -3,3 +3,4 @@ rospkg
 defusedxml
 PyQt5
 PySide2
+-r /development/hand_rl_ws/src/hand_prosthesis_rl_control_pkgs/requirements.txt
