@@ -1,0 +1,111 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 10: Design of usability test  \\
+	\large Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Introduction to usability}
+
+Many medical devices, require usability documentation which are defined by standards.. ISO 9241
+
+Usability is also very common in software development.
+
+\subsection{Ensuring usability}
+\begin{itemize}
+	\item It is important to do it itteratively. Include the user into the design of the test. 
+	\item Make mockups, prototypes and test them to get the exact level of feedback.
+		\begin{itemize}
+			\item Observe the process and the users. 
+			\item Interview/Consultation where questions are asked to the users
+			\item Workshops. Larger timeslots, receive feedback
+			\item Surveys. Big datasets or when we don't have access to the users. 
+			\item Userboard consultation. These are users that represent the users but are also part of the project.
+		\end{itemize}
+	\item Allow usability and users' needs to drive design decisions. Do they prefer big bulky but precise devices, or do they prefer smaller and more discrete devices with less functionality and precision.
+			\item Set qualitative and quantitative goals for the process.
+\end{itemize}
+
+\section{Why usability test}
+\begin{itemize}
+	\item Uncover Problems
+	\item Discover Opportunities (They might like e.g. motor noise for feedback)
+	\item Learn about the users
+\end{itemize}
+
+\section{Testing techniques}
+\begin{enumerate}
+	\item Observe one participant and interview
+	\item Co-discovery, by having two particpants work together. Main benefit of this is that they think out loud by sharing their ideas with each other. 
+	\item Active intervention. Researchers actively engage with the process and discuss with the patient. 
+\end{enumerate}
+
+Sometimes it might be usefull to hide the main objective of the test, by making an alias test.
+
+
+\section{Influencing factors}
+There might be more factors that affect the results of the test. It is important to be aware of these. 
+
+
+\section{Plan a usability test}
+\begin{enumerate}
+	\item Involves many steps and teamwork
+	\item 
+	\item 
+	\item Selecting and organising tasks ()
+	\item Create task scenarios to emulate the real life usecase. 
+	\item Measuring usability with scores and variables. How do we determine satisfaction? Classic smiley survey in Elgiganten. In addition performance metrics should also be considered. How long did it take and how many errors occured. Important to also consider the subjective measures.
+	\item Important to prepare test material, and have the correct documentation, this includes legal documentation.
+	\item Consider the test team and their respective tasks. 
+	\item Conduct a pilot study to train it, and find out if the test is designed corrctly. 
+	\item Recruit Test particpants by contacting
+	\item Record data
+	\item Analyse the data
+\end{enumerate}
+
+Common usability questionaires include:
+\begin{itemize}
+	\item QUIS
+	\item SUMI
+	\item CSUQ
+	\item SUS (System Usability Scale)
+	\item NASA TLX
+	\item INTUI
+\end{itemize}
+
+\section{Exercise of today}
+Consider our semester project, and plan a usability test. 
+
+
+
+\end{document}
+
