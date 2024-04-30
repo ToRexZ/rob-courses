@@ -1,0 +1,133 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 10: Statistics and Data analysis  \\
+	\large Human Robot Interaction}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+
+\section{Theories and hypothesis}
+We work with some theory, and from that we make a prediction based on the theory. This hypothesis is evaluated with and then we may be able to prove or disprove the hypothisis. We are always trying to disprove it, and untill that is done, the hypothesis is considered true. It must be scientific
+\begin{itemize}
+	\item Testable
+	\item Falsifiable
+\end{itemize}
+
+\subsection{Null hypothesis}
+There is no effect of the experiment. 
+
+\subsection{Alternative hypothesis}
+We hypothesise is that there may be differences. (AKA experimental analysis)
+
+
+\section{Data collection}
+To evaluate the hypothesis, we collect data regarding the experiment. 
+\begin{itemize}
+	\item Independent variables (Variables that are not necessarily effected by the experiment)
+	\item Dependent variables (Directly effected by the experiment)
+\end{itemize}
+
+
+The cause of data must occur before the effect and they must occur close together in time. The effect may never occur without the cause.
+
+\subsection{Systematic variation}
+Differences in performance created by a specific experimental manipulation.
+
+\subsection{Unsystematic variation}
+It is good to randomise the test subjects such that the variation is not systematic. 
+Individual differences in people.
+
+\section{Experimental designs}
+Repeated measures designs that are conducted on the same subjects on a longer period of time.
+
+Randomize the subjects into the groups. (Control and experimental group)
+
+Pretests and posttests. 
+
+
+Important to consider practice effect of fatique effect. 
+
+To consider Latin square / Counterbalancing (This is not the same as randomization which is putting the subjects into the different groups, and counterbalancing is the effect of making sure that every group tries all the effects.)
+
+\section{Assumptions on parametric tests}
+\begin{itemize}
+	\item Data which we can calculate something on. Easierly analysisable. 
+	\item Assumption of normality, which may be apperent with "convinience sampling" which is what is done in student projects, where we grap whoever is available. We are essentially lucky if we "hit people in our population"
+	\item Assumption of variance. Must represent the population varience.
+\end{itemize}
+
+\subsection{Normality}
+\begin{itemize}
+	\item Central limit theorem. Normal if $ N > 30 $ 
+\end{itemize}
+
+\subsection{Homogenity of variance}
+\begin{itemize}
+	\item Levenes test which looks at the spread around the mean. Is it consistent, or does it e.g. get larger as more samples are drawn.
+\end{itemize}
+
+\section{t-test}
+\subsection{Independent}
+\begin{itemize}
+	\item Compares the two independent datasets, so e.g. different people groups.
+\end{itemize}
+\subsection{Dependent}
+\begin{itemize}
+	\item Compares the two dependent datasets, so e.g. people in the same group.
+\end{itemize}
+
+\subsection{Rationale for t-test}
+Compare means of the control group vs treatment group. If there is no difference, there is either no effect or they arefrom the same population.
+
+
+\subsection{Results of the t-test}
+Remember to compute Effect size, as there may be a large difference, but does it actually have an effect.
+
+
+\section{Non-parametric tests results}
+We just work with the ranks and not the data itself in the parametric data. We loose some precision, but there is usually more evident effects. 
+
+If people have the same number rank, they get both get the average score between these two ranks. e.g. rank 3 and 4 both gets rank 3.5. 
+
+use the p-value to conclude. We cannot compute the mean, but we can use the median.
+
+\section{Anova}
+Analysis of variance where we compare several means. Multiple groups
+Instead of we compute t-tests between all the different groups, which introduces probabilistic error. We need to take this into account by using familiwise error.
+
+Degrees of fredom in data is always the samplesize - 1. This is because that if we know the mean, we also know the last sample if we know the mean and the other samples.
+
+
+
+
+\end{document}
