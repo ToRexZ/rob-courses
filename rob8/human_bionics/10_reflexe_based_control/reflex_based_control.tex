@@ -1,0 +1,81 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 10: Reflex Based Control of Bionic Limbs  \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+Control of walking in robotic prosthesis using reflexes.
+
+\section{Introduction}
+Walking is a dynamical system where the body is an inverted pendulumm, which makes it an unstable system, which is why we need control balance to achieve stability. The higher the center of mass, the more difficult to make it stable. The "base of support" is the contact surface on the ground. The greater base of support, the easier control. We walk by falling forward and control the falling to use the energy of gravity to use less energy to walk. But it is difficult to control. 
+Robots walk using "quasistatically", where they do not fall. They are essentially always in a stable and static state. They ensure that the center of mass is always inside of the base of support. Humans have their COM outside of the base of support.  
+
+\section{Do we need a brain to walk?}
+The body have a cortigo-muscular network, which is a feedback loop where the reflexes and sensory feedback. You can use "TMS" (trans magnetically scarpical) to activate the muslces. You can also use the reflexes of the muscles to control walking. 
+\begin{itemize}
+	\item Actually you do not need motors to walk. passsive walkers using springs and rupper on the toes. You just need gravity and make it walk. It needs a sloping surface to walk. This means that you do not need the brain to walk. It is only in the mechanics. It needs elastic elements. They are crucial.
+\end{itemize}
+
+\section{Reflex based control of walking} 
+They used a system with monoarticular and biarticular muscles, stance reflexes and swing reflexes that. 
+
+
+
+
+\section{Reflexes}
+\begin{itemize}
+	\item Stretch reflex $ \rightarrow $ Reflex on the sensors on the muscles. Hammer on knee at doctor. When you hit the tendon, it stretches the muscle, which detected by the "muscle spindle" (measures muscle length) which sends the information into the spinal coord, that sends the signal to the motor neuron that contracts immediately.  There is also a signal to the antagonistic muscle (the muscle on the other side) which inhibits the muscle to not counteract the muscle. Important to hit just beneath the kneecap to make the tendon stretch. Mathematically is the strecth multiplied with a gain which is fed into the motor units. Negative feedback loop.  
+	\item Colgi Tendon Reflex. Opposite to the other reflex. Acts on the muscle force. If there is a great sudden acting of contraction of the muscle, the signal is send through the spinal coord that sends a signal to the motor units to relax the muscles.Positive force feedback loop.
+\end{itemize}
+
+\section{Step by Step controller development}
+When I am in the stance phase i need to activate the leg muscles to push forward. Using the positive feedback loop to register when the muscle is stretched, then activate the contraction, which will push the human off the ground. You need to counteract the muscle in order to prevent over extending of the angle. There is approximately 30 ms of delay in the feedback loop in humans, which they create artifically as well.
+
+
+
+You can walk and run just by tuning the gains of muscle length and the muscle force. These are hyper parameters. The brain controls these gains, and it also initiates the movement. In the end we still need the brain to walk and run.
+
+\section{BIOM prosthesis}
+Powereffecient. Uses springs and a few motors, and the idea of reflex controlled walking. Uses a linear actuator with a screw to control angle extension/flexion. The spring is in series with the actuator, which results in compliance. There is also a parallel spring, that introduces a bouncy effect, but they introduce damping in the control of the prosthesis. It is using the Colgi tendon reflex which reacts on the muscle force. 
+
+They subtract the parallel springs torque from the desired torque of the model, which ultimately saves energy by not actuating the torque that the spring is actually producing.
+
+
+
+
+
+
+
+
+
+\end{document}

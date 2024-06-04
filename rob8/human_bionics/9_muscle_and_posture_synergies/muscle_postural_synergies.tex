@@ -1,0 +1,104 @@
+\documentclass[a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{textcomp}
+\usepackage[english]{babel}
+\usepackage{amsmath, amssymb}
+\usepackage{import}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage{xcolor}
+\usepackage{framed}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+
+% Remove paragraph indentation.
+\setlength{\parindent}{0pt}
+
+% Figure support
+\usepackage{xifthen}
+\pdfminorversion=7
+
+\newcommand{\incfig}[2][1]{%
+    \def\svgwidth{#1\columnwidth}
+    \import{./figures/}{#2.pdf_tex}
+}
+
+\pdfsuppresswarningpagegroup=1
+
+\title{Lecture 9: Muscle and Postural Synergies  \\
+	\large Human Bionics}
+\author{Victor Risager}
+
+\begin{document}
+\maketitle
+
+
+\section{Synergies}
+
+\begin{itemize}
+	\item Dimensionality reduction
+	\item The system simplifies
+	\item Easier equations 
+\end{itemize}
+Human is complex in actuation and control space. (e.g. biarticular muscles)
+Kinematic- and actuation redundancy
+
+\subsection{Kinematic redundancy}
+How many different ways can you touch your nose?
+
+\subsection{Actuation redundancy}
+Multiple actuators for the same joint.
+How is the brain controlling the muscles? Is it controlling each muscle individually?It is controlling more than one actuators in groups, which control the groups of muscles. The signals are distributed.
+
+
+\subsection{EMG and muscle synergies}
+The entire EMG signal constitutes multiple individual muscle signals or so called modules. Walking and running activates the same modules, but with different timing.
+
+
+\section{Kinematic complexity of the human hand}
+It is not really possible to control the Distal interphalangeal joint in the fingers independently.
+
+
+
+\section{PCA}
+Create a different coordinate system, which are placed along the directions along the most variance of the data.
+
+\subsection{VAF}
+Variance accoundted for (how much variance is described by the principal components (sum of eigenvalues of all of the components, divided by the total number of varaiables))
+
+
+Example in faces, where there is 2 principal components that are sufficient, in a 15 dimensional space, the 2 components represent "prototypical" faces which are like faces that represent all of the faces, but are not exactly like each of them. 
+
+
+\subsection{Control a robotic hand with 2 input signals}
+you can control a 15 dimensional actuation space of a dexterous robotic hand with 2 input signals, by using PCA to extract those 2 principal components. 
+
+\section{Dimensionality reduction}
+There are more than just PCA for dimensionality reduction ... nonlinear, linear dimensionality reduction etc.
+
+
+
+
+\section{Human vs robotic hand}
+The human hand is a very complex system. 15 joints, and 30 muscles 
+
+When you can sensory synergies, and actuation synergies, you can develop highly advanced control systems. To do so, you need an anatomically correct test bed (ACT). using 24 different tendons, they can control each degree of freedom in the fingers, which is very close to being identical to the human hand. They have a steel structure around acting as bones, surrounded by plastic. They tried to recreate the human tendon network that are not directly attached to the bone, there are intermediate socalled "tendons sheet". 
+
+
+There are no sensors in the joints, they are in the muscles. These can measure the length and actuation levels of the hand.
+
+
+A state space model of the ACT would only consist of the current state (tendon length) and the control inputs. 24 dimensional state space. But you can use a low dimensional projection of the control signals, to project the control signals down to the individual tendons. 
+
+
+They used RL to control the ACT. They had an augmented plant that computed a cost function based on a reducted dimensionality space.
+
+
+\section{Exam}
+Every lecture on moodle can appear at the exam
+
+
+
+\end{document}
